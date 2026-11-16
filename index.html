@@ -14,6 +14,17 @@ button{border:0;border-radius:14px;padding:11px 16px;background:var(--pink);colo
 .game{display:none;margin-top:18px}.game.active{display:block}.gamehead{display:flex;justify-content:space-between;align-items:center;gap:10px}.gamehead h2{margin:0}.play{margin-top:14px;padding:18px;text-align:center;background:#fff8fc;border:2px dashed var(--line);border-radius:20px;min-height:190px}.stat{display:inline-block;background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:99px;margin:4px}.big{font-size:3.4rem;margin:12px}.field{height:170px;position:relative;overflow:hidden;background:white;border:1px solid var(--line);border-radius:16px;margin-top:12px}.star{display:none;position:absolute;width:52px;height:52px;border-radius:50%;padding:0;background:var(--yellow);font-size:1.6rem}
 .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;max-width:440px;margin:14px auto}.answers button{background:#eae4ff}.message{background:#fff;border-radius:15px;padding:13px;margin:12px auto;max-width:520px;font-weight:800}
 .petbox{max-width:560px;margin:12px auto;background:linear-gradient(145deg,#fff0f7,#f1eaff);border:2px solid #efc9df;border-radius:22px;padding:16px}.petface{font-size:5.5rem;line-height:1.2;margin:8px}.meter{height:13px;border-radius:99px;background:#eaddec;overflow:hidden;margin:5px 0 12px}.meter span{display:block;height:100%;width:70%;background:linear-gradient(90deg,#ff91bd,#a58bff);border-radius:99px;transition:width .2s}.pet-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.pet-actions button{flex:1;min-width:95px}.petnote{font-size:.9rem;color:#776782}
+
+.daily{margin:22px 0;background:linear-gradient(135deg,#fff0f7,#f0eaff);border:2px solid #efc9df;border-radius:24px;padding:18px;box-shadow:0 9px 25px #8b648018}
+.daily-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.daily-stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.daily-stat{background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-weight:800}
+.daily-mission{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0}
+.daily-mission h3{margin:5px 0}.daily-mission p{color:#807286;line-height:1.5}
+.progress-track{height:12px;background:#eaddec;border-radius:99px;overflow:hidden;margin:10px 0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ff91bd,#a58bff);border-radius:99px;transition:width .2s}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.badge-chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 10px;font-size:.88rem}
+
 footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 @media(max-width:520px){header,main{padding-left:16px;padding-right:16px}.card{padding:16px}}
 </style></head>
@@ -28,6 +39,24 @@ footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 <article class="card"><div class="emoji">🎲</div><h3>Button of Chaos</h3><p>Press the mysterious button for a completely unnecessary prediction.</p><button class="mint" onclick="openGame('chaosGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🐣</div><h3>Virtual Pet</h3><p>Adopt a tiny friend, give it a name, feed it and play together!</p><button class="yellow" onclick="openGame('petGame')">Meet your pet →</button></article>
 </div></section>
+
+<section class="daily" id="dailyChallenge">
+ <div class="daily-top"><h2 style="margin:0">🌟 Daily Challenge</h2><span class="daily-stat">Your Funhouse quest</span></div>
+ <div class="daily-stats">
+  <span class="daily-stat">⭐ Points: <b id="dailyPoints">0</b></span>
+  <span class="daily-stat">🔥 Streak: <b id="dailyStreak">0</b> days</span>
+ </div>
+ <div class="daily-mission">
+  <div class="emoji" id="missionEmoji">🎯</div>
+  <h3 id="missionTitle">Today's little mission</h3>
+  <p id="missionDescription">Complete today's challenge to earn points.</p>
+  <div class="progress-track"><div class="progress-fill" id="missionProgress"></div></div>
+  <p id="missionStatus" style="margin-bottom:0;font-weight:800">Not started yet</p>
+ </div>
+ <h3>🏅 Your achievement shelf</h3>
+ <div class="badges" id="achievementBadges"></div>
+ <p class="petnote">Challenges and points are saved on this device in this browser. Your streak increases when you complete a challenge on a new day.</p>
+</section>
 
 <section id="starGame" class="card game"><div class="gamehead"><h2>⭐ Catch the Star</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><span class="stat">Time: <b id="time">15</b>s</span><span class="stat">Score: <b id="score">0</b></span><span class="stat">Best: <b id="best">0</b></span><p id="starHint">Press start, then catch as many stars as you can!</p><button id="start" onclick="startStar()">Start round</button><div class="field" id="field"><button class="star" id="target" onclick="catchStar()">⭐</button></div></div></section>
 
@@ -55,23 +84,77 @@ footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 <section id="about" class="card" style="margin-top:22px"><h2>🌷 A note from the Funhouse</h2><p style="line-height:1.6;color:#807286">A little independent playground made for quick breaks and harmless fun. No account, no sign-in and no personal details needed in this first version. More tiny games are on the way!</p></section>
 </main><footer>Made with ♡ by <b>The Funhouse</b> · Be kind, play silly.</footer>
 <script>
-const ids=['starGame','quizGame','chaosGame','petGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
+const ids=['starGame','quizGame','chaosGame','petGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
+
+// Daily challenge system: one rotating mission per local calendar day.
+const dailyStoreKey='funhouse-daily-v1';
+const missions=[
+ {id:'stars',emoji:'⭐',title:'Star Catcher',description:'Catch 5 stars in one round of Catch the Star.',goal:5,unit:'stars'},
+ {id:'quiz',emoji:'🕵️',title:'Emoji Detective',description:'Finish one full round of Guess the Emoji.',goal:1,unit:'round'},
+ {id:'chaos',emoji:'🎲',title:'Invite a Little Chaos',description:'Press the Button of Chaos once.',goal:1,unit:'press'},
+ {id:'pet',emoji:'🐣',title:'Pet Pal',description:'Take care of your virtual pet: feed, play or let it rest.',goal:1,unit:'care'}
+];
+function localDay(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function dayNumber(s){let [y,m,d]=s.split('-').map(Number);return Math.floor(Date.UTC(y,m-1,d)/86400000)}
+let dailyData={date:localDay(),mission:0,progress:0,completed:false,points:0,streak:0,lastCompleted:'',earned:[]};
+try{dailyData={...dailyData,...JSON.parse(localStorage.getItem(dailyStoreKey)||'{}')}}catch(e){}
+function saveDaily(){localStorage.setItem(dailyStoreKey,JSON.stringify(dailyData));renderDaily()}
+function syncDailyDay(){
+ const today=localDay();
+ if(dailyData.date!==today){
+   dailyData.date=today;
+   dailyData.mission=(dayNumber(today)+3)%missions.length;
+   dailyData.progress=0;dailyData.completed=false;
+   saveDaily();
+ }
+}
+function renderDaily(){
+ const m=missions[dailyData.mission]||missions[0];
+ document.getElementById('dailyPoints').textContent=dailyData.points;
+ document.getElementById('dailyStreak').textContent=dailyData.streak;
+ document.getElementById('missionEmoji').textContent=m.emoji;
+ document.getElementById('missionTitle').textContent=m.title;
+ document.getElementById('missionDescription').textContent=m.description;
+ document.getElementById('missionProgress').style.width=Math.min(100,dailyData.progress/m.goal*100)+'%';
+ document.getElementById('missionStatus').textContent=dailyData.completed?'✨ Challenge complete! +10 points':(dailyData.progress>0?dailyData.progress+' / '+m.goal+' '+m.unit+' completed':'Not started yet');
+ const badges=[{n:1,t:'🌱 First Quest',d:'Complete your first daily challenge.'},{n:3,t:'🔥 3-day streak',d:'Complete challenges 3 days in a row.'},{n:7,t:'🌈 Week of Fun',d:'Complete challenges 7 days in a row.'},{n:10,t:'⭐ 10 quests',d:'Complete 10 daily challenges.'}];
+ document.getElementById('achievementBadges').innerHTML=badges.map(b=>'<span class="badge-chip" title="'+b.d+'">'+(dailyData.earned.includes(b.n)?b.t:'🔒 '+b.t)+'</span>').join('');
+}
+function dailyProgress(kind,amount=1){
+ syncDailyDay();if(dailyData.completed)return;
+ const m=missions[dailyData.mission];if(m.id!==kind)return;
+ dailyData.progress=Math.min(m.goal,dailyData.progress+amount);
+ if(dailyData.progress>=m.goal){
+   dailyData.completed=true;dailyData.points+=10;
+   const today=localDay(),last=dailyData.lastCompleted;
+   if(last!==today){dailyData.streak=last&&dayNumber(today)-dayNumber(last)===1?dailyData.streak+1:1;dailyData.lastCompleted=today}
+   const total=(dailyData.totalCompleted||0)+1;dailyData.totalCompleted=total;
+   if(total>=1&&!dailyData.earned.includes(1))dailyData.earned.push(1);
+   if(dailyData.streak>=3&&!dailyData.earned.includes(3))dailyData.earned.push(3);
+   if(dailyData.streak>=7&&!dailyData.earned.includes(7))dailyData.earned.push(7);
+   if(total>=10&&!dailyData.earned.includes(10))dailyData.earned.push(10);
+ }
+ saveDaily();
+}
+syncDailyDay();renderDaily();
+
 let timer=null,left=15,score=0;const key='funhouse-best';document.getElementById('best').textContent=localStorage.getItem(key)||0;
 function stopStar(){if(timer)clearInterval(timer);timer=null;document.getElementById('target').style.display='none'}
 function moveStar(){let f=document.getElementById('field'),t=document.getElementById('target');t.style.left=Math.random()*(f.clientWidth-55)+'px';t.style.top=Math.random()*(f.clientHeight-55)+'px'}
 function startStar(){stopStar();left=15;score=0;document.getElementById('time').textContent=left;document.getElementById('score').textContent=score;document.getElementById('starHint').textContent='Go go go!';document.getElementById('start').disabled=true;document.getElementById('target').style.display='block';moveStar();timer=setInterval(()=>{left--;document.getElementById('time').textContent=left;if(left<=0){stopStar();document.getElementById('starHint').textContent='Time! You caught '+score+' stars. Nice tapping!';document.getElementById('start').disabled=false}},1000)}
-function catchStar(){if(!timer)return;score++;document.getElementById('score').textContent=score;let b=+(localStorage.getItem(key)||0);if(score>b){localStorage.setItem(key,score);document.getElementById('best').textContent=score}moveStar()}
+function catchStar(){if(!timer)return;score++;dailyProgress('stars',1);document.getElementById('score').textContent=score;let b=+(localStorage.getItem(key)||0);if(score>b){localStorage.setItem(key,score);document.getElementById('best').textContent=score}moveStar()}
 const qs=[['🍕🌙',['Midnight snack','Moon pizza','Space dinner','Sleepy chef'],0],['🐝📚',['Busy library','Bee book club','Reading bug','Honey homework'],1],['🌧️🐱🐶',['Animal parade','Cat café','Raining cats and dogs','Wet pets'],2],['🧊☕',['Cold coffee','Coffee glacier','Frozen tea','Winter cocoa'],0],['⭐🎣',['Starfish','Fishing for compliments','Catch a star','Space fishing'],3]];
 let qi=0,points=0,done=false;function renderQ(){done=false;let q=qs[qi];document.getElementById('qNum').textContent=qi+1;document.getElementById('clue').textContent=q[0];document.getElementById('feedback').textContent='Choose your answer!';document.getElementById('next').style.display='none';let a=document.getElementById('answers');a.innerHTML='';q[1].forEach((v,i)=>{let b=document.createElement('button');b.textContent=v;b.onclick=()=>answer(i);a.appendChild(b)})}
 function answer(i){if(done)return;done=true;let q=qs[qi];if(i===q[2])points++;document.getElementById('feedback').textContent=i===q[2]?'Correct! Emoji detective skills: elite ✨':'Not quite! The answer was '+q[1][q[2]]+'.';[...document.querySelectorAll('#answers button')].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.background='#c9f4e8'});document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=qi===4?'See my score →':'Next →'}
-function nextQ(){if(qi<4){qi++;renderQ()}else{document.getElementById('clue').textContent='🏆';document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='You got '+points+' out of 5. Thanks for playing!';document.getElementById('next').style.display='none';qi=0;points=0}}
-renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
+function nextQ(){if(qi<4){qi++;renderQ()}else{dailyProgress('quiz',1);document.getElementById('clue').textContent='🏆';document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='You got '+points+' out of 5. Thanks for playing!';document.getElementById('next').style.display='none';qi=0;points=0}}
+renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){dailyProgress('chaos',1);document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
 const petKey='funhouse-pet-v1';let pet={name:'Pip',hunger:70,happy:75,energy:80};try{let saved=JSON.parse(localStorage.getItem(petKey)||'null');if(saved)pet={...pet,...saved}}catch(e){}
 function savePet(){localStorage.setItem(petKey,JSON.stringify(pet));drawPet()}
 function drawPet(){document.getElementById('petName').textContent=pet.name;document.getElementById('petRename').value=pet.name;document.getElementById('hungerNum').textContent=pet.hunger;document.getElementById('happyNum').textContent=pet.happy;document.getElementById('energyNum').textContent=pet.energy;document.getElementById('hungerBar').style.width=pet.hunger+'%';document.getElementById('happyBar').style.width=pet.happy+'%';document.getElementById('energyBar').style.width=pet.energy+'%';document.getElementById('petFace').textContent=pet.energy<25?'😴':pet.hunger<25?'🥺':pet.happy>85?'🥰':'🐣';document.getElementById('petMood').textContent=pet.happy>80?pet.name+' is feeling extra happy!':pet.hunger<25?pet.name+' is getting hungry.':pet.energy<25?pet.name+' needs a little rest.':pet.name+' is feeling lovely!'}
 function sayPet(t){document.getElementById('petMessage').textContent=t}
-function feedPet(){if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);savePet();sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
-function playPet(){if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);savePet();sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
-function restPet(){pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);savePet();sayPet(pet.name+' had a lovely little nap. 💤')}
-document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});drawPet();
+function feedPet(){dailyProgress('pet',1);if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);savePet();sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
+function playPet(){dailyProgress('pet',1);if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);savePet();sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
+function restPet(){dailyProgress('pet',1);pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);savePet();sayPet(pet.name+' had a lovely little nap. 💤')}
+document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});drawPet();document.addEventListener('visibilitychange',()=>{if(!document.hidden){syncDailyDay();renderDaily()}});
 </script></body></html>
