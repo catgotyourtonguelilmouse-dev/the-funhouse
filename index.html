@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#fff0f6"><title>The Funhouse ✿</title>
+<meta name="theme-color" content="#fff0f6"><title>The Funhouse v1.3 ✿</title>
 <style>
 :root{--pink:#ff91bd;--pale:#ffe4ef;--purple:#a58bff;--mint:#c9f4e8;--yellow:#ffe58a;--ink:#493b55;--line:#f0c9dc}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 5%,#fff1c4,transparent 25%),radial-gradient(circle at 90% 15%,#f0e4ff,transparent 27%),#fff8fc;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif}
@@ -25,19 +25,37 @@ button{border:0;border-radius:14px;padding:11px 16px;background:var(--pink);colo
 .progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ff91bd,#a58bff);border-radius:99px;transition:width .2s}
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.badge-chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 10px;font-size:.88rem}
 
+
+.memory-board{display:grid;grid-template-columns:repeat(4,minmax(48px,1fr));gap:9px;max-width:390px;margin:15px auto}
+.memory-card{height:66px;font-size:1.7rem;background:#eae4ff;border:2px solid var(--line);border-radius:14px;padding:4px}
+.tic-board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:300px;margin:15px auto}
+.tic-cell{height:82px;font-size:2rem;background:#fff0f7;border:2px solid var(--line);border-radius:15px}
+body.theme-lavender{--pink:#b9a4ff;--pale:#eee8ff;--purple:#9275e8;--mint:#d8f5ee;--yellow:#ffe8a6;--ink:#40375b;--line:#d8cdf7;background:radial-gradient(circle at 10% 5%,#fff1d6,transparent 25%),#f8f5ff}
+body.theme-mint{--pink:#8edcc7;--pale:#dcf8ef;--purple:#a9a0ef;--mint:#c5f0df;--yellow:#ffe59b;--ink:#35564f;--line:#c3e9dc;background:#f4fffa}
+body.theme-sunshine{--pink:#ffc36e;--pale:#fff0d5;--purple:#c3a3e8;--mint:#d9f2d0;--yellow:#ffe28b;--ink:#604b32;--line:#f1d9ae;background:#fffaf0}
+body.theme-night{--pink:#d69ac5;--pale:#4d3d5b;--purple:#9b8bd8;--mint:#75b7a5;--yellow:#e9cb79;--ink:#f6eefa;--line:#665574;background:#211b2b}
+body.theme-night .card,body.theme-night .daily,body.theme-night .play,body.theme-night .daily-mission,body.theme-night .message,body.theme-night nav a,body.theme-night .stat{background:#33283f;color:#f6eefa}
+body.theme-night .card p,body.theme-night .hero p,body.theme-night .petnote{color:#d5c5df}
+body.theme-night .petbox{background:#40314e}
+
 footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 @media(max-width:520px){header,main{padding-left:16px;padding-right:16px}.card{padding:16px}}
 </style></head>
 <body>
 <header><div class="brand">the <span>fun</span>house ✿</div>
 <section class="hero"><div class="icons">✦ 🍓 ✧ 🧸 ✦</div><h1>Welcome to the <em>Funhouse!</em></h1><p>A tiny corner of the internet for silly challenges, quick games and very important nonsense. Pick a game and have a little fun.</p></section>
-<nav><a href="#games">🎮 Games</a><a href="#about">🌷 About</a></nav></header>
+<nav><a href="#games">🎮 Games</a><a href="#dailyChallenge">🌟 Daily quests</a><a href="#trophyRoom">🏆 Trophies</a><a href="#diary">📖 Diary</a><a href="#themeSettings">🎨 Themes</a><a href="#about">🌷 About</a></nav></header>
 <main>
 <section id="games"><h2>Choose your little adventure</h2><div class="grid">
 <article class="card"><div class="emoji">⭐</div><h3>Catch the Star</h3><p>Tap the star as many times as you can before the timer runs out. Quick fingers!</p><button onclick="openGame('starGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🕵️</div><h3>Guess the Emoji</h3><p>Decode five emoji clues. Some are obvious. Some are absolutely not.</p><button class="purple" onclick="openGame('quizGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🎲</div><h3>Button of Chaos</h3><p>Press the mysterious button for a completely unnecessary prediction.</p><button class="mint" onclick="openGame('chaosGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🐣</div><h3>Virtual Pet</h3><p>Adopt a tiny friend, give it a name, feed it and play together!</p><button class="yellow" onclick="openGame('petGame')">Meet your pet →</button></article>
+<article class="card"><div class="emoji">🧠</div><h3>Memory Match</h3><p>Find all the matching pairs. Can you remember where every card is hiding?</p><button onclick="openGame('memoryGame')">Play game →</button></article>
+<article class="card"><div class="emoji">⭕</div><h3>Tic-Tac-Toe</h3><p>Play a quick round against a simple computer opponent.</p><button class="purple" onclick="openGame('ticGame')">Play game →</button></article>
+<article class="card"><div class="emoji">✊</div><h3>Rock Paper Scissors</h3><p>Challenge the computer in this classic little showdown.</p><button class="mint" onclick="openGame('rpsGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🔤</div><h3>Word Scramble</h3><p>Unscramble the letters before you run out of guesses.</p><button class="yellow" onclick="openGame('wordGame')">Play game →</button></article>
+<article class="card"><div class="emoji">⚡</div><h3>Reaction Test</h3><p>Wait for the screen to change, then tap as quickly as you can.</p><button onclick="openGame('reactionGame')">Play game →</button></article>
 </div></section>
 
 <section class="daily" id="dailyChallenge">
@@ -77,14 +95,32 @@ footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 <div>⚡ Energy <b id="energyNum">80</b>%</div><div class="meter"><span id="energyBar"></span></div>
 </div>
 <div class="pet-actions"><button onclick="feedPet()">🍓 Feed</button><button class="purple" onclick="playPet()">🧶 Play</button><button class="mint" onclick="restPet()">💤 Rest</button></div>
+<div style="margin-top:14px"><b>Choose your pet</b><div class="pet-actions" style="margin-top:8px"><button class="yellow" onclick="choosePet('🐣')">🐣 Chick</button><button class="purple" onclick="choosePet('🐸')">🐸 Frog</button><button class="mint" onclick="choosePet('🐱')">🐱 Cat</button><button onclick="choosePet('🐰')">🐰 Bunny</button></div>
+<b style="display:block;margin-top:12px">Pick an accessory</b><div class="pet-actions" style="margin-top:8px"><button onclick="chooseAccessory('🎀')">🎀 Bow</button><button class="purple" onclick="chooseAccessory('👑')">👑 Crown</button><button class="mint" onclick="chooseAccessory('🌸')">🌸 Flower</button><button class="yellow" onclick="chooseAccessory('')">No accessory</button></div></div>
 <div class="message" id="petMessage">Pip is excited to meet you!</div>
 </div><p class="petnote">Your pet's progress is saved on this device in this browser. It isn't shared with anyone.</p>
 </div></section>
 
+
+<section id="memoryGame" class="card game"><div class="gamehead"><h2>🧠 Memory Match</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Find all four matching pairs.</p><div id="memoryBoard" class="memory-board"></div><p id="memoryStatus" class="message">Tap two cards to find a pair.</p><button onclick="startMemory()">Restart</button></div></section>
+<section id="ticGame" class="card game"><div class="gamehead"><h2>⭕ Tic-Tac-Toe</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>You are X. The computer is O.</p><div id="ticBoard" class="tic-board"></div><p id="ticStatus" class="message">Your turn!</p><button onclick="startTic()">New round</button></div></section>
+<section id="rpsGame" class="card game"><div class="gamehead"><h2>✊ Rock Paper Scissors</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Choose your move!</p><div class="pet-actions"><button onclick="playRPS('rock')">✊ Rock</button><button class="purple" onclick="playRPS('paper')">✋ Paper</button><button class="mint" onclick="playRPS('scissors')">✌️ Scissors</button></div><div id="rpsResult" class="message">Ready when you are.</div><p id="rpsScore">You 0 · Computer 0</p></div></section>
+<section id="wordGame" class="card game"><div class="gamehead"><h2>🔤 Word Scramble</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Unscramble this word:</p><div class="big" id="scrambleWord">RTAES</div><input id="wordGuess" maxlength="14" placeholder="Your guess" style="padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit"><button onclick="checkWord()">Check</button><button class="purple" onclick="newWord()">Skip</button><div id="wordResult" class="message">You can do it!</div></div></section>
+<section id="reactionGame" class="card game"><div class="gamehead"><h2>⚡ Reaction Test</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p id="reactionText">Tap start, wait for green, then tap as quickly as possible.</p><button id="reactionButton" onclick="reactionAction()">Start test</button><div id="reactionResult" class="message">Your best time will be saved on this device.</div></div></section>
+
+<section class="card" id="trophyRoom" style="margin-top:22px"><h2>🏆 Trophy Room</h2><p class="petnote">Your achievements stay on this device and browser.</p><div class="badges" id="trophyShelf"></div><h3>Personal bests</h3><div id="bestShelf" class="message">Play a few games to set your records!</div></section>
+
+<section class="card" id="diary" style="margin-top:22px"><h2>📖 The Secret Diary</h2><p class="petnote">A tiny collection of fictional diary snippets and writing prompts. Your own notes stay private on this device.</p>
+<div class="daily-mission"><h3>Today's tiny story</h3><p id="diaryStory"></p><button class="purple" onclick="newDiaryStory()">Another story</button></div>
+<h3>Write a private note</h3><textarea id="privateDiary" rows="5" maxlength="1500" placeholder="Write a thought, a story idea or a little note..." style="width:100%;padding:12px;border:1px solid var(--line);border-radius:14px;font:inherit;resize:vertical"></textarea><p class="petnote">Saved only in this browser on this device. Don't write passwords, addresses or other sensitive information.</p><button onclick="saveDiary()">Save my note</button> <span id="diarySaved" class="petnote"></span>
+</section>
+
+<section class="card" id="themeSettings" style="margin-top:22px"><h2>🎨 Make it yours</h2><p class="petnote">Choose a colour mood for your Funhouse.</p><div class="pet-actions"><button onclick="setTheme('cute')">🍓 Strawberry</button><button class="purple" onclick="setTheme('lavender')">💜 Lavender</button><button class="mint" onclick="setTheme('mint')">🌿 Mint</button><button class="yellow" onclick="setTheme('sunshine')">🌼 Sunshine</button><button onclick="setTheme('night')">🌙 Night</button></div></section>
+
 <section id="about" class="card" style="margin-top:22px"><h2>🌷 A note from the Funhouse</h2><p style="line-height:1.6;color:#807286">A little independent playground made for quick breaks and harmless fun. No account, no sign-in and no personal details needed in this first version. More tiny games are on the way!</p></section>
 </main><footer>Made with ♡ by <b>The Funhouse</b> · Be kind, play silly.</footer>
 <script>
-const ids=['starGame','quizGame','chaosGame','petGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+const ids=['starGame','quizGame','chaosGame','petGame','memoryGame','ticGame','rpsGame','wordGame','reactionGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
 
 // Daily challenge system: one rotating mission per local calendar day.
@@ -149,12 +185,61 @@ let qi=0,points=0,done=false;function renderQ(){done=false;let q=qs[qi];document
 function answer(i){if(done)return;done=true;let q=qs[qi];if(i===q[2])points++;document.getElementById('feedback').textContent=i===q[2]?'Correct! Emoji detective skills: elite ✨':'Not quite! The answer was '+q[1][q[2]]+'.';[...document.querySelectorAll('#answers button')].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.background='#c9f4e8'});document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=qi===4?'See my score →':'Next →'}
 function nextQ(){if(qi<4){qi++;renderQ()}else{dailyProgress('quiz',1);document.getElementById('clue').textContent='🏆';document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='You got '+points+' out of 5. Thanks for playing!';document.getElementById('next').style.display='none';qi=0;points=0}}
 renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){dailyProgress('chaos',1);document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
-const petKey='funhouse-pet-v1';let pet={name:'Pip',hunger:70,happy:75,energy:80};try{let saved=JSON.parse(localStorage.getItem(petKey)||'null');if(saved)pet={...pet,...saved}}catch(e){}
+const petKey='funhouse-pet-v1';let pet={name:'Pip',hunger:70,happy:75,energy:80,kind:'🐣',accessory:''};try{let saved=JSON.parse(localStorage.getItem(petKey)||'null');if(saved)pet={...pet,...saved}}catch(e){}
 function savePet(){localStorage.setItem(petKey,JSON.stringify(pet));drawPet()}
-function drawPet(){document.getElementById('petName').textContent=pet.name;document.getElementById('petRename').value=pet.name;document.getElementById('hungerNum').textContent=pet.hunger;document.getElementById('happyNum').textContent=pet.happy;document.getElementById('energyNum').textContent=pet.energy;document.getElementById('hungerBar').style.width=pet.hunger+'%';document.getElementById('happyBar').style.width=pet.happy+'%';document.getElementById('energyBar').style.width=pet.energy+'%';document.getElementById('petFace').textContent=pet.energy<25?'😴':pet.hunger<25?'🥺':pet.happy>85?'🥰':'🐣';document.getElementById('petMood').textContent=pet.happy>80?pet.name+' is feeling extra happy!':pet.hunger<25?pet.name+' is getting hungry.':pet.energy<25?pet.name+' needs a little rest.':pet.name+' is feeling lovely!'}
+function drawPet(){document.getElementById('petName').textContent=pet.name;document.getElementById('petRename').value=pet.name;document.getElementById('hungerNum').textContent=pet.hunger;document.getElementById('happyNum').textContent=pet.happy;document.getElementById('energyNum').textContent=pet.energy;document.getElementById('hungerBar').style.width=pet.hunger+'%';document.getElementById('happyBar').style.width=pet.happy+'%';document.getElementById('energyBar').style.width=pet.energy+'%';document.getElementById('petFace').textContent=(pet.energy<25?'😴':pet.hunger<25?'🥺':pet.happy>85?'🥰':(pet.kind||'🐣'))+(pet.accessory||'');document.getElementById('petMood').textContent=pet.happy>80?pet.name+' is feeling extra happy!':pet.hunger<25?pet.name+' is getting hungry.':pet.energy<25?pet.name+' needs a little rest.':pet.name+' is feeling lovely!'}
 function sayPet(t){document.getElementById('petMessage').textContent=t}
 function feedPet(){dailyProgress('pet',1);if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);savePet();sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
 function playPet(){dailyProgress('pet',1);if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);savePet();sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
 function restPet(){dailyProgress('pet',1);pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);savePet();sayPet(pet.name+' had a lovely little nap. 💤')}
 document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});drawPet();document.addEventListener('visibilitychange',()=>{if(!document.hidden){syncDailyDay();renderDaily()}});
+
+// Extra mini-games
+const memEmojis=['🍓','🐸','🌈','🧸','🍓','🐸','🌈','🧸'];let memFirst=null,memLock=false,memPairs=0,memMoves=0;
+function startMemory(){let deck=[...memEmojis].sort(()=>Math.random()-.5);memFirst=null;memLock=false;memPairs=0;memMoves=0;let board=document.getElementById('memoryBoard');board.innerHTML='';deck.forEach((v,i)=>{let b=document.createElement('button');b.className='memory-card';b.textContent='❔';b.dataset.value=v;b.dataset.index=i;b.onclick=()=>flipMemory(b);board.appendChild(b)});document.getElementById('memoryStatus').textContent='Find all four pairs. Moves: 0'}
+function flipMemory(btn){if(memLock||btn.dataset.done||btn===memFirst)return;btn.textContent=btn.dataset.value;if(!memFirst){memFirst=btn;return}memMoves++;if(memFirst.dataset.value===btn.dataset.value){memFirst.dataset.done='1';btn.dataset.done='1';memPairs++;memFirst=null;document.getElementById('memoryStatus').textContent='Match! Pairs: '+memPairs+'/4 · Moves: '+memMoves;if(memPairs===4){document.getElementById('memoryStatus').textContent='You found every pair in '+memMoves+' moves! 🎉';recordTrophy('memory')} }else{memLock=true;let first=memFirst;setTimeout(()=>{first.textContent='❔';btn.textContent='❔';memFirst=null;memLock=false;document.getElementById('memoryStatus').textContent='Try again! Moves: '+memMoves},650)}}
+startMemory();
+
+let tic=['','',''],ticOver=false;
+function startTic(){tic=['','','','','','','','',''];ticOver=false;renderTic();document.getElementById('ticStatus').textContent='Your turn!'}
+function renderTic(){let b=document.getElementById('ticBoard');b.innerHTML='';tic.forEach((v,i)=>{let x=document.createElement('button');x.className='tic-cell';x.textContent=v;x.disabled=!!v||ticOver;x.onclick=()=>ticMove(i);b.appendChild(x)})}
+function winner(a){for(let [x,y,z] of [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]])if(a[x]&&a[x]===a[y]&&a[y]===a[z])return a[x];return a.every(Boolean)?'draw':null}
+function ticMove(i){if(tic[i]||ticOver)return;tic[i]='X';let w=winner(tic);if(w){finishTic(w);return}let free=tic.map((v,j)=>v?null:j).filter(v=>v!==null);if(free.length){let pick=free[Math.floor(Math.random()*free.length)];tic[pick]='O'}w=winner(tic);if(w)finishTic(w);renderTic()}
+function finishTic(w){ticOver=true;document.getElementById('ticStatus').textContent=w==='X'?'You win! 🎉':w==='O'?'Computer wins this round.':'It is a draw!';if(w==='X')recordTrophy('tic');renderTic()}
+startTic();
+
+let rpsYou=0,rpsCpu=0;function playRPS(choice){let opts=['rock','paper','scissors'],cpu=opts[Math.floor(Math.random()*3)],result=choice===cpu?'It is a tie!':((choice==='rock'&&cpu==='scissors')||(choice==='paper'&&cpu==='rock')||(choice==='scissors'&&cpu==='paper'))?'You win this round!':'Computer wins this round!';if(result.startsWith('You')){rpsYou++;recordTrophy('rps')}else if(result.startsWith('Computer'))rpsCpu++;document.getElementById('rpsResult').textContent='You chose '+choice+' · Computer chose '+cpu+'. '+result;document.getElementById('rpsScore').textContent='You '+rpsYou+' · Computer '+rpsCpu}
+
+const words=['strawberry','rainbow','puzzle','kittens','sunshine','cupcake','unicorn','lollipop'];let currentWord='';
+function newWord(){currentWord=words[Math.floor(Math.random()*words.length)];let a=currentWord.split('');for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}if(a.join('')===currentWord)a.reverse();document.getElementById('scrambleWord').textContent=a.join(' ').toUpperCase();document.getElementById('wordGuess').value='';document.getElementById('wordResult').textContent='Unscramble the letters!'}
+function checkWord(){let guess=document.getElementById('wordGuess').value.trim().toLowerCase();if(guess===currentWord){document.getElementById('wordResult').textContent='Correct! You unscrambled it! 🎉';recordTrophy('word')}else document.getElementById('wordResult').textContent='Not quite — try again!'}
+newWord();
+
+let reactionState='idle',reactionTimer=null,reactionStart=0,reactionBest=Number(localStorage.getItem('funhouse-reaction-best')||0);
+function reactionAction(){let b=document.getElementById('reactionButton'),t=document.getElementById('reactionText'),r=document.getElementById('reactionResult');if(reactionState==='idle'){reactionState='wait';b.textContent='Wait for green…';b.style.background='#f6b7ce';t.textContent='Wait… don’t tap yet!';reactionTimer=setTimeout(()=>{reactionState='go';reactionStart=performance.now();b.textContent='TAP NOW!';b.style.background='#8ee0ad';},1200+Math.random()*2500)}else if(reactionState==='wait'){clearTimeout(reactionTimer);reactionState='idle';b.textContent='Start test';b.style.background='';r.textContent='Too soon! Try again.'}else if(reactionState==='go'){let ms=Math.round(performance.now()-reactionStart);reactionState='idle';b.textContent='Start again';b.style.background='';if(!reactionBest||ms<reactionBest){reactionBest=ms;localStorage.setItem('funhouse-reaction-best',ms)}r.textContent='Your time: '+ms+' ms · Best: '+reactionBest+' ms';if(ms<400)recordTrophy('reaction')}}
+document.getElementById('reactionResult').textContent=reactionBest?'Personal best: '+reactionBest+' ms':'Your best time will be saved on this device.';
+
+// Trophy shelf uses its own key; daily challenge data and pet data keys are untouched.
+const trophyKey='funhouse-trophies-v1';let trophies=[];try{trophies=JSON.parse(localStorage.getItem(trophyKey)||'[]')}catch(e){}
+const trophyInfo={memory:'🧠 Memory Master',tic:'⭕ Tic-Tac-Toe Winner',rps:'✊ RPS Champion',word:'🔤 Word Wizard',reaction:'⚡ Quick Reflexes'};
+function recordTrophy(id){if(!trophies.includes(id)){trophies.push(id);localStorage.setItem(trophyKey,JSON.stringify(trophies));renderTrophies()}}
+function renderTrophies(){let el=document.getElementById('trophyShelf');el.innerHTML=Object.keys(trophyInfo).map(k=>'<span class="badge-chip">'+(trophies.includes(k)?trophyInfo[k]:'🔒 '+trophyInfo[k])+'</span>').join('');let best=localStorage.getItem('funhouse-best')||'—',reaction=localStorage.getItem('funhouse-reaction-best')||'—';document.getElementById('bestShelf').textContent='Catch the Star best: '+best+' · Reaction best: '+reaction+' ms · Daily points: '+(document.getElementById('dailyPoints')?.textContent||'0')}
+renderTrophies();
+
+// Curated fictional snippets + private, device-local journal note.
+const diaryStories=[
+'Dear Diary, today I went looking for my missing pencil and found three biscuits, a button and absolutely no pencil. A mystery for another day.',
+'Dear Diary, the houseplant looks suspiciously proud of itself. I watered it and now I feel like we have an agreement.',
+'Dear Diary, I made a to-do list. The list is now judging me from the desk. We are both waiting for motivation.',
+'Dear Diary, a tiny cloud followed me on my walk. It did not rain, but it did look like it had a secret.'
+];
+function newDiaryStory(){document.getElementById('diaryStory').textContent=diaryStories[Math.floor(Math.random()*diaryStories.length)]}
+newDiaryStory();
+const diaryKey='funhouse-private-diary-v1';document.getElementById('privateDiary').value=localStorage.getItem(diaryKey)||'';
+function saveDiary(){localStorage.setItem(diaryKey,document.getElementById('privateDiary').value);document.getElementById('diarySaved').textContent='Saved on this device ✓';}
+
+// Theme setting stored independently; existing game, pet and daily keys remain intact.
+function setTheme(name){document.body.classList.remove('theme-lavender','theme-mint','theme-sunshine','theme-night');if(name!=='cute')document.body.classList.add('theme-'+name);localStorage.setItem('funhouse-theme-v1',name)}
+setTheme(localStorage.getItem('funhouse-theme-v1')||'cute');
+
 </script></body></html>
