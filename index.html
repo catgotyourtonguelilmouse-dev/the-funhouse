@@ -10,10 +10,12 @@ header,main{max-width:1000px;margin:auto;padding:20px}header{padding-bottom:0}.b
 .hero{text-align:center;padding:35px 8px}.hero .icons{font-size:1.5rem;letter-spacing:8px}.hero h1{font-size:clamp(2.3rem,8vw,4.5rem);line-height:1.02;margin:12px 0}.hero h1 em{font-style:normal;color:#ed70a8}.hero p{max-width:540px;margin:auto;line-height:1.6;color:#81728a}
 nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 22px}nav a{background:white;border:2px solid var(--line);border-radius:99px;padding:9px 16px;text-decoration:none;color:var(--ink);font-weight:800}
 h2{margin:10px 0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.card{background:#fff;border:2px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 9px 25px #8b648018}.emoji{font-size:2.3rem}.card h3{margin:8px 0}.card p{color:#807286;line-height:1.5;min-height:68px}
-button{border:0;border-radius:14px;padding:11px 16px;background:var(--pink);color:#51384c;font-weight:900;font-size:1rem;cursor:pointer}button.purple{background:#e8e0ff}button.mint{background:var(--mint)}button.yellow{background:var(--yellow)}
+button{border:0;border-radius:14px;padding:11px 16px;background:var(--pink);color:#51384c;font-weight:900;font-size:1rem;cursor:pointer}button.purple{background:#e8e0ff}button.mint{background:var(--mint)}button.yellow{background:var(--yellow)}button:disabled{opacity:.55}
 .game{display:none;margin-top:18px}.game.active{display:block}.gamehead{display:flex;justify-content:space-between;align-items:center;gap:10px}.gamehead h2{margin:0}.play{margin-top:14px;padding:18px;text-align:center;background:#fff8fc;border:2px dashed var(--line);border-radius:20px;min-height:190px}.stat{display:inline-block;background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:99px;margin:4px}.big{font-size:3.4rem;margin:12px}.field{height:170px;position:relative;overflow:hidden;background:white;border:1px solid var(--line);border-radius:16px;margin-top:12px}.star{display:none;position:absolute;width:52px;height:52px;border-radius:50%;padding:0;background:var(--yellow);font-size:1.6rem}
 .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;max-width:440px;margin:14px auto}.answers button{background:#eae4ff}.message{background:#fff;border-radius:15px;padding:13px;margin:12px auto;max-width:520px;font-weight:800}
+.petbox{max-width:560px;margin:12px auto;background:linear-gradient(145deg,#fff0f7,#f1eaff);border:2px solid #efc9df;border-radius:22px;padding:16px}.petface{font-size:5.5rem;line-height:1.2;margin:8px}.meter{height:13px;border-radius:99px;background:#eaddec;overflow:hidden;margin:5px 0 12px}.meter span{display:block;height:100%;width:70%;background:linear-gradient(90deg,#ff91bd,#a58bff);border-radius:99px;transition:width .2s}.pet-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.pet-actions button{flex:1;min-width:95px}.petnote{font-size:.9rem;color:#776782}
 footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
+@media(max-width:520px){header,main{padding-left:16px;padding-right:16px}.card{padding:16px}}
 </style></head>
 <body>
 <header><div class="brand">the <span>fun</span>house ✿</div>
@@ -24,14 +26,36 @@ footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 <article class="card"><div class="emoji">⭐</div><h3>Catch the Star</h3><p>Tap the star as many times as you can before the timer runs out. Quick fingers!</p><button onclick="openGame('starGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🕵️</div><h3>Guess the Emoji</h3><p>Decode five emoji clues. Some are obvious. Some are absolutely not.</p><button class="purple" onclick="openGame('quizGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🎲</div><h3>Button of Chaos</h3><p>Press the mysterious button for a completely unnecessary prediction.</p><button class="mint" onclick="openGame('chaosGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🐣</div><h3>Virtual Pet</h3><p>Adopt a tiny friend, give it a name, feed it and play together!</p><button class="yellow" onclick="openGame('petGame')">Meet your pet →</button></article>
 </div></section>
+
 <section id="starGame" class="card game"><div class="gamehead"><h2>⭐ Catch the Star</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><span class="stat">Time: <b id="time">15</b>s</span><span class="stat">Score: <b id="score">0</b></span><span class="stat">Best: <b id="best">0</b></span><p id="starHint">Press start, then catch as many stars as you can!</p><button id="start" onclick="startStar()">Start round</button><div class="field" id="field"><button class="star" id="target" onclick="catchStar()">⭐</button></div></div></section>
+
 <section id="quizGame" class="card game"><div class="gamehead"><h2>🕵️ Guess the Emoji</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><span class="stat">Question <b id="qNum">1</b> / 5</span><div class="big" id="clue">🍕🌙</div><p>What does this emoji clue mean?</p><div class="answers" id="answers"></div><div class="message" id="feedback">Choose your answer!</div><button id="next" style="display:none" onclick="nextQ()">Next →</button></div></section>
+
 <section id="chaosGame" class="card game"><div class="gamehead"><h2>🎲 Button of Chaos</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><div class="big">🔮</div><p>Ask the mysterious button a question. It has questionable wisdom.</p><button onclick="chaos()">Reveal my fate</button><div class="message" id="fortune">Your extremely scientific prediction will appear here.</div></div></section>
+
+<section id="petGame" class="card game"><div class="gamehead"><h2>🐣 Your Tiny Pet</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play">
+<p>Give your little friend a name and keep its happiness up!</p>
+<div class="petbox">
+<div class="petface" id="petFace">🐣</div>
+<h3 id="petName">Pip</h3>
+<div class="petnote" id="petMood">Pip is feeling lovely!</div>
+<label for="petRename">Pet name</label><br><input id="petRename" maxlength="14" placeholder="Give your pet a name" style="margin:8px;padding:10px;border:1px solid #e9c6db;border-radius:12px;width:min(100%,240px);font:inherit">
+<div style="text-align:left;margin:8px auto;max-width:330px">
+<div>🍓 Hunger <b id="hungerNum">70</b>%</div><div class="meter"><span id="hungerBar"></span></div>
+<div>💗 Happiness <b id="happyNum">75</b>%</div><div class="meter"><span id="happyBar"></span></div>
+<div>⚡ Energy <b id="energyNum">80</b>%</div><div class="meter"><span id="energyBar"></span></div>
+</div>
+<div class="pet-actions"><button onclick="feedPet()">🍓 Feed</button><button class="purple" onclick="playPet()">🧶 Play</button><button class="mint" onclick="restPet()">💤 Rest</button></div>
+<div class="message" id="petMessage">Pip is excited to meet you!</div>
+</div><p class="petnote">Your pet's progress is saved on this device in this browser. It isn't shared with anyone.</p>
+</div></section>
+
 <section id="about" class="card" style="margin-top:22px"><h2>🌷 A note from the Funhouse</h2><p style="line-height:1.6;color:#807286">A little independent playground made for quick breaks and harmless fun. No account, no sign-in and no personal details needed in this first version. More tiny games are on the way!</p></section>
 </main><footer>Made with ♡ by <b>The Funhouse</b> · Be kind, play silly.</footer>
 <script>
-const ids=['starGame','quizGame','chaosGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
+const ids=['starGame','quizGame','chaosGame','petGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
 let timer=null,left=15,score=0;const key='funhouse-best';document.getElementById('best').textContent=localStorage.getItem(key)||0;
 function stopStar(){if(timer)clearInterval(timer);timer=null;document.getElementById('target').style.display='none'}
 function moveStar(){let f=document.getElementById('field'),t=document.getElementById('target');t.style.left=Math.random()*(f.clientWidth-55)+'px';t.style.top=Math.random()*(f.clientHeight-55)+'px'}
@@ -42,4 +66,12 @@ let qi=0,points=0,done=false;function renderQ(){done=false;let q=qs[qi];document
 function answer(i){if(done)return;done=true;let q=qs[qi];if(i===q[2])points++;document.getElementById('feedback').textContent=i===q[2]?'Correct! Emoji detective skills: elite ✨':'Not quite! The answer was '+q[1][q[2]]+'.';[...document.querySelectorAll('#answers button')].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.background='#c9f4e8'});document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=qi===4?'See my score →':'Next →'}
 function nextQ(){if(qi<4){qi++;renderQ()}else{document.getElementById('clue').textContent='🏆';document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='You got '+points+' out of 5. Thanks for playing!';document.getElementById('next').style.display='none';qi=0;points=0}}
 renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
+const petKey='funhouse-pet-v1';let pet={name:'Pip',hunger:70,happy:75,energy:80};try{let saved=JSON.parse(localStorage.getItem(petKey)||'null');if(saved)pet={...pet,...saved}}catch(e){}
+function savePet(){localStorage.setItem(petKey,JSON.stringify(pet));drawPet()}
+function drawPet(){document.getElementById('petName').textContent=pet.name;document.getElementById('petRename').value=pet.name;document.getElementById('hungerNum').textContent=pet.hunger;document.getElementById('happyNum').textContent=pet.happy;document.getElementById('energyNum').textContent=pet.energy;document.getElementById('hungerBar').style.width=pet.hunger+'%';document.getElementById('happyBar').style.width=pet.happy+'%';document.getElementById('energyBar').style.width=pet.energy+'%';document.getElementById('petFace').textContent=pet.energy<25?'😴':pet.hunger<25?'🥺':pet.happy>85?'🥰':'🐣';document.getElementById('petMood').textContent=pet.happy>80?pet.name+' is feeling extra happy!':pet.hunger<25?pet.name+' is getting hungry.':pet.energy<25?pet.name+' needs a little rest.':pet.name+' is feeling lovely!'}
+function sayPet(t){document.getElementById('petMessage').textContent=t}
+function feedPet(){if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);savePet();sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
+function playPet(){if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);savePet();sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
+function restPet(){pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);savePet();sayPet(pet.name+' had a lovely little nap. 💤')}
+document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});drawPet();
 </script></body></html>
