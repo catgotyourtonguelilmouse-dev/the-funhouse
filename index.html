@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#fff0f6"><title>The Funhouse v2.0 ✿</title>
+<meta name="theme-color" content="#fff0f6"><meta name="application-name" content="The Funhouse v3.0"><meta name="description" content="The Funhouse v3.0 — a pastel mini-game universe with adventures, pets, puzzles and a connected arcade."><title>The Funhouse v3.0 · Grand Universe ✿</title>
 <style>
 :root{--pink:#ff91bd;--pale:#ffe4ef;--purple:#a58bff;--mint:#c9f4e8;--yellow:#ffe58a;--ink:#493b55;--line:#f0c9dc}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 5%,#fff1c4,transparent 25%),radial-gradient(circle at 90% 15%,#f0e4ff,transparent 27%),#fff8fc;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif}
@@ -38,6 +38,34 @@ body.theme-night .card,body.theme-night .daily,body.theme-night .play,body.theme
 body.theme-night .card p,body.theme-night .hero p,body.theme-night .petnote{color:#d5c5df}
 body.theme-night .petbox{background:#40314e}
 
+
+/* v2.2 Pet Paradise expansion */
+.pet-paradise{margin:22px 0;background:linear-gradient(145deg,#fff4e9,#fff0f7 52%,#f0eaff);border:1px solid #efdce8;border-radius:28px;padding:20px;box-shadow:0 12px 32px #9f729321}
+.pet-world-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:14px 0}
+.pet-world-card{background:#ffffffd9;border:1px solid #efdce8;border-radius:20px;padding:14px;min-width:0}
+.pet-world-card h3{margin:4px 0 8px}.pet-world-card p{color:#807286;line-height:1.45;margin:6px 0 10px}
+.pet-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin-top:12px}
+.pet-roster-card{background:#fff;border:1px solid #eed9e8;border-radius:18px;padding:12px;text-align:center}
+.pet-roster-card .pet-roster-face{font-size:2.5rem}.pet-roster-card small{display:block;color:#88788e;margin:4px 0 8px}
+.pet-room{min-height:150px;border:2px dashed #e8cfe4;border-radius:20px;background:linear-gradient(145deg,#fff7e9,#f5edff);display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:18px;margin:12px 0}
+.pet-room-piece{font-size:2.4rem;background:#ffffffc9;border-radius:16px;padding:12px;box-shadow:0 4px 12px #bd9ca525}
+.pet-mission{background:#fff;border:1px solid #efdce8;border-radius:16px;padding:12px;margin:8px 0;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pet-mission.done{background:#effaf3;border-color:#bce5cb}
+body.theme-night .pet-paradise,body.theme-night .pet-world-card,body.theme-night .pet-roster-card,body.theme-night .pet-mission{background:#33283f;color:#f6eefa;border-color:#665574}
+body.theme-night .pet-world-card p,body.theme-night .pet-roster-card small{color:#d5c5df}
+@media(max-width:520px){.pet-paradise{padding:15px}.pet-mission{align-items:flex-start;flex-direction:column}}
+
+
+/* v2.3 Avatar Studio */
+.avatar-studio{margin:22px 0;padding:22px;border:1px solid #efdce8;box-shadow:0 12px 32px #9f729321;border-radius:28px;background:linear-gradient(145deg,#fff,#fff4fa 55%,#f6f0ff)}
+.avatar-layout{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(0,1.5fr);gap:16px;margin-top:16px}
+.avatar-showcase{background:linear-gradient(150deg,#ffeaf3,#eee7ff);border:1px solid #ead7ed;border-radius:24px;padding:18px;text-align:center;align-self:start;position:sticky;top:12px}
+.avatar-stage{width:190px;height:190px;max-width:100%;margin:8px auto 14px;border-radius:42px;background:linear-gradient(145deg,#fff8df,#ffe2f0 55%,#e9e0ff);display:grid;place-items:center;position:relative;border:3px solid #fff;box-shadow:0 10px 25px #ad8db52b}
+.avatar-base{font-size:6.5rem;line-height:1;filter:drop-shadow(0 5px 5px #7c61752b)}.avatar-hair{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-size:2.3rem;pointer-events:none}.avatar-accessory{position:absolute;top:22px;right:25px;font-size:2rem;pointer-events:none}
+.avatar-controls{display:grid;gap:12px}.avatar-control-group{background:#ffffffd9;border:1px solid #efdce8;border-radius:19px;padding:14px}.avatar-control-group h3{margin:0 0 10px;font-size:1rem}.avatar-options{display:flex;flex-wrap:wrap;gap:8px}.avatar-choice{min-width:54px;min-height:48px;background:#fff;border:1px solid #ead8e9;border-radius:14px;padding:7px 10px;font-size:1.35rem}.avatar-choice[aria-pressed="true"]{background:#f0e8ff;border:2px solid #a58bff;box-shadow:0 4px 12px #a58bff2b}.avatar-choice small{display:block;font-size:.65rem;font-weight:800;color:#75647f}.avatar-shop{margin-top:20px;padding-top:16px;border-top:1px solid #efdce8}.avatar-shop .collect-card{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px}.avatar-shop .collect-card button{width:100%;font-size:.85rem}
+body.theme-night .avatar-studio,body.theme-night .avatar-control-group,body.theme-night .avatar-showcase{background:#33283f;color:#f6eefa;border-color:#665574}body.theme-night .avatar-choice{background:#40314e;color:#f6eefa;border-color:#665574}
+@media(max-width:700px){.avatar-layout{grid-template-columns:1fr}.avatar-showcase{position:static}.avatar-stage{width:165px;height:165px}.avatar-base{font-size:5.7rem}}
+
 footer{text-align:center;color:#8a7b90;padding:30px 10px;font-size:.9rem}
 @media(max-width:520px){header,main{padding-left:16px;padding-right:16px}.card{padding:16px}}
 
@@ -49,15 +77,148 @@ nav{position:relative;z-index:2}nav a{border:1px solid #f2dce9;box-shadow:0 3px 
 body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-detail,body.theme-night .world-tile,body.theme-night .soft-pill{background:#33283f;color:#f6eefa;border-color:#665574}body.theme-night .muted,body.theme-night .reward-note,body.theme-night .world-tile small{color:#d5c5df}
 @media(max-width:700px){.hub-grid{grid-template-columns:1fr}.world-map{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.world-tile,.world-tile:nth-child(4),.world-tile:nth-child(5){grid-column:span 1;min-height:182px;padding:13px}.map-panel{padding:15px}.profile-title{font-size:1.4rem}.avatar-disc{width:68px;height:68px;font-size:2.2rem}}
 @media(max-width:370px){.world-map{grid-template-columns:1fr}.world-tile,.world-tile:nth-child(4),.world-tile:nth-child(5){grid-column:span 1;min-height:145px}}
+
+/* v2.1 Collection Update */
+.collection-wrap{margin:22px 0}.collection-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.collection-tabs button[aria-pressed="true"]{background:#a58bff;color:#fff}.collection-panel{background:linear-gradient(145deg,#fff,#fff5fa);border:1px solid #efdce8;border-radius:24px;padding:18px;margin-top:12px}.collection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:11px;margin-top:14px}.collect-card{background:#fff;border:1px solid #eed9e8;border-radius:18px;padding:13px;text-align:center;min-width:0}.collect-card .art{font-size:2.5rem;margin:4px}.collect-card strong{display:block}.collect-card small{display:block;color:#88788e;margin:5px 0}.rarity-common{border-color:#d9d9df}.rarity-uncommon{border-color:#9bd9b5}.rarity-rare{border-color:#8fc9f4}.rarity-epic{border-color:#b8a0f3}.rarity-legendary{border-color:#f2ca75}.collection-note{color:#88788e;line-height:1.5}.room-preview{min-height:180px;border-radius:20px;border:2px dashed #e8cfe4;background:linear-gradient(145deg,#fff0f7,#f0eaff);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;padding:18px;margin-top:12px}.room-piece{font-size:2.4rem;background:#ffffffb8;border-radius:16px;padding:12px}.collection-panel[hidden]{display:none}body.theme-night .collection-panel,body.theme-night .collect-card{background:#33283f;color:#f6eefa;border-color:#665574}body.theme-night .collect-card small,body.theme-night .collection-note{color:#d5c5df}
+
+.mole-board{display:grid;grid-template-columns:repeat(3,minmax(64px,1fr));gap:10px;max-width:390px;margin:14px auto}.mole-hole{min-height:76px;border:2px solid #efd7e8;border-radius:20px;background:linear-gradient(145deg,#fff4fa,#f0eaff);font-size:2rem}.mole-hole.hit{background:#e7faef}.color-swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:420px;margin:12px auto}.color-swatch{min-height:65px;border:3px solid white;border-radius:16px;box-shadow:0 3px 10px #0001;font-weight:900}.arcade-expansion{margin:22px 0;padding:20px;border:1px solid #efdce8;border-radius:26px;background:linear-gradient(145deg,#fff3f8,#f2edff)}.arcade-expansion .grid{margin-top:12px}
+
+
+/* v2.5 Story Quests & Exploration */
+.story-world{margin:24px 0;padding:22px;border:1px solid #ead9ef;border-radius:28px;background:linear-gradient(145deg,#fff9ed,#fff0f7 48%,#f0ecff);box-shadow:0 12px 32px #9f729321}.story-heading h2{margin:5px 0}.story-stats{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.story-progress{height:11px;background:#eadfed;border-radius:99px;overflow:hidden;margin:12px 0 18px}.story-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff91bd,#a58bff);transition:width .25s}.story-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.8fr);gap:15px}.story-scene,.story-side{background:#ffffffd9;border:1px solid #efdeeb;border-radius:22px;padding:18px}.story-scene-art{min-height:115px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(140deg,#e6f6e9,#f4eaff,#fff0dc);font-size:4.5rem;margin-bottom:15px}.story-scene h3{margin:6px 0}.story-scene p{line-height:1.6;color:#786981}.story-choice-list{display:grid;gap:9px;margin-top:15px}.story-choice{width:100%;text-align:left;background:#fff;border:1px solid #e9d8ec;border-radius:15px;padding:12px 14px;color:#493b55;font:inherit;font-weight:800}.story-choice:hover{background:#f8efff}.story-feedback{background:#f8f1ff;border-radius:14px;padding:10px 12px;min-height:42px}.story-chapter-list{display:grid;gap:7px;margin:10px 0 18px}.story-chapter{display:flex;justify-content:space-between;gap:8px;text-align:left;background:#fff;border:1px solid #eadfed;border-radius:13px;padding:10px;color:#493b55;font:inherit}.story-chapter.current{border:2px solid #b69be8;background:#f6efff}.story-chapter:disabled{opacity:.58}.story-relics{display:flex;flex-wrap:wrap;gap:8px;min-height:42px;margin:10px 0 16px}.story-relic{background:#fff4df;border:1px solid #f0dfbd;border-radius:12px;padding:8px 10px;font-size:.88rem}.story-daily{background:linear-gradient(145deg,#fff2f7,#f3edff);border-radius:16px;padding:13px}.story-daily p,.story-daily small{color:#806f8a;line-height:1.45}.story-footnote{font-size:.85rem;color:#88788e;margin:14px 2px 0}body.theme-night .story-world,body.theme-night .story-scene,body.theme-night .story-side,body.theme-night .story-chapter,body.theme-night .story-choice{background:#33283f;color:#f6eefa;border-color:#665574}body.theme-night .story-scene p,body.theme-night .story-footnote{color:#d5c5df}body.theme-night .story-feedback,body.theme-night .story-daily{background:#40314e;color:#f6eefa}@media(max-width:700px){.story-world{padding:15px}.story-layout{grid-template-columns:1fr}.story-scene-art{min-height:90px}}
+
+
+/* v2.6 Events & Festivals */
+.festival-wrap{margin:22px 0;padding:20px;border:1px solid #efdce8;border-radius:28px;background:linear-gradient(140deg,#fff2f7,#f4efff 55%,#fff8e8);box-shadow:0 12px 32px #9f729321}
+.festival-hero{padding:20px;border-radius:22px;background:linear-gradient(120deg,#ffe0ed,#e8e0ff);text-align:center;margin:12px 0}
+.festival-hero .festival-icon{font-size:3rem}.festival-calendar,.festival-shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:12px 0}
+.festival-tile,.festival-item{background:#fff;border:1px solid #efdce8;border-radius:17px;padding:13px}.festival-tile strong,.festival-item strong{display:block;margin:5px 0}.festival-tile small,.festival-item small{color:#807286;line-height:1.4}
+.festival-task{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #efdce8;border-radius:16px;padding:12px;margin:9px 0}.festival-task.done{background:#effaf3;border-color:#bce5cb}.festival-task p{margin:3px 0;color:#807286;font-size:.9rem}
+.festival-token{display:inline-flex;background:#fff;border:1px solid #ead8e9;border-radius:99px;padding:7px 12px;font-weight:900;margin:4px}
+body.theme-night .festival-wrap,body.theme-night .festival-tile,body.theme-night .festival-item,body.theme-night .festival-task{background:#33283f;color:#f6eefa;border-color:#665574}
+body.theme-night .festival-tile small,body.theme-night .festival-item small,body.theme-night .festival-task p{color:#d5c5df}
+@media(max-width:520px){.festival-wrap{padding:14px}.festival-task{align-items:flex-start;flex-direction:column}}
+
+
+/* v2.7A · Original Funhouse Bubble Shooter */
+.bubble-campaign-card{background:linear-gradient(145deg,#fff0f7,#f0eaff 65%,#fff8e8);border-color:#e8cce8}
+.bubble-mascot{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px auto 4px;color:#806f8a;font-weight:700}.bubble-mascot-face{display:inline-block;font-size:2rem;filter:drop-shadow(0 4px 5px #d9b9df);animation:mascotBob 1.8s ease-in-out infinite}.bubble-mascot-note{background:#fff;border:1px solid #ecd9ed;border-radius:14px;padding:7px 11px}.bubble-sound-toggle{font-size:.9rem;padding:8px 12px!important}@keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-7px) rotate(6deg)}}.bubble-shooter-game{padding:0;overflow:hidden}.bubble-campaign-shell{margin-top:12px;padding:16px;background:linear-gradient(145deg,#fff5fa,#f4efff 60%,#fff9eb);border:1px solid #ecd9ed;border-radius:22px;text-align:center}.bubble-campaign-top{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}.bubble-level-track{height:9px;background:#eaddec;border-radius:99px;overflow:hidden;max-width:520px;margin:12px auto}.bubble-level-track span{display:block;height:100%;width:8.33%;background:linear-gradient(90deg,#ff91bd,#a58bff);border-radius:99px;transition:width .2s}.bubble-instructions{max-width:560px;margin:10px auto 14px;color:#796b85;line-height:1.5}.bubble-canvas-wrap{max-width:340px;margin:0 auto;background:radial-gradient(circle at 50% 0%,#fff 0,#fff8fc 65%,#f4edff 100%);border:2px solid #f0d7e9;border-radius:23px;padding:7px;box-shadow:inset 0 0 20px #bda1d51c}.bubble-canvas-wrap canvas{display:block;width:100%;height:auto;max-width:320px;margin:auto;touch-action:manipulation;cursor:crosshair}.bubble-shooter-controls{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin:13px auto}.bubble-next{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #ecd9ed;border-radius:14px;padding:8px 12px;font-weight:800}.bubble-next-dot{font-size:1.7rem;line-height:1}.bubble-level-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.bubble-save-note{font-size:.82rem;color:#8a7b91;margin:13px 0 0}.bubble-shooter-game .message{min-height:45px}body.theme-night .bubble-campaign-shell,body.theme-night .bubble-canvas-wrap,body.theme-night .bubble-next{background:#33283f;color:#f6eefa;border-color:#665574}body.theme-night .bubble-instructions,body.theme-night .bubble-save-note{color:#d5c5df}
+@media(max-width:420px){.bubble-campaign-shell{padding:10px}.bubble-shooter-controls button{flex:1;min-width:125px}.bubble-campaign-top .stat{font-size:.86rem}}
+
+/* v2.7B site-wide audio & motion */
+.fun-audio-dock{position:fixed;right:12px;bottom:14px;z-index:9999;display:flex;gap:7px;align-items:center;background:#fffdf9eF;border:1px solid #edcce0;border-radius:999px;padding:7px 10px;box-shadow:0 5px 22px #493b5526;backdrop-filter:blur(8px)}
+.fun-audio-dock button{padding:8px 11px;border-radius:99px;font-size:.88rem}
+.fun-audio-dock .fun-audio-label{font-size:.78rem;font-weight:800;color:#765582}
+.fun-sparkle{animation:funSparkle .55s ease-out}
+.fun-bounce{animation:funBounce .42s ease}
+@keyframes funSparkle{0%{transform:scale(.96);filter:brightness(1)}45%{transform:scale(1.035);filter:brightness(1.12)}100%{transform:scale(1);filter:none}}
+@keyframes funBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}65%{transform:translateY(1px)}}
+@media(prefers-reduced-motion:reduce){.fun-sparkle,.fun-bounce{animation:none!important}}
+
+
+.fun-level-panel{margin:10px auto 14px;padding:12px;background:#fff8fc;border:1px solid #f0c9dc;border-radius:18px}
+.fun-level-title{font-weight:900;font-size:.9rem;margin-bottom:8px}
+.fun-levels{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.fun-levels button{font-size:.78rem;padding:7px 10px;border-radius:99px;background:#eee7ff}
+.fun-levels button[aria-pressed="true"]{background:#ffd9e9;outline:2px solid #ee9dc1}
+.fun-level-note{font-size:.76rem;color:#806b8a;text-align:center;margin-top:7px}
+
+.dream-runner-game{margin:18px auto;display:none}.dream-runner-game.active{display:block}
+.runner-shell{max-width:520px;margin:auto;text-align:center}.runner-stats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.runner-track{height:9px;background:#f5e7f1;border-radius:99px;overflow:hidden;margin:12px 0}.runner-track span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ff9fc7,#a58bff);transition:width .2s}
+#dreamRunnerCanvas{display:block;width:100%;max-width:440px;height:auto;margin:10px auto;border:2px solid #f0c9dc;border-radius:20px;background:#eaf5ff;touch-action:manipulation}
+.runner-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.runner-help{font-size:.82rem;color:#806b8a}
+
+.gem-match-game{display:none;margin:18px auto}.gem-match-game.active{display:block}
+.gem-shell{max-width:520px;margin:auto;text-align:center}.gem-stats{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.gem-progress{height:9px;background:#f5e7f1;border-radius:99px;overflow:hidden;margin:12px 0}.gem-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff9fc7,#a58bff)}
+.gem-board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;max-width:420px;margin:12px auto;padding:8px;background:#f5eaff;border:2px solid #e7d8ff;border-radius:18px;touch-action:manipulation}
+.gem-cell{aspect-ratio:1/1;padding:0;border-radius:11px;background:#fff;font-size:clamp(1.2rem,5vw,1.8rem);box-shadow:inset 0 -3px #0000000c;display:grid;place-items:center;min-width:0}
+.gem-cell.selected{outline:3px solid #ed80b2;transform:scale(.94)}.gem-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.gem-help{font-size:.82rem;color:#806b8a}
+
+.little-cafe-game{display:none;margin:18px auto}.little-cafe-game.active{display:block}
+.cafe-wrap{max-width:650px;margin:auto}.cafe-banner{text-align:center;padding:16px 10px;border-radius:18px;background:linear-gradient(120deg,#ffe1ed,#eee5ff);color:#805a82}
+.cafe-sign{font-weight:900;letter-spacing:2px;font-size:1.25rem}.cafe-banner p{margin:5px 0 0}
+.cafe-stats{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.cafe-progress{height:9px;border-radius:99px;background:#f4e6f0;overflow:hidden;margin:8px 0 13px}.cafe-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ff9fc7,#a58bff);transition:width .2s}
+.cafe-customer{display:flex;align-items:center;gap:12px;padding:13px;background:#fff8fc;border:1px solid #f1dbea;border-radius:18px}
+.customer-face{width:65px;height:65px;flex:0 0 65px;border-radius:50%;display:grid;place-items:center;background:#f8eaff;font-size:2.3rem}
+.customer-speech{flex:1}.customer-speech p{margin:5px 0 0}.cafe-recipe{margin-top:13px;padding:13px;border-radius:18px;background:#fffafd;border:1px solid #f0ddec}
+.cafe-recipe-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}.cafe-recipe-head span,.cafe-help{font-size:.85rem;color:#826f88}
+.cafe-ingredients{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cafe-ingredient{min-height:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:#f8efff;border:1px solid #e8d9f6;border-radius:13px;color:#654c77;font-weight:700}
+.cafe-ingredient:disabled{opacity:.48}.cafe-ingredient span:first-child{font-size:1.55rem}
+.cafe-mix{margin:11px 0;padding:10px;background:#fdf1f7;border-radius:12px;min-height:42px;color:#795b75}
+.cafe-actions,.cafe-footer{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.cafe-footer{margin-top:12px}.cafe-footer span{font-size:.85rem;color:#806d85}
+@media(max-width:430px){.cafe-ingredients{grid-template-columns:repeat(2,minmax(0,1fr))}.cafe-customer{align-items:flex-start}}
+
+.dream-fishing-game{display:none;margin:18px auto}.dream-fishing-game.active{display:block}
+.fishing-wrap{max-width:650px;margin:auto;text-align:center}
+.fishing-sky{height:220px;position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(#c9e8ff 0%,#fce4f0 55%,#c6e6d8 56%,#9bcdb9 100%)}
+.fishing-sun{position:absolute;right:12%;top:18px;font-size:2rem}.fishing-cloud{position:absolute;font-size:2rem;opacity:.8}.cloud-a{left:12%;top:20px}.cloud-b{left:55%;top:48px}
+.fishing-title{position:absolute;top:16px;left:0;right:0;font-size:.8rem;letter-spacing:3px;font-weight:900;color:#587d8b}
+.fishing-hill{position:absolute;bottom:130px;left:0;right:0;font-size:1.8rem;letter-spacing:4px}
+.fishing-water{position:absolute;left:0;right:0;bottom:0;height:125px;background:linear-gradient(#80c6d7,#4e9fb7);overflow:hidden}
+.water-shine{position:absolute;top:14px;left:0;right:0;color:#e5fbff;opacity:.8;letter-spacing:5px}
+.fish-splash{position:absolute;top:38px;left:50%;transform:translateX(-50%);font-size:2rem;opacity:0;transition:opacity .15s}
+.fish-splash.visible{opacity:1;animation:fishBob .5s ease-in-out infinite alternate}
+@keyframes fishBob{from{transform:translate(-50%,0)}to{transform:translate(-50%,-9px)}}
+.fishing-ripples{position:absolute;bottom:13px;left:0;right:0;color:#d8f8ff;letter-spacing:5px}
+.fishing-stats{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.fishing-progress{height:9px;background:#e9f1f5;border-radius:99px;overflow:hidden}.fishing-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#76c6d6,#a68cff);transition:width .2s}
+.fishing-message{margin:12px auto;padding:11px;border-radius:13px;background:#f5f0ff;color:#6e5d83;font-weight:700;min-height:44px}
+.fishing-result{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:10px;border:1px dashed #d9c8e9;border-radius:14px;background:#fffafd}
+.fishing-result span{font-size:1.8rem}.fishing-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0}
+.fish-collection{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.fish-card{padding:9px 4px;border-radius:12px;background:#f3f7ff;border:1px solid #e0e8f6;font-size:.8rem}
+.fish-card b{display:block;font-size:1.45rem}.fish-card small{color:#7c718b}
+.fishing-collection{margin-top:14px;text-align:left}.fishing-collection h3{text-align:center}
+.fishing-help{font-size:.85rem;color:#806d85}
+
+.forest-adventure-game{display:none;margin:18px auto}.forest-adventure-game.active{display:block}
+.forest-wrap{max-width:660px;margin:auto;text-align:center}
+.forest-scene{height:230px;position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(#c9eaff 0%,#e6f6e8 48%,#9bc99f 49%,#78ad85 100%)}
+.forest-sky{position:absolute;top:12px;left:0;right:0;display:flex;justify-content:space-around;font-size:1.6rem}
+.forest-trees{position:absolute;top:55px;left:0;right:0;font-size:2.1rem;letter-spacing:4px}
+.forest-path{position:absolute;bottom:0;left:20%;right:20%;height:145px;background:linear-gradient(90deg,#b88c69,#e0bc91,#b88c69);clip-path:polygon(30% 0,70% 0,100% 100%,0 100%)}
+.forest-path-label{position:absolute;top:8px;left:0;right:0;font-size:.65rem;letter-spacing:2px;color:#75543e;font-weight:900}
+.forest-encounter{position:absolute;top:35px;left:0;right:0;font-size:2rem;transition:transform .2s}
+.forest-ground{position:absolute;bottom:8px;left:0;right:0;font-size:1.3rem;white-space:nowrap}
+.forest-player{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-size:2rem;filter:drop-shadow(0 3px 2px #0002)}
+.forest-stats{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.forest-progress{height:9px;background:#e7f0e4;border-radius:99px;overflow:hidden}.forest-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8fcf9a,#b49bdf);transition:width .2s}
+.forest-message{margin:12px auto;padding:12px;border-radius:13px;background:#f0f7ef;color:#57745c;min-height:46px;font-weight:700}
+.forest-choice-title{font-weight:900;color:#6b5d78;margin:12px 0 8px}
+.forest-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.forest-choice{padding:10px 5px;display:flex;flex-direction:column;gap:4px;border-radius:14px;background:#f4f8ef;border:1px solid #dcebd7;color:#55705b}
+.forest-choice span{font-size:1.65rem}.forest-choice small{font-size:.72rem;color:#7a897a}
+.forest-choice:disabled{opacity:.45}
+.forest-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px}
+.forest-log{text-align:left;padding:12px;background:#fffaf0;border:1px solid #f1e5c9;border-radius:14px;color:#79694d}
+.forest-log p{margin:5px 0 0;font-size:.88rem}.forest-help{font-size:.84rem;color:#7d7183}
+
+.arcade-progress-hub{margin:20px 0;background:linear-gradient(145deg,#fff,#fff8fc)}
+.arcade-hub-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.arcade-hub-head h2{margin:6px 0}.arcade-hub-head p{margin:4px 0 10px}
+.arcade-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}
+.arcade-metric{padding:12px 8px;border-radius:16px;background:#fbf4ff;border:1px solid #eee0f6;text-align:center;display:flex;flex-direction:column;gap:3px}
+.arcade-metric span{font-size:1.35rem}.arcade-metric b{font-size:1.35rem;color:#755d91}.arcade-metric small{font-size:.75rem;color:#82758c}
+.arcade-hub-columns{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.arcade-hub-columns h3{margin:8px 0}
+.arcade-achievements{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.arcade-achievement{padding:9px;border-radius:13px;background:#fff7fb;border:1px solid #f1dfea;display:flex;gap:8px;align-items:center;min-height:58px}
+.arcade-achievement.locked{filter:grayscale(1);opacity:.52}.arcade-achievement span{font-size:1.45rem}.arcade-achievement b{display:block;font-size:.82rem}.arcade-achievement small{font-size:.7rem;color:#85788a}
+.arcade-records{display:grid;gap:7px}.arcade-record{display:flex;justify-content:space-between;gap:8px;padding:9px 11px;background:#f5f8ff;border-radius:12px;font-size:.83rem}
+.arcade-record b{color:#725f91}.arcade-local-note{font-size:.78rem;color:#887b8e;margin:14px 0 0}
+@media(max-width:560px){.arcade-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.arcade-hub-columns{grid-template-columns:1fr}.arcade-achievements{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head>
 <body>
 <header><div class="brand">the <span>fun</span>house ✿</div>
 <section class="hero"><div class="icons">✦ 🍓 ✧ 🧸 ✦</div><h1>Welcome to the <em>Funhouse!</em></h1><p>Your own pocket-sized universe of games, pets, quests and little adventures. Every play brings a new discovery.</p></section>
-<nav><a href="#dashboard">🏠 Dashboard</a><a href="#worldMap">🗺️ Worlds</a><a href="#games">🎮 Games</a><a href="#dailyChallenge">🌟 Daily quests</a><a href="#trophyRoom">🏆 Trophies</a><a href="#diary">📖 Diary</a><a href="#themeSettings">🎨 Themes</a><a href="#about">🌷 About</a></nav></header>
+<nav><a href="#dashboard">🏠 Dashboard</a><a href="#worldMap">🗺️ Worlds</a><a href="#games">🎮 Games</a><a href="#arcadeExpansion">🕹️ Arcade+</a><a href="#bubbleShooterGame">🫧 Bubble Shooter</a><a href="#dreamRunnerGame">🏃 Dream Runner</a><a href="#gemMatchGame">💎 Gem Match</a><a href="#littleCafeGame">☕ Little Café</a><a href="#dreamFishingGame">🎣 Dream Fishing</a><a href="#forestAdventureGame">🌲 Forest Adventure</a><a href="#storyQuests">📜 Adventures</a><a href="#festivalEvents">🎉 Festivals</a><a href="#petParadise">🐾 Pet Paradise</a><a href="#avatarStudio">👗 Avatar Studio</a><a href="#collection">🎒 Collection</a><a href="#dailyChallenge">🌟 Daily quests</a><a href="#trophyRoom">🏆 Trophies</a><a href="#diary">📖 Diary</a><a href="#themeSettings">🎨 Themes</a><a href="#about">🌷 About</a></nav></header>
 <main>
 
 <section id="dashboard" class="world-hub" aria-label="Player dashboard">
- <div class="hub-head"><div><span class="section-kicker">✦ Your little universe</span><h2>Welcome home, explorer! 🌷</h2></div><span class="soft-pill">✨ World Awakening · v2.0</span></div>
+ <div class="hub-head"><div><span class="section-kicker">✦ Your little universe</span><h2>Welcome home, explorer! 🌷</h2></div><span class="soft-pill">✨ Story & Exploration · v2.5</span></div>
  <div class="hub-grid">
   <div class="hub-card"><div class="profile-head"><div class="avatar-disc" id="profileAvatar">🐰</div><div><div class="muted">THE FUNHOUSE PLAYER</div><div class="profile-title" id="profileName">Little Explorer</div><div class="muted" id="profileTitle">🌱 New Adventurer</div></div></div>
    <div class="pill-line"><span class="soft-pill">⭐ Level <b id="mainLevel">1</b></span><span class="soft-pill">🪙 <b id="coinBalance">0</b> FunCoins</span><span class="soft-pill">💎 <b id="gemBalance">0</b> Gems</span></div>
@@ -72,8 +233,8 @@ body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-d
    <button class="world-tile" data-world="arcade" onclick="selectWorld('arcade')"><span class="world-icon">🎮</span><strong>Arcade City</strong><small>Games, challenges and high scores</small><span class="rank" id="rankArcade">Rookie · Rank 1</span></button>
    <button class="world-tile" data-world="pet" onclick="selectWorld('pet')"><span class="world-icon">🐾</span><strong>Pet Paradise</strong><small>Care, friendship and cute companions</small><span class="rank" id="rankPet">Rookie · Rank 1</span></button>
    <button class="world-tile" data-world="puzzle" onclick="selectWorld('puzzle')"><span class="world-icon">🧩</span><strong>Puzzle Island</strong><small>Memory, words and clever puzzles</small><span class="rank" id="rankPuzzle">Rookie · Rank 1</span></button>
-   <button class="world-tile" data-world="mystery" onclick="selectWorld('mystery')"><span class="world-icon">🌲</span><strong>Mystery Forest</strong><small>Discoveries coming in a future update</small><span class="rank" id="rankMystery">Rookie · Rank 1</span></button>
-   <button class="world-tile" data-world="treasure" onclick="selectWorld('treasure')"><span class="world-icon">🏝️</span><strong>Treasure Cove</strong><small>Exploration coming in a future update</small><span class="rank" id="rankTreasure">Rookie · Rank 1</span></button>
+   <button class="world-tile" data-world="mystery" onclick="selectWorld('mystery')"><span class="world-icon">🌲</span><strong>Mystery Forest</strong><small>Story quests & hidden discoveries</small><span class="rank" id="rankMystery">Rookie · Rank 1</span></button>
+   <button class="world-tile" data-world="treasure" onclick="selectWorld('treasure')"><span class="world-icon">🏝️</span><strong>Treasure Cove</strong><small>Treasure trails & island adventures</small><span class="rank" id="rankTreasure">Rookie · Rank 1</span></button>
   </div>
   <div id="worldDetail" class="world-detail" aria-live="polite"><strong>🎮 Arcade City</strong><p>Play your favourite games to grow your Arcade rank.</p><button onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Explore games →</button></div>
  </div>
@@ -89,7 +250,41 @@ body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-d
 <article class="card"><div class="emoji">✊</div><h3>Rock Paper Scissors</h3><p>Challenge the computer in this classic little showdown.</p><button class="mint" onclick="openGame('rpsGame')">Play game →</button></article>
 <article class="card"><div class="emoji">🔤</div><h3>Word Scramble</h3><p>Unscramble the letters before you run out of guesses.</p><button class="yellow" onclick="openGame('wordGame')">Play game →</button></article>
 <article class="card"><div class="emoji">⚡</div><h3>Reaction Test</h3><p>Wait for the screen to change, then tap as quickly as you can.</p><button onclick="openGame('reactionGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🫧</div><h3>Bubble Pop</h3><p>Pop as many floating bubbles as you can before time runs out.</p><button class="purple" onclick="openGame('bubbleGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🐹</div><h3>Whack-a-Mole</h3><p>Catch the cheeky mole whenever it pops up. Quick taps win!</p><button class="mint" onclick="openGame('moleGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🔢</div><h3>Number Dash</h3><p>Solve five quick number questions and race your own score.</p><button class="yellow" onclick="openGame('numberGame')">Play game →</button></article>
+<article class="card"><div class="emoji">🎨</div><h3>Color Match</h3><p>Match the colour name to the right colour swatch.</p><button onclick="openGame('colorGame')">Play game →</button></article>
+<article class="card"><div class="emoji">💎</div><h3>Gem Match</h3><p>Swap sparkling gems, build combos, complete objectives and unlock puzzle stages.</p><button class="purple" onclick="openGame('gemMatchGame')">Play puzzle →</button></article><article class="card"><div class="emoji">☕</div><h3>Little Café</h3><p>Take customer orders, prepare treats and drinks, and keep your cosy café thriving.</p><button class="purple" onclick="openGame('littleCafeGame')">Open café →</button></article><article class="card"><div class="emoji">🎣</div><h3>Dream Fishing</h3><p>Cast your line, watch for a bite and build a collection of curious little fish.</p><button class="purple" onclick="openGame('dreamFishingGame')">Go fishing →</button></article><article class="card"><div class="emoji">🌲</div><h3>Forest Adventure</h3><p>Explore enchanted trails, gather treasures, meet woodland friends and make it safely home.</p><button class="purple" onclick="openGame('forestAdventureGame')">Enter the forest →</button></article><article class="card"><div class="emoji">🏃‍♀️</div><h3>Dream Runner</h3><p>Dash through dreamy skies, dodge obstacles, collect stars and unlock new stages.</p><button class="purple" onclick="openGame('dreamRunnerGame')">Play adventure →</button></article><article class="card bubble-campaign-card"><div class="emoji">🫧</div><h3>Bubble Shooter</h3><p>A cosy level-based bubble-popping adventure. Match three or more bubbles and clear each board!</p><button class="purple" onclick="openGame('bubbleShooterGame')">Play campaign →</button></article>
 </div></section>
+
+<section class="arcade-expansion" id="arcadeExpansion"><span class="section-kicker">✦ v3.0 · Grand Universe Release</span><h2>🕹️ The Grand Arcade</h2><p class="muted">Four new bite-sized games have joined Arcade City. Scores and rewards are saved locally on this device.</p><div class="pill-line"><span class="soft-pill">🫧 Bubble Pop</span><span class="soft-pill">🐹 Whack-a-Mole</span><span class="soft-pill">🔢 Number Dash</span><span class="soft-pill">🎨 Color Match</span>
+</div></section>
+
+<section id="arcadeProgress" class="card arcade-progress-hub">
+ <div class="arcade-hub-head"><div><span class="section-kicker">✦ v3.0 · Your arcade journey</span><h2>🏆 Arcade Profile & Achievements</h2><p class="muted">Every game contributes to one shared player journey.</p></div><span class="soft-pill">⭐ Connected progress</span></div>
+ <div class="arcade-metrics">
+  <div class="arcade-metric"><span>🎮</span><b id="arcadeGamesPlayed">0</b><small>Game sessions</small></div>
+  <div class="arcade-metric"><span>🧩</span><b id="arcadeUniqueGames">0/6</b><small>New games tried</small></div>
+  <div class="arcade-metric"><span>✨</span><b id="arcadeActions">0</b><small>Play actions</small></div>
+  <div class="arcade-metric"><span>🏅</span><b id="arcadeBadges">0/8</b><small>Achievements</small></div>
+ </div>
+ <div class="arcade-hub-columns">
+  <div><h3>🎖️ Achievement shelf</h3><div id="arcadeAchievementGrid" class="arcade-achievements"></div></div>
+  <div><h3>📊 Your game records</h3><div id="arcadeGameRecords" class="arcade-records"></div></div>
+ </div>
+ <p class="arcade-local-note">Progress is saved in this browser on this device. Your existing player level, FunCoins, Gems and game saves are kept.</p>
+</section>
+
+<section class="story-world" id="storyQuests">
+ <div class="story-heading"><span class="section-kicker">✦ v2.5 · Story Quests & Exploration</span><h2>📜 The Little Wonders Expedition</h2><p class="muted">Follow a gentle mystery across the Funhouse worlds. Explore places, make choices, collect keepsakes and earn rewards.</p></div>
+ <div class="story-stats"><span class="soft-pill">📖 Chapter <b id="storyChapter">1</b> / 5</span><span class="soft-pill">🧭 Steps <b id="storyStep">1</b> / 3</span><span class="soft-pill">🗝️ Keepsakes <b id="storyRelicCount">0</b></span></div>
+ <div class="story-progress"><span id="storyProgressFill"></span></div>
+ <div class="story-layout">
+  <div class="story-scene"><div class="story-scene-art" id="storyArt">🌲✨</div><div class="section-kicker" id="storyLocation">MYSTERY FOREST</div><h3 id="storyTitle">The Lantern in the Ferns</h3><p id="storyText">A little lantern glows between the ferns. A folded note rests beside it.</p><div class="story-choice-list" id="storyChoices"></div><p class="story-feedback" id="storyFeedback" aria-live="polite">Choose how to begin your adventure.</p></div>
+  <aside class="story-side"><h3>🗺️ Expedition journal</h3><div id="storyChapterList" class="story-chapter-list"></div><h3>🎒 Keepsake pouch</h3><div id="storyRelics" class="story-relics"><span class="muted">Your discoveries will appear here.</span></div><div class="story-daily"><strong>🌟 Daily discovery</strong><p>Complete one story step today to earn a small bonus.</p><button id="storyDailyButton" onclick="claimStoryDaily()">Claim daily discovery</button><small id="storyDailyStatus">Available after completing a story step.</small></div></aside>
+ </div>
+ <p class="story-footnote">Your story progress and keepsakes are saved in this browser and included in your Funhouse backup. This is a single-player story; choices change the keepsakes you collect, not other players' worlds.</p>
+</section>
 
 <section class="daily" id="dailyChallenge">
  <div class="daily-top"><h2 style="margin:0">🌟 Daily Challenge</h2><span class="daily-stat">Your Funhouse quest</span></div>
@@ -109,9 +304,9 @@ body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-d
  <p class="petnote">Challenges and points are saved on this device in this browser. Your streak increases when you complete a challenge on a new day.</p>
 </section>
 
-<section id="starGame" class="card game"><div class="gamehead"><h2>⭐ Catch the Star</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><span class="stat">Time: <b id="time">15</b>s</span><span class="stat">Score: <b id="score">0</b></span><span class="stat">Best: <b id="best">0</b></span><p id="starHint">Press start, then catch as many stars as you can!</p><button id="start" onclick="startStar()">Start round</button><div class="field" id="field"><button class="star" id="target" onclick="catchStar()">⭐</button></div></div></section>
+<section id="starGame" class="card game"><div class="gamehead"><h2>⭐ Catch the Star</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="star"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="starLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Time: <b id="time">15</b>s</span><span class="stat">Score: <b id="score">0</b></span><span class="stat">Best: <b id="best">0</b></span><p id="starHint">Press start, then catch as many stars as you can!</p><button id="start" onclick="startStar()">Start round</button><div class="field" id="field"><button class="star" id="target" onclick="catchStar()">⭐</button></div></div></section>
 
-<section id="quizGame" class="card game"><div class="gamehead"><h2>🕵️ Guess the Emoji</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><span class="stat">Question <b id="qNum">1</b> / 5</span><div class="big" id="clue">🍕🌙</div><p>What does this emoji clue mean?</p><div class="answers" id="answers"></div><div class="message" id="feedback">Choose your answer!</div><button id="next" style="display:none" onclick="nextQ()">Next →</button></div></section>
+<section id="quizGame" class="card game"><div class="gamehead"><h2>🕵️ Guess the Emoji</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="quiz"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="quizLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Question <b id="qNum">1</b> / 5</span><div class="big" id="clue">🍕🌙</div><p>What does this emoji clue mean?</p><div class="answers" id="answers"></div><div class="message" id="feedback">Choose your answer!</div><button id="next" style="display:none" onclick="nextQ()">Next →</button></div></section>
 
 <section id="chaosGame" class="card game"><div class="gamehead"><h2>🎲 Button of Chaos</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><div class="big">🔮</div><p>Ask the mysterious button a question. It has questionable wisdom.</p><button onclick="chaos()">Reveal my fate</button><div class="message" id="fortune">Your extremely scientific prediction will appear here.</div></div></section>
 
@@ -135,11 +330,137 @@ body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-d
 </div></section>
 
 
-<section id="memoryGame" class="card game"><div class="gamehead"><h2>🧠 Memory Match</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Find all four matching pairs.</p><div id="memoryBoard" class="memory-board"></div><p id="memoryStatus" class="message">Tap two cards to find a pair.</p><button onclick="startMemory()">Restart</button></div></section>
-<section id="ticGame" class="card game"><div class="gamehead"><h2>⭕ Tic-Tac-Toe</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>You are X. The computer is O.</p><div id="ticBoard" class="tic-board"></div><p id="ticStatus" class="message">Your turn!</p><button onclick="startTic()">New round</button></div></section>
-<section id="rpsGame" class="card game"><div class="gamehead"><h2>✊ Rock Paper Scissors</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Choose your move!</p><div class="pet-actions"><button onclick="playRPS('rock')">✊ Rock</button><button class="purple" onclick="playRPS('paper')">✋ Paper</button><button class="mint" onclick="playRPS('scissors')">✌️ Scissors</button></div><div id="rpsResult" class="message">Ready when you are.</div><p id="rpsScore">You 0 · Computer 0</p></div></section>
-<section id="wordGame" class="card game"><div class="gamehead"><h2>🔤 Word Scramble</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p>Unscramble this word:</p><div class="big" id="scrambleWord">RTAES</div><input id="wordGuess" maxlength="14" placeholder="Your guess" style="padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit"><button onclick="checkWord()">Check</button><button class="purple" onclick="newWord()">Skip</button><div id="wordResult" class="message">You can do it!</div></div></section>
-<section id="reactionGame" class="card game"><div class="gamehead"><h2>⚡ Reaction Test</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="play"><p id="reactionText">Tap start, wait for green, then tap as quickly as possible.</p><button id="reactionButton" onclick="reactionAction()">Start test</button><div id="reactionResult" class="message">Your best time will be saved on this device.</div></div></section>
+<section id="petParadise" class="pet-paradise">
+ <span class="section-kicker">✦ v2.2 · Pet Paradise expansion</span>
+ <div class="hub-head"><div><h2>🐾 Pet Paradise</h2><p class="muted">Adopt companions, build friendship and make a cosy home for your little family.</p></div><span class="soft-pill">💗 Friendship grows with care</span></div>
+ <div class="pet-world-grid">
+  <div class="pet-world-card"><div class="emoji">🏡</div><h3>Pet Home</h3><p>Decorate a shared cosy corner for your companions.</p><div class="pet-room" id="petRoomPreview"><span class="pet-room-piece">🧺</span><span class="pet-room-piece">🧸</span><span class="pet-room-piece">🌷</span></div><div id="petRoomShop" class="pet-roster"></div></div>
+  <div class="pet-world-card"><div class="emoji">📋</div><h3>Daily Care Routine</h3><p>Complete all three care activities to earn a little bonus.</p><div id="petMissions"></div><button id="petMissionClaim" onclick="claimPetMission()">Claim care bonus · 15 coins + 10 XP</button><p class="muted" id="petMissionStatus">Your care routine resets each day.</p></div>
+ </div>
+ <div class="pet-world-card"><div class="hub-head"><div><h3>🐶 Companion Adoption Centre</h3><p class="muted">Your first companion is already waiting. Adopt more friends with FunCoins.</p></div><span class="soft-pill">🪙 <b id="petCoinBalance">0</b></span></div><div id="petRoster" class="pet-roster"></div></div>
+ <div class="pet-world-card" style="margin-top:12px"><h3>🌱 Friendship & growth</h3><p class="muted">Every successful care action builds your active companion's bond. Friendship levels unlock little titles.</p><div class="pill-line"><span class="soft-pill">💗 Bond level <b id="petBondLevel">1</b></span><span class="soft-pill">✨ Bond XP <b id="petBondXP">0</b></span><span class="soft-pill">🏷️ <b id="petBondTitle">New Friend</b></span></div><div class="hub-progress"><span id="petBondFill"></span></div><p class="muted" id="petBondNext">Care for your pet to grow your friendship.</p></div>
+ <p class="collection-note" id="petParadiseMessage" aria-live="polite">Welcome to Pet Paradise! Your companions and room decorations are saved on this device. 💗</p>
+</section>
+
+
+<section id="memoryGame" class="card game"><div class="gamehead"><h2>🧠 Memory Match</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="memory"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="memoryLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><p>Find all four matching pairs.</p><div id="memoryBoard" class="memory-board"></div><p id="memoryStatus" class="message">Tap two cards to find a pair.</p><button onclick="startMemory()">Restart</button></div></section>
+<section id="ticGame" class="card game"><div class="gamehead"><h2>⭕ Tic-Tac-Toe</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="tic"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="ticLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><p>You are X. The computer is O.</p><div id="ticBoard" class="tic-board"></div><p id="ticStatus" class="message">Your turn!</p><button onclick="startTic()">New round</button></div></section>
+<section id="rpsGame" class="card game"><div class="gamehead"><h2>✊ Rock Paper Scissors</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="rps"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="rpsLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><p>Choose your move!</p><div class="pet-actions"><button onclick="playRPS('rock')">✊ Rock</button><button class="purple" onclick="playRPS('paper')">✋ Paper</button><button class="mint" onclick="playRPS('scissors')">✌️ Scissors</button></div><div id="rpsResult" class="message">Ready when you are.</div><p id="rpsScore">You 0 · Computer 0</p></div></section>
+<section id="wordGame" class="card game"><div class="gamehead"><h2>🔤 Word Scramble</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="word"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="wordLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><p>Unscramble this word:</p><div class="big" id="scrambleWord">RTAES</div><input id="wordGuess" maxlength="14" placeholder="Your guess" style="padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit"><button onclick="checkWord()">Check</button><button class="purple" onclick="newWord()">Skip</button><div id="wordResult" class="message">You can do it!</div></div></section>
+<section id="reactionGame" class="card game"><div class="gamehead"><h2>⚡ Reaction Test</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="reaction"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="reactionLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><p id="reactionText">Tap start, wait for green, then tap as quickly as possible.</p><button id="reactionButton" onclick="reactionAction()">Start test</button><div id="reactionResult" class="message">Your best time will be saved on this device.</div></div></section>
+<section id="bubbleGame" class="card game"><div class="gamehead"><h2>🫧 Bubble Pop</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="bubble"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="bubbleLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Time: <b id="bubbleTime">20</b>s</span><span class="stat">Popped: <b id="bubbleScore">0</b></span><p>Tap the bubbles as they appear!</p><div id="bubbleField" class="field" style="height:230px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:8px"></div><button id="bubbleStart" onclick="startBubble()">Start popping</button><p id="bubbleStatus" class="message">Ready for a bubbly challenge?</p></div></section>
+
+
+
+<section id="forestAdventureGame" class="card game forest-adventure-game">
+ <div class="gamehead"><h2>🌲 Forest Adventure</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div>
+ <div class="forest-wrap">
+  <div class="forest-scene">
+   <div class="forest-sky"><span>☀️</span><span>☁️</span></div>
+   <div class="forest-trees">🌲　🌳　🌲　🌳　🌲</div>
+   <div class="forest-path"><div class="forest-path-label">ENCHANTED TRAIL</div><div id="forestEncounter" class="forest-encounter">🦊</div><div class="forest-ground">🌿　🍄　🌼　🌿　🍄</div></div>
+   <div class="forest-player" id="forestPlayer">🧚</div>
+  </div>
+  <div class="forest-stats"><span class="stat">Trail <b id="forestTrail">1</b>/10</span><span class="stat">Step <b id="forestStep">0</b>/10</span><span class="stat">Acorns <b id="forestAcorns">0</b></span><span class="stat">Energy <b id="forestEnergy">♥♥♥</b></span></div>
+  <div class="forest-progress"><span id="forestProgress"></span></div>
+  <div id="forestMessage" class="forest-message">A friendly fox is waiting near the trail. Ready to explore?</div>
+  <div class="forest-choice-title">Where will you go?</div>
+  <div class="forest-choices">
+   <button class="forest-choice" onclick="forestMove('left')"><span>🌼</span><b>Left path</b><small>Quiet woodland</small></button>
+   <button class="forest-choice" onclick="forestMove('middle')"><span>🍄</span><b>Middle path</b><small>Through the grove</small></button>
+   <button class="forest-choice" onclick="forestMove('right')"><span>💧</span><b>Right path</b><small>By the stream</small></button>
+  </div>
+  <div class="forest-actions"><button class="purple" id="forestStart" onclick="forestStart()">Start adventure ✨</button><button class="yellow" id="forestRestart" onclick="forestRestart()">Restart trail</button></div>
+  <div class="forest-log"><b>📖 Adventure journal</b><p id="forestJournal">Your discoveries will appear here.</p></div>
+  <p class="forest-help">Choose a path at every step. Find acorns and helpful friends, but watch out for thorny vines and muddy patches. Reach the end of the trail with energy remaining!</p>
+ </div>
+</section>
+<section id="dreamFishingGame" class="card game dream-fishing-game">
+ <div class="gamehead"><h2>🎣 Dream Fishing</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div>
+ <div class="fishing-wrap">
+  <div class="fishing-sky"><div class="fishing-sun">☀️</div><div class="fishing-cloud cloud-a">☁️</div><div class="fishing-cloud cloud-b">☁️</div><div class="fishing-title">MOONLIT POND</div><div class="fishing-hill">🌳　🌲　🌳　🌿　🌳</div>
+   <div class="fishing-water"><div class="water-shine">﹏　﹏　﹏　﹏　﹏　﹏　﹏</div><div id="fishSplash" class="fish-splash">🐟</div><div class="fishing-ripples">～～～～～～～～～～</div></div>
+  </div>
+  <div class="fishing-stats"><span class="stat">Trip <b id="fishTrip">1</b></span><span class="stat">Catch <b id="fishCatch">0/5</b></span><span class="stat">Coins <b id="fishCoins">0</b></span><span class="stat">Misses <b id="fishMisses">0/3</b></span></div>
+  <div class="fishing-progress"><span id="fishProgress"></span></div>
+  <div id="fishMessage" class="fishing-message">The pond is peaceful. Ready to cast your line?</div>
+  <div class="fishing-result" id="fishResult"><span>🧺</span><b>Your catch will appear here.</b></div>
+  <div class="fishing-actions"><button class="purple" id="fishCast" onclick="fishCast()">Cast line 🎣</button><button class="mint" id="fishReel" onclick="fishReel()" disabled>Reel in!</button><button class="yellow" id="fishNext" onclick="fishNextTrip()" disabled>Next trip →</button></div>
+  <div class="fishing-collection"><h3>🐠 Pond collection</h3><div id="fishCollection" class="fish-collection"></div></div>
+  <p class="fishing-help">Cast your line and wait for the splash. When the bite appears, tap <b>Reel in!</b> quickly. You have three misses per trip.</p>
+ </div>
+</section>
+<section id="littleCafeGame" class="card game little-cafe-game">
+ <div class="gamehead"><h2>☕ Little Café</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div>
+ <div class="cafe-wrap">
+  <div class="cafe-banner"><div class="cafe-sign">✿ THE LITTLE CAFÉ ✿</div><p>Freshly made with a little bit of magic.</p></div>
+  <div class="cafe-stats"><span class="stat">Shift <b id="cafeShift">1</b></span><span class="stat">Orders <b id="cafeOrders">0/5</b></span><span class="stat">Tips <b id="cafeTips">0</b></span><span class="stat">Hearts <b id="cafeHearts">♥♥♥</b></span></div>
+  <div class="cafe-progress"><span id="cafeProgress"></span></div>
+  <div class="cafe-customer"><div class="customer-face" id="cafeFace">🐻</div><div class="customer-speech"><b id="cafeCustomerName">Benny the Bear</b><p id="cafeOrderText">A strawberry shake, please!</p></div></div>
+  <div class="cafe-recipe"><div class="cafe-recipe-head"><b>🧺 Your counter</b><span id="cafeStep">Choose the ingredients in order</span></div>
+   <div id="cafeIngredients" class="cafe-ingredients"></div><div class="cafe-mix" id="cafeMix">Your tray is empty. Tap ingredients to begin!</div>
+   <div class="cafe-actions"><button class="mint" id="cafeServe" onclick="cafeServe()" disabled>Serve order ✨</button><button class="yellow" onclick="cafeResetTray()">Clear tray</button></div>
+  </div>
+  <div class="cafe-footer"><button class="purple" id="cafeStart" onclick="cafeStartShift()">Start a shift</button><span id="cafeStatus">Complete five orders to finish your shift.</span></div>
+  <p class="cafe-help">Follow the recipe shown in the customer's order. Pick ingredients in the right order, then serve before the customer loses patience!</p>
+ </div>
+</section>
+<section id="gemMatchGame" class="card game gem-match-game">
+<div class="gamehead"><h2>💎 Gem Match</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div>
+<div class="gem-shell">
+<div class="gem-stats"><span class="stat">Level <b id="gmLevel">1</b> / 20</span><span class="stat">Moves <b id="gmMoves">25</b></span><span class="stat">Score <b id="gmScore">0</b></span><span class="stat">Goal <b id="gmGoal">500</b></span></div>
+<div class="gem-progress"><span id="gmProgress"></span></div>
+<p id="gmMessage" class="message">Swap two neighbouring gems. Match three or more to score!</p>
+<div id="gemBoard" class="gem-board" role="grid" aria-label="Gem Match board"></div>
+<div class="gem-controls"><button class="purple" onclick="gmRestart()">Restart level</button><button class="mint" onclick="gmHint()">Hint ✨</button><button class="yellow" id="gmNext" onclick="gmNextLevel()" disabled>Next level 🔒</button></div>
+<p class="gem-help">Tap one gem, then a neighbouring gem to swap. Make matches of 3 or more. Larger matches earn bonus points!</p>
+</div></section>
+<section id="dreamRunnerGame" class="card game dream-runner-game">
+<div class="gamehead"><h2>🏃‍♀️ Dream Runner</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div>
+<div class="runner-shell"><div class="runner-stats"><span class="stat">Stage <b id="drStage">1</b> / 10</span><span class="stat">Stars <b id="drStars">0</b></span><span class="stat">Best <b id="drBest">0</b></span></div>
+<div class="runner-track"><span id="drTrackFill"></span></div><p id="drMessage" class="message">Ready for a dreamy dash? Jump over the clouds and collect stars!</p>
+<canvas id="dreamRunnerCanvas" width="340" height="230" aria-label="Dream Runner game canvas"></canvas>
+<div class="runner-controls"><button class="purple" id="drStart" onclick="drStart()">▶ Start run</button><button class="mint" id="drJump" onclick="drJump()" disabled>⬆ Jump</button><button class="yellow" id="drNextStage" onclick="drNextStage()">Next stage 🔒</button></div>
+<p class="runner-help">Tap JUMP or the game area to leap. Keyboard: Space or ↑. Avoid storm clouds and collect ⭐ stars!</p></div></section>
+<section id="bubbleShooterGame" class="card game bubble-shooter-game"><div class="gamehead"><h2>🫧 Bubble Shooter · Campaign</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="bubble-campaign-shell"><div class="bubble-campaign-top"><span class="stat">Level <b id="bsLevel">1</b> / 12</span><span class="stat">Score <b id="bsScore">0</b></span><span class="stat">Best <b id="bsBest">0</b></span></div><div class="bubble-level-track"><span id="bsLevelFill"></span></div><div class="bubble-mascot"><span class="bubble-mascot-face" aria-hidden="true">🧚</span><span class="bubble-mascot-note">Hi, bubble buddy! Let’s pop some magic ✨</span></div><p class="bubble-instructions">Aim with your finger or mouse, then tap the board to shoot. Match 3 or more bubbles of the same colour. Clear the board to finish the level!</p><div class="bubble-canvas-wrap"><canvas id="bubbleShooterCanvas" width="320" height="430" aria-label="Bubble Shooter game board"></canvas></div><div class="bubble-shooter-controls"><button class="purple bubble-sound-toggle" id="bsSoundToggle" onclick="bsToggleSound()" aria-pressed="true">🔊 Sound on</button><div class="bubble-next">Next bubble <span id="bsNext" class="bubble-next-dot">●</span></div><button id="bsShootButton" onclick="bubbleShootFromButton()">Shoot bubble</button><button class="purple" id="bsRestartButton" onclick="startBubbleShooterLevel(bubbleCampaign.level)">Restart level</button></div><div id="bsStatus" class="message" aria-live="polite">Ready? Let's pop some bubbles! 💗</div><div class="bubble-level-actions"><button id="bsNextLevel" class="mint" onclick="nextBubbleShooterLevel()" hidden>Next level →</button><button class="purple" onclick="startBubbleShooterLevel(1)">Replay level 1</button></div><p class="bubble-save-note">Campaign progress and best score are saved on this device and included in your Funhouse backup.</p></div></section>
+<section id="moleGame" class="card game"><div class="gamehead"><h2>🐹 Whack-a-Mole</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="mole"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="moleLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Time: <b id="moleTime">20</b>s</span><span class="stat">Hits: <b id="moleScore">0</b></span><p>Tap the mole, not the empty holes!</p><div id="moleBoard" class="mole-board"></div><button id="moleStart" onclick="startMole()">Start round</button><p id="moleStatus" class="message">The mole is hiding...</p></div></section>
+<section id="numberGame" class="card game"><div class="gamehead"><h2>🔢 Number Dash</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="number"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="numberLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Question: <b id="numberRound">0</b>/5</span><span class="stat">Score: <b id="numberScore">0</b></span><div class="big" id="numberQuestion">Ready?</div><div id="numberAnswers" class="answers"></div><p id="numberStatus" class="message">Solve five quick questions!</p><button onclick="startNumberDash()">Start / Restart</button></div></section>
+<section id="colorGame" class="card game"><div class="gamehead"><h2>🎨 Color Match</h2><button class="yellow" onclick="closeGames()">Close ✕</button></div><div class="fun-level-panel" data-level-game="color"><div class="fun-level-title">🏅 Challenge rank</div><div class="fun-levels"><button type="button" data-level="1" aria-pressed="true">Beginner</button><button type="button" data-level="2" aria-pressed="false">Easy</button><button type="button" data-level="3" aria-pressed="false">Medium</button><button type="button" data-level="4" aria-pressed="false">Hard</button><button type="button" data-level="5" aria-pressed="false">Expert</button></div><div class="fun-level-note" id="colorLevelNote">Complete rounds to master higher ranks.</div></div><div class="play"><span class="stat">Round: <b id="colorRound">0</b>/5</span><span class="stat">Score: <b id="colorScore">0</b></span><p>Tap the colour named below.</p><div id="colorPrompt" class="big">Ready?</div><div id="colorSwatches" class="color-swatches"></div><p id="colorStatus" class="message">A quick colour challenge!</p><button onclick="startColorMatch()">Start / Restart</button></div></section>
+
+
+<section id="avatarStudio" class="avatar-studio card">
+ <span class="section-kicker">✦ v2.3 · Avatar Studio</span>
+ <div class="hub-head"><div><h2>👗 Your Funhouse lookbook</h2><p class="muted">Create a little character that feels like you. Mix and match your look, then save it to your profile.</p></div><span class="soft-pill">🎨 Style your explorer</span></div>
+ <div class="avatar-layout">
+  <div class="avatar-showcase">
+   <div class="avatar-stage" id="avatarStage" aria-label="Avatar preview"><span class="avatar-base" id="avatarPreviewBase">👩🏻</span><span class="avatar-hair" id="avatarPreviewHair">💇🏻‍♀️</span><span class="avatar-accessory" id="avatarPreviewAccessory">🎀</span></div>
+   <h3 id="avatarPreviewName">Little Explorer</h3><p class="muted" id="avatarPreviewOutfit">Everyday outfit</p>
+   <button onclick="saveAvatarLook()">Save my look ✨</button>
+   <p class="muted" id="avatarSaveStatus" aria-live="polite">Your look is saved separately from your game progress.</p>
+  </div>
+  <div class="avatar-controls">
+   <div class="avatar-control-group"><h3>1. Choose your character</h3><div id="avatarBaseOptions" class="avatar-options"></div></div>
+   <div class="avatar-control-group"><h3>2. Hairstyle</h3><div id="avatarHairOptions" class="avatar-options"></div></div>
+   <div class="avatar-control-group"><h3>3. Accessories</h3><div id="avatarAccessoryOptions" class="avatar-options"></div></div>
+   <div class="avatar-control-group"><h3>4. Outfit</h3><div id="avatarOutfitOptions" class="avatar-options"></div></div>
+   <div class="avatar-control-group"><h3>5. Profile background</h3><div id="avatarBackgroundOptions" class="avatar-options"></div></div>
+  </div>
+ </div>
+ <div class="avatar-shop"><div class="hub-head"><div><h3>🛍️ Style boutique</h3><p class="muted">Unlock extra outfits and accessories with your earned FunCoins.</p></div><span class="soft-pill">🪙 <b id="avatarCoinBalance">0</b></span></div><div id="avatarBoutiqueGrid" class="collection-grid"></div></div>
+ <p class="collection-note">Avatar choices are saved in this browser. Your character is a playful game avatar, not a real photograph.</p>
+</section>
+
+<section id="collection" class="card collection-wrap">
+ <span class="section-kicker">✦ The Collection Update · v2.1</span><h2>🎒 Your Collection Corner</h2>
+ <p class="collection-note">Collect companions, magical finds and keepsakes. Shop with FunCoins, open card packs and decorate your own bedroom. Everything saves in this browser.</p>
+ <div class="pill-line"><span class="soft-pill">🪙 <b id="collectionCoins">0</b> FunCoins</span><span class="soft-pill">💎 <b id="collectionGems">0</b> Gems</span><span class="soft-pill">🃏 <b id="cardCount">0</b> cards collected</span><span class="soft-pill">🎀 <b id="itemCount">0</b> items owned</span></div>
+ <div class="collection-tabs"><button onclick="showCollectionTab('album')" aria-pressed="true" id="tabAlbum">🃏 Card Album</button><button class="purple" onclick="showCollectionTab('shop')" aria-pressed="false" id="tabShop">🛍️ Shop</button><button class="mint" onclick="showCollectionTab('inventory')" aria-pressed="false" id="tabInventory">🎒 Inventory</button><button class="yellow" onclick="showCollectionTab('room')" aria-pressed="false" id="tabRoom">🏡 My Bedroom</button></div>
+ <div class="collection-panel" id="panelAlbum"><h3>🃏 Magical Card Album</h3><p class="collection-note">A mixed collection of pets, creatures, characters and treasures. A standard pack costs 40 FunCoins. A premium pack costs 3 Gems.</p><div class="hub-actions"><button onclick="openCardPack('standard')">Open standard pack · 40 coins</button><button class="purple" onclick="openCardPack('premium')">Open premium pack · 3 gems</button></div><div id="cardAlbumGrid" class="collection-grid"></div></div>
+ <div class="collection-panel" id="panelShop" hidden><h3>🛍️ Little Market</h3><p class="collection-note">Buy room decorations and accessories. Items you own cannot be purchased twice.</p><div id="shopGrid" class="collection-grid"></div></div>
+ <div class="collection-panel" id="panelInventory" hidden><h3>🎒 Your Inventory</h3><p class="collection-note">Everything you've collected or purchased appears here.</p><div id="inventoryGrid" class="collection-grid"></div></div>
+ <div class="collection-panel" id="panelRoom" hidden><h3>🏡 My Little Bedroom</h3><p class="collection-note">Choose decorations you own to make this room yours.</p><div class="room-preview" id="roomPreview"><span class="room-piece">🛏️</span><span class="room-piece">🪟</span><span class="room-piece">🧸</span></div><div id="roomChoices" class="collection-grid"></div></div>
+ <p class="collection-note" id="collectionMessage" aria-live="polite">Welcome to your collection! ✨</p>
+</section>
 
 <section class="card" id="trophyRoom" style="margin-top:22px"><h2>🏆 Trophy Room</h2><p class="petnote">Your achievements stay on this device and browser.</p><div class="badges" id="trophyShelf"></div><h3>Personal bests</h3><div id="bestShelf" class="message">Play a few games to set your records!</div></section>
 
@@ -150,11 +471,25 @@ body.theme-night .hub-card,body.theme-night .map-panel,body.theme-night .world-d
 
 <section class="card" id="themeSettings" style="margin-top:22px"><h2>🎨 Make it yours</h2><p class="petnote">Choose a colour mood for your Funhouse.</p><div class="pet-actions"><button onclick="setTheme('cute')">🍓 Strawberry</button><button class="purple" onclick="setTheme('lavender')">💜 Lavender</button><button class="mint" onclick="setTheme('mint')">🌿 Mint</button><button class="yellow" onclick="setTheme('sunshine')">🌼 Sunshine</button><button onclick="setTheme('night')">🌙 Night</button></div></section>
 
+
+<section id="festivalEvents" class="festival-wrap">
+  <span class="section-kicker">✦ v2.6 · Events & Festivals</span>
+  <h2>🎉 The Festival Square</h2>
+  <p class="petnote">Celebrate the seasons with little quests, decorations and keepsakes. Festival progress is saved on this device.</p>
+  <div class="festival-hero"><div class="festival-icon" id="festivalHeroIcon">🍂</div><h2 id="festivalHeroTitle">Cozy Harvest Festival</h2><p id="festivalHeroText">Gather little moments and celebrate the season.</p><span class="festival-token" id="festivalTokenCount">🍬 0 Festival Tokens</span></div>
+  <h3>🗓️ Festival calendar</h3><div id="festivalCalendar" class="festival-calendar"></div>
+  <h3>✨ Today's festival quests</h3><p class="petnote">Complete each activity once per day to earn Festival Tokens.</p>
+  <div id="festivalTasks"></div><p id="festivalTaskStatus" class="message" aria-live="polite">Choose a festival quest to begin.</p>
+  <h3>🎁 Festival boutique</h3><p class="petnote">Spend tokens on keepsakes. Purchased items stay in your festival collection.</p>
+  <div id="festivalShop" class="festival-shop"></div>
+  <h3>🎀 Your festival keepsakes</h3><div id="festivalOwned" class="badges"></div>
+</section>
+
 <section id="saveSettings" class="card save-panel"><h2>💾 Your save & backup</h2><p>Keep your progress safe. Your existing pet, diary, trophies, games, challenges and themes are preserved. Progress is stored only in this browser unless you export a backup.</p><div class="hub-actions"><button onclick="exportFunhouseSave()">Download backup</button><label class="soft-pill" for="importSaveFile">Restore a backup</label><input id="importSaveFile" type="file" accept="application/json,.json" onchange="importFunhouseSave(event)"></div><p class="petnote">Restoring replaces saved Funhouse progress in this browser. Keep your backup file private: it may include your diary. Never share it publicly.</p></section>
-<section id="about" class="card" style="margin-top:22px"><h2>🌷 A note from the Funhouse</h2><p style="line-height:1.6;color:#807286">A little independent playground made for quick breaks and harmless fun. No account or sign-in needed. Your progress stays in this browser; export a backup to keep it safe. New worlds are on the way!</p></section>
+<section id="about" class="card" style="margin-top:22px"><h2>🌷 The Funhouse v3.0 · Grand Universe</h2><p style="line-height:1.6;color:#807286">The grand universe release brings the Funhouse worlds, mini-games, adventures, pets, collections and connected arcade progress together in one little playground. No account or sign-in needed. Your progress stays in this browser; export a backup to keep it safe. Thank you for exploring the Funhouse!</p><p class="petnote">Release 3.0 · Local-save edition · Made with ♡</p></section>
 </main><footer>Made with ♡ by <b>The Funhouse</b> · Be kind, play silly.</footer>
-<script>
-const ids=['starGame','quizGame','chaosGame','petGame','memoryGame','ticGame','rpsGame','wordGame','reactionGame'];function openGame(id){closeGames();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+<div class="fun-audio-dock" id="funAudioDock" aria-label="Funhouse audio settings"><span class="fun-audio-label">🎀 FUNHOUSE</span><button class="purple" id="funAudioToggle" type="button" aria-pressed="true">🔊 Sound on</button><button class="yellow" id="funVoiceToggle" type="button" aria-pressed="true">🗣️ Voice on</button></div><script>
+const ids=['starGame','quizGame','chaosGame','petGame','memoryGame','ticGame','rpsGame','wordGame','reactionGame','bubbleGame','bubbleShooterGame','dreamRunnerGame','gemMatchGame','littleCafeGame','dreamFishingGame','forestAdventureGame','moleGame','numberGame','colorGame'];function openGame(id){closeGames();if(typeof funGameOpened==='function')funGameOpened(id);document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth'});if(id==='bubbleShooterGame'&&bsState==='ready')startBubbleShooterLevel(bubbleCampaign.level);if(id==='gemMatchGame'&&typeof gmOpen==='function')gmOpen();if(id==='littleCafeGame'&&typeof cafeOpen==='function')cafeOpen();if(id==='dreamFishingGame'&&typeof fishOpen==='function')fishOpen();if(id==='forestAdventureGame'&&typeof forestOpen==='function')forestOpen()}
 function closeGames(){ids.forEach(x=>document.getElementById(x).classList.remove('active'));stopStar()}
 
 // Daily challenge system: one rotating mission per local calendar day.
@@ -195,7 +530,7 @@ function dailyProgress(kind,amount=1){
  syncDailyDay();if(dailyData.completed)return;
  const m=missions[dailyData.mission];if(m.id!==kind)return;
  dailyData.progress=Math.min(m.goal,dailyData.progress+amount);
- if(dailyData.progress>=m.goal){
+ if(dailyData.progress>=m.goal){funSfx('reward');funSpeak('Daily challenge complete!');
    dailyData.completed=true;dailyData.points+=10;
    const today=localDay(),last=dailyData.lastCompleted;
    if(last!==today){dailyData.streak=last&&dayNumber(today)-dayNumber(last)===1?dailyData.streak+1:1;dailyData.lastCompleted=today}
@@ -213,20 +548,46 @@ let timer=null,left=15,score=0;const key='funhouse-best';document.getElementById
 function stopStar(){if(timer)clearInterval(timer);timer=null;document.getElementById('target').style.display='none'}
 function moveStar(){let f=document.getElementById('field'),t=document.getElementById('target');t.style.left=Math.random()*(f.clientWidth-55)+'px';t.style.top=Math.random()*(f.clientHeight-55)+'px'}
 function startStar(){stopStar();left=15;score=0;document.getElementById('time').textContent=left;document.getElementById('score').textContent=score;document.getElementById('starHint').textContent='Go go go!';document.getElementById('start').disabled=true;document.getElementById('target').style.display='block';moveStar();timer=setInterval(()=>{left--;document.getElementById('time').textContent=left;if(left<=0){stopStar();document.getElementById('starHint').textContent='Time! You caught '+score+' stars. Nice tapping!';document.getElementById('start').disabled=false}},1000)}
-function catchStar(){if(!timer)return;score++;dailyProgress('stars',1);document.getElementById('score').textContent=score;let b=+(localStorage.getItem(key)||0);if(score>b){localStorage.setItem(key,score);document.getElementById('best').textContent=score}moveStar()}
+function catchStar(){if(!timer)return;funSfx('pop');score++;dailyProgress('stars',1);document.getElementById('score').textContent=score;let b=+(localStorage.getItem(key)||0);if(score>b){localStorage.setItem(key,score);document.getElementById('best').textContent=score}moveStar()}
 const qs=[['🍕🌙',['Midnight snack','Moon pizza','Space dinner','Sleepy chef'],0],['🐝📚',['Busy library','Bee book club','Reading bug','Honey homework'],1],['🌧️🐱🐶',['Animal parade','Cat café','Raining cats and dogs','Wet pets'],2],['🧊☕',['Cold coffee','Coffee glacier','Frozen tea','Winter cocoa'],0],['⭐🎣',['Starfish','Fishing for compliments','Catch a star','Space fishing'],3]];
 let qi=0,points=0,done=false;function renderQ(){done=false;let q=qs[qi];document.getElementById('qNum').textContent=qi+1;document.getElementById('clue').textContent=q[0];document.getElementById('feedback').textContent='Choose your answer!';document.getElementById('next').style.display='none';let a=document.getElementById('answers');a.innerHTML='';q[1].forEach((v,i)=>{let b=document.createElement('button');b.textContent=v;b.onclick=()=>answer(i);a.appendChild(b)})}
-function answer(i){if(done)return;done=true;let q=qs[qi];if(i===q[2])points++;document.getElementById('feedback').textContent=i===q[2]?'Correct! Emoji detective skills: elite ✨':'Not quite! The answer was '+q[1][q[2]]+'.';[...document.querySelectorAll('#answers button')].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.background='#c9f4e8'});document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=qi===4?'See my score →':'Next →'}
+function answer(i){if(done)return;done=true;let q=qs[qi];if(i===q[2]){points++;funSfx('correct');funSpeak('Correct! Nice work!')}else{funSfx('wrong');}document.getElementById('feedback').textContent=i===q[2]?'Correct! Emoji detective skills: elite ✨':'Not quite! The answer was '+q[1][q[2]]+'.';[...document.querySelectorAll('#answers button')].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.style.background='#c9f4e8'});document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=qi===4?'See my score →':'Next →'}
 function nextQ(){if(qi<4){qi++;renderQ()}else{dailyProgress('quiz',1);document.getElementById('clue').textContent='🏆';document.getElementById('answers').innerHTML='';document.getElementById('feedback').textContent='You got '+points+' out of 5. Thanks for playing!';document.getElementById('next').style.display='none';qi=0;points=0}}
-renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){dailyProgress('chaos',1);document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
+renderQ();const fortunes=['A tiny bird will judge your outfit today. Politely ignore it. 🐦','Your next snack will be emotionally supportive. 🍪','Your side quest: drink some water. 💧','You will remember why you entered that room. Eventually. 🚪','The stars say: take the easy win today. ✨','A small victory is hiding in your to-do list. 🌷','Your future self requests fewer open tabs. 🖥️','Today’s lucky object is… a spoon. 🥄'];function chaos(){funSfx('reward');funSpeak('A little chaos!');dailyProgress('chaos',1);document.getElementById('fortune').textContent=fortunes[Math.floor(Math.random()*fortunes.length)]}
 const petKey='funhouse-pet-v1';let pet={name:'Pip',hunger:70,happy:75,energy:80,kind:'🐣',accessory:''};try{let saved=JSON.parse(localStorage.getItem(petKey)||'null');if(saved)pet={...pet,...saved}}catch(e){}
-function savePet(){localStorage.setItem(petKey,JSON.stringify(pet));drawPet()}
+const petParadiseKey='funhouse-pet-paradise-v22';
+let petParadise={activeId:'starter',pets:[],bondXP:0,room:[],careDate:'',careDone:{feed:false,play:false,rest:false},missionClaimed:''};
+try{let pp=JSON.parse(localStorage.getItem(petParadiseKey)||'null');if(pp&&typeof pp==='object')petParadise={...petParadise,...pp,pets:Array.isArray(pp.pets)?pp.pets:[],room:Array.isArray(pp.room)?pp.room:[],careDone:pp.careDone||{}}}catch(e){}
+if(!petParadise.pets.length)petParadise.pets=[{id:'starter',name:pet.name,kind:pet.kind||'🐣',accessory:pet.accessory||'',hunger:pet.hunger,happy:pet.happy,energy:pet.energy}];
+if(!petParadise.pets.some(x=>x.id===petParadise.activeId))petParadise.activeId=petParadise.pets[0].id;
+function syncPetRoster(){let p=petParadise.pets.find(x=>x.id===petParadise.activeId);if(p)Object.assign(p,{name:pet.name,kind:pet.kind,accessory:pet.accessory||'',hunger:pet.hunger,happy:pet.happy,energy:pet.energy})}
+function savePetParadise(){try{localStorage.setItem(petParadiseKey,JSON.stringify(petParadise))}catch(e){showToast('Could not save Pet Paradise progress.')}}
+function savePet(){localStorage.setItem(petKey,JSON.stringify(pet));syncPetRoster();savePetParadise();drawPet();renderPetParadise()}
 function drawPet(){document.getElementById('petName').textContent=pet.name;document.getElementById('petRename').value=pet.name;document.getElementById('hungerNum').textContent=pet.hunger;document.getElementById('happyNum').textContent=pet.happy;document.getElementById('energyNum').textContent=pet.energy;document.getElementById('hungerBar').style.width=pet.hunger+'%';document.getElementById('happyBar').style.width=pet.happy+'%';document.getElementById('energyBar').style.width=pet.energy+'%';document.getElementById('petFace').textContent=(pet.energy<25?'😴':pet.hunger<25?'🥺':pet.happy>85?'🥰':(pet.kind||'🐣'))+(pet.accessory||'');document.getElementById('petMood').textContent=pet.happy>80?pet.name+' is feeling extra happy!':pet.hunger<25?pet.name+' is getting hungry.':pet.energy<25?pet.name+' needs a little rest.':pet.name+' is feeling lovely!'}
-function sayPet(t){document.getElementById('petMessage').textContent=t}
-function feedPet(){dailyProgress('pet',1);if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);savePet();sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
-function playPet(){dailyProgress('pet',1);if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);savePet();sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
-function restPet(){dailyProgress('pet',1);pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);savePet();sayPet(pet.name+' had a lovely little nap. 💤')}
-document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});drawPet();document.addEventListener('visibilitychange',()=>{if(!document.hidden){syncDailyDay();renderDaily()}});
+function sayPet(t){document.getElementById('petMessage').textContent=t;funSfx('pet');funSpeak(t)}
+function feedPet(){dailyProgress('pet',1);if(pet.hunger>=100){sayPet(pet.name+' is already full!');return}pet.hunger=Math.min(100,pet.hunger+25);pet.happy=Math.min(100,pet.happy+4);markPetCare('feed');petParadise.bondXP+=5;savePet();awardXP('pet',10,'pet');sayPet('Yum! '+pet.name+' loves strawberries. 🍓')}
+function playPet(){dailyProgress('pet',1);if(pet.energy<15){sayPet(pet.name+' is too sleepy to play. Let them rest!');return}pet.happy=Math.min(100,pet.happy+18);pet.energy=Math.max(0,pet.energy-18);pet.hunger=Math.max(0,pet.hunger-8);markPetCare('play');petParadise.bondXP+=7;savePet();awardXP('pet',10,'pet');sayPet('Wheee! '+pet.name+' had so much fun! 🧶')}
+function restPet(){dailyProgress('pet',1);pet.energy=Math.min(100,pet.energy+30);pet.happy=Math.min(100,pet.happy+3);markPetCare('rest');petParadise.bondXP+=4;savePet();awardXP('pet',10,'pet');sayPet(pet.name+' had a lovely little nap. 💤')}
+document.getElementById('petRename').addEventListener('change',e=>{let n=e.target.value.trim().slice(0,14);pet.name=n||'Pip';savePet();sayPet('Hello, '+pet.name+'! What a cute name.')});
+drawPet();document.addEventListener('visibilitychange',()=>{if(!document.hidden){syncDailyDay();renderDaily()}});
+const adoptablePets=[{id:'mint-cat',name:'Minty',kind:'🐱',price:100},{id:'cloud-bunny',name:'Cloud',kind:'🐰',price:120},{id:'pond-frog',name:'Puddle',kind:'🐸',price:140},{id:'little-fox',name:'Clover',kind:'🦊',price:180},{id:'panda-pal',name:'Mochi',kind:'🐼',price:200}];
+const petRoomItems=[{id:'pet-bed',name:'Cloudy Pet Bed',art:'🛏️',price:35},{id:'pet-toy',name:'Yarn Toy',art:'🧶',price:25},{id:'pet-bowl',name:'Berry Bowl',art:'🥣',price:30},{id:'pet-plant',name:'Tiny Flower Pot',art:'🪴',price:40}];
+function markPetCare(action){let today=localDay();if(petParadise.careDate!==today){petParadise.careDate=today;petParadise.careDone={feed:false,play:false,rest:false};petParadise.missionClaimed=''}petParadise.careDone[action]=true;savePetParadise();renderPetParadise()}
+function renderPetParadise(){let today=localDay();if(petParadise.careDate!==today){petParadise.careDate=today;petParadise.careDone={feed:false,play:false,rest:false};petParadise.missionClaimed='';savePetParadise()}
+ document.getElementById('petCoinBalance').textContent=safeNum(universe.coins);
+ let roster=document.getElementById('petRoster');roster.replaceChildren();petParadise.pets.forEach(p=>{let el=document.createElement('div');el.className='pet-roster-card';let face=document.createElement('div');face.className='pet-roster-face';face.textContent=p.kind+(p.accessory||'');let name=document.createElement('strong');name.textContent=p.name;let small=document.createElement('small');small.textContent=p.id===petParadise.activeId?'Currently with you':'Your companion';let b=document.createElement('button');b.textContent=p.id===petParadise.activeId?'Active ✓':'Spend time together';b.disabled=p.id===petParadise.activeId;b.onclick=()=>switchParadisePet(p.id);el.append(face,name,small,b);roster.append(el)});
+ let missions=document.getElementById('petMissions');missions.replaceChildren();[['feed','🍓 Feed your pet'],['play','🧶 Play together'],['rest','💤 Let your pet rest']].forEach(([id,label])=>{let row=document.createElement('div');row.className='pet-mission'+(petParadise.careDone[id]?' done':'');let span=document.createElement('span');span.textContent=label;let status=document.createElement('b');status.textContent=petParadise.careDone[id]?'Done ✓':'Pending';row.append(span,status);missions.append(row)});
+ let all=!!(petParadise.careDone.feed&&petParadise.careDone.play&&petParadise.careDone.rest),claimed=petParadise.missionClaimed===today;let btn=document.getElementById('petMissionClaim');btn.disabled=!all||claimed;btn.textContent=claimed?'Care bonus claimed ✓':'Claim care bonus · 15 coins + 10 XP';document.getElementById('petMissionStatus').textContent=claimed?'Lovely care today! Come back tomorrow.':all?'All tasks complete. Your bonus is ready!':'Complete all three care activities to unlock the bonus.';
+ let bond=safeNum(petParadise.bondXP),level=Math.floor(bond/50)+1,within=bond%50;document.getElementById('petBondLevel').textContent=level;document.getElementById('petBondXP').textContent=bond;document.getElementById('petBondTitle').textContent=level>=10?'Soulmate':level>=6?'Best Friend':level>=3?'Close Pal':'New Friend';document.getElementById('petBondFill').style.width=(within/50*100)+'%';document.getElementById('petBondNext').textContent=(50-within)+' bond XP to the next friendship level.';
+ let room=document.getElementById('petRoomPreview');room.replaceChildren();let base=document.createElement('span');base.className='pet-room-piece';base.textContent='🧺';room.append(base);petRoomItems.filter(i=>petParadise.room.includes(i.id)).forEach(i=>{let el=document.createElement('span');el.className='pet-room-piece';el.textContent=i.art;el.title=i.name;room.append(el)});
+ let shop=document.getElementById('petRoomShop');shop.replaceChildren();petRoomItems.forEach(i=>{let owned=petParadise.room.includes(i.id),el=document.createElement('div');el.className='pet-roster-card';let art=document.createElement('div');art.className='pet-roster-face';art.textContent=i.art;let name=document.createElement('strong');name.textContent=i.name;let small=document.createElement('small');small.textContent=owned?'Owned decoration':i.price+' FunCoins';let b=document.createElement('button');b.textContent=owned?'Owned ✓':'Buy';b.disabled=owned;b.onclick=()=>buyPetRoomItem(i.id);el.append(art,name,small,b);shop.append(el)});
+}
+function switchParadisePet(id){syncPetRoster();let next=petParadise.pets.find(x=>x.id===id);if(!next)return;petParadise.activeId=id;Object.assign(pet,next);localStorage.setItem(petKey,JSON.stringify(pet));savePetParadise();drawPet();renderPetParadise();document.getElementById('petParadiseMessage').textContent=next.name+' is now your active companion! 💗';showToast('Now spending time with '+next.name+'!')}
+function adoptParadisePet(id){let p=adoptablePets.find(x=>x.id===id);if(!p||petParadise.pets.some(x=>x.id===id))return;if(safeNum(universe.coins)<p.price){showToast('You need '+p.price+' FunCoins to adopt '+p.name+'.');return}universe.coins-=p.price;petParadise.pets.push({id:p.id,name:p.name,kind:p.kind,accessory:'',hunger:75,happy:80,energy:85});saveUniverse();savePetParadise();renderPetParadise();document.getElementById('petParadiseMessage').textContent='Welcome home, '+p.name+'! You adopted a new companion. 🐾';showToast(p.name+' joined your pet family!')}
+function buyPetRoomItem(id){let item=petRoomItems.find(x=>x.id===id);if(!item||petParadise.room.includes(id))return;if(safeNum(universe.coins)<item.price){showToast('You need '+item.price+' FunCoins for this decoration.');return}universe.coins-=item.price;petParadise.room.push(id);saveUniverse();savePetParadise();renderPetParadise();showToast(item.name+' added to Pet Home!')}
+function claimPetMission(){let today=localDay();if(petParadise.missionClaimed===today||!petParadise.careDone.feed||!petParadise.careDone.play||!petParadise.careDone.rest)return;petParadise.missionClaimed=today;universe.coins=safeNum(universe.coins)+15;universe.xp=safeNum(universe.xp)+10;universe.worldXP.pet=safeNum(universe.worldXP.pet)+10;saveUniverse();savePetParadise();renderPetParadise();showToast('Pet care complete: +15 FunCoins and +10 XP! 🐾')}
+function renderPetAdoptions(){let el=document.getElementById('petParadiseMessage');if(!el)return;let box=document.createElement('div');box.className='pet-world-card';box.style.marginTop='12px';let h=document.createElement('h3');h.textContent='🌼 Meet your next companion';box.append(h);let grid=document.createElement('div');grid.className='pet-roster';adoptablePets.forEach(p=>{let owned=petParadise.pets.some(x=>x.id===p.id),card=document.createElement('div');card.className='pet-roster-card';let face=document.createElement('div');face.className='pet-roster-face';face.textContent=p.kind;let name=document.createElement('strong');name.textContent=p.name;let small=document.createElement('small');small.textContent=owned?'Already adopted':p.price+' FunCoins';let b=document.createElement('button');b.textContent=owned?'Adopted ✓':'Adopt';b.disabled=owned;b.onclick=()=>adoptParadisePet(p.id);card.append(face,name,small,b);grid.append(card)});box.append(grid);el.after(box)}
+
 
 // Extra mini-games
 const memEmojis=['🍓','🐸','🌈','🧸','🍓','🐸','🌈','🧸'];let memFirst=null,memLock=false,memPairs=0,memMoves=0;
@@ -279,20 +640,20 @@ setTheme(localStorage.getItem('funhouse-theme-v1')||'cute');
 
 // The Funhouse v2.0: separate progression data; legacy storage keys remain untouched.
 const universeKey='funhouse-universe-v2';
-const worldMeta={arcade:{name:'Arcade City',emoji:'🎮',description:'Catch stars, test your reflexes and win quick games.',target:'games'},pet:{name:'Pet Paradise',emoji:'🐾',description:'Feed, play with and care for your tiny pet.',target:'petGame'},puzzle:{name:'Puzzle Island',emoji:'🧩',description:'Solve memory, emoji and word puzzles.',target:'games'},mystery:{name:'Mystery Forest',emoji:'🌲',description:'A magical mystery destination. Exploration arrives in a future update.',target:null},treasure:{name:'Treasure Cove',emoji:'🏝️',description:'A seaside treasure destination. Exploration arrives in a future update.',target:null}};
+const worldMeta={arcade:{name:'Arcade City',emoji:'🎮',description:'Catch stars, test your reflexes and win quick games.',target:'games'},pet:{name:'Pet Paradise',emoji:'🐾',description:'Feed, play with and care for your tiny pet.',target:'petGame'},puzzle:{name:'Puzzle Island',emoji:'🧩',description:'Solve memory, emoji and word puzzles.',target:'games'},mystery:{name:'Mystery Forest',emoji:'🌲',description:'Follow gentle story clues and collect keepsakes in a five-chapter adventure.',target:null},treasure:{name:'Treasure Cove',emoji:'🏝️',description:'Explore a seaside trail, discover hidden keepsakes and complete story chapters.',target:null}};
 const avatarChoices=['🐰','🐱','🐻','🐸','🦊','🐼','🐣','🦄'];
 let universe={version:2,name:'Little Explorer',avatar:'🐰',xp:0,coins:0,gems:0,worldXP:{arcade:0,pet:0,puzzle:0,mystery:0,treasure:0},lastGift:'',activityDay:'',activityXP:0,activityCount:{},awarded:{}};
 try{let saved=JSON.parse(localStorage.getItem(universeKey)||'null');if(saved&&typeof saved==='object'&&!Array.isArray(saved)){universe={...universe,...saved,worldXP:{...universe.worldXP,...(saved.worldXP||{})}}}}catch(e){}
 function safeNum(n){return Number.isFinite(Number(n))?Math.max(0,Math.floor(Number(n))):0}
 function levelInfo(xp){let level=1,remaining=safeNum(xp),required=100;while(remaining>=required&&level<100){remaining-=required;level++;required=100+(level-1)*50}return {level,remaining,required}}
 function rankInfo(xp){let rank=Math.min(20,Math.floor(safeNum(xp)/120)+1);let names=['Rookie','Explorer','Adventurer','Champion','Master'];return {rank,name:names[Math.min(4,Math.floor((rank-1)/4))],remaining:safeNum(xp)%120}}
-function saveUniverse(){try{localStorage.setItem(universeKey,JSON.stringify(universe))}catch(e){showToast('Could not save. Browser storage may be full.')}renderUniverse()}
+function saveUniverse(){try{localStorage.setItem(universeKey,JSON.stringify(universe))}catch(e){showToast('Could not save. Browser storage may be full.')}renderUniverse();if(typeof renderCollection==='function')renderCollection()}
 function showToast(message){let el=document.getElementById('funhouseToast');el.textContent=message;el.hidden=false;clearTimeout(showToast.timeout);showToast.timeout=setTimeout(()=>el.hidden=true,2700)}
 function renderUniverse(){let info=levelInfo(universe.xp);document.getElementById('profileName').textContent=universe.name||'Little Explorer';document.getElementById('profileAvatar').textContent=avatarChoices.includes(universe.avatar)?universe.avatar:'🐰';document.getElementById('profileTitle').textContent=info.level>=20?'👑 Legendary Explorer':info.level>=10?'🌟 Star Adventurer':info.level>=5?'🗺️ Curious Wanderer':'🌱 New Adventurer';document.getElementById('mainLevel').textContent=info.level;document.getElementById('coinBalance').textContent=safeNum(universe.coins);document.getElementById('gemBalance').textContent=safeNum(universe.gems);document.getElementById('xpLabel').textContent=info.level>=100?'Maximum level reached!':info.remaining+' / '+info.required+' XP to next level';document.getElementById('xpFill').style.width=info.level>=100?'100%':Math.min(100,100*info.remaining/info.required)+'%';for(let w of Object.keys(worldMeta)){let r=rankInfo(universe.worldXP[w]);document.getElementById('rank'+w[0].toUpperCase()+w.slice(1)).textContent=r.name+' · Rank '+r.rank}let claimed=universe.lastGift===localDay();document.getElementById('claimRewardButton').disabled=claimed;document.getElementById('claimRewardButton').textContent=claimed?'Gift claimed ✓':"Claim today's gift";document.getElementById('rewardStatus').textContent=claimed?'Come back tomorrow for another gift!':'Ready to claim ✨'}
 function changePlayerName(){let name=document.getElementById('newPlayerName').value.trim().replace(/[<>]/g,'').slice(0,20);if(!name){showToast('Enter a nickname first.');return}universe.name=name;saveUniverse();document.getElementById('newPlayerName').value='';showToast('Nickname updated! ✨')}
 function cycleAvatar(){let i=avatarChoices.indexOf(universe.avatar);universe.avatar=avatarChoices[(i+1)%avatarChoices.length];saveUniverse()}
-function awardXP(world,amount,source){if(!worldMeta[world])return;let today=localDay();if(universe.activityDay!==today){universe.activityDay=today;universe.activityXP=0;universe.activityCount={}}let current=safeNum(universe.activityCount[source]||0);let caps={star:3,quiz:3,chaos:1,pet:5,memory:4,tic:4,rps:6,word:4,reaction:3};if(current>=(caps[source]||3)||universe.activityXP>=300)return;let earned=Math.min(amount,300-universe.activityXP);universe.activityCount[source]=current+1;universe.activityXP+=earned;universe.xp=safeNum(universe.xp)+earned;universe.worldXP[world]=safeNum(universe.worldXP[world])+earned;universe.coins=safeNum(universe.coins)+Math.max(1,Math.floor(earned/3));saveUniverse();showToast('+'+earned+' XP · +'+Math.max(1,Math.floor(earned/3))+' FunCoins ✨')}
-function claimDailyReward(){
+function awardXP(world,amount,source){if(!worldMeta[world])return;let today=localDay();if(universe.activityDay!==today){universe.activityDay=today;universe.activityXP=0;universe.activityCount={}}let current=safeNum(universe.activityCount[source]||0);let caps={star:3,quiz:3,chaos:1,pet:5,memory:4,tic:4,rps:6,word:4,reaction:3,bubble:4,mole:4,number:4,color:4,bubbleShooter:3,dreamRunner:3,gemMatch:5,cafe:5,fishing:5,forest:5};if(current>=(caps[source]||3)||universe.activityXP>=300)return;let oldLevel=levelInfo(universe.xp).level;let earned=Math.min(amount,300-universe.activityXP);universe.activityCount[source]=current+1;universe.activityXP+=earned;universe.xp=safeNum(universe.xp)+earned;universe.worldXP[world]=safeNum(universe.worldXP[world])+earned;let newLevel=levelInfo(universe.xp).level;let gemBonus=Math.floor(newLevel/5)-Math.floor(oldLevel/5);if(gemBonus>0)universe.gems=safeNum(universe.gems)+gemBonus;let coinBonus=Math.max(1,Math.floor(earned/3));universe.coins=safeNum(universe.coins)+coinBonus;saveUniverse();showToast('+'+earned+' XP · +'+coinBonus+' FunCoins'+(gemBonus?' · +'+gemBonus+' Gem':'')+' ✨')}
+function claimDailyReward(){funSfx('reward');
  if(universe.lastGift===localDay()){showToast('You already claimed today’s gift. Come back tomorrow!');renderUniverse();return}
  universe.lastGift=localDay();universe.coins=safeNum(universe.coins)+25;universe.xp=safeNum(universe.xp)+15;saveUniverse();showToast('Daily gift claimed: +25 FunCoins and +15 XP! 🎁')
 }
@@ -310,23 +671,699 @@ function selectWorld(world){
  if(world==='arcade'){b.textContent='Visit Arcade City →';b.onclick=()=>document.getElementById('games').scrollIntoView({behavior:'smooth'})}
  else if(world==='pet'){b.textContent='Visit Pet Paradise →';b.onclick=()=>openGame('petGame')}
  else if(world==='puzzle'){b.textContent='Visit Puzzle Island →';b.onclick=()=>openGame('memoryGame')}
- else if(world==='mystery'){b.textContent='Explore the forest ✨';b.onclick=()=>awardWorldAdventure('mystery')}
- else {b.textContent='Search for treasure 🗝️';b.onclick=()=>awardWorldAdventure('treasure')}
+ else if(world==='mystery'){b.textContent='Begin forest story ✨';b.onclick=()=>document.getElementById('storyQuests').scrollIntoView({behavior:'smooth'})}
+ else {b.textContent='Follow the treasure trail 🗝️';b.onclick=()=>{storyData.chapter=4;storyData.step=0;saveStory();document.getElementById('storyQuests').scrollIntoView({behavior:'smooth'})}}
  detail.appendChild(b);
- if(world==='mystery'||world==='treasure'){const note=document.createElement('p');note.className='muted';note.textContent='A small daily expedition is playable now. More story chapters and locations will be added in future updates.';detail.appendChild(note)}
+ if(world==='mystery'||world==='treasure'){const note=document.createElement('p');note.className='muted';note.textContent='Explore the new story quest collection and earn keepsakes along the way.';detail.appendChild(note)}
 }
 // Instrument the original games without altering their saved data or original logic.
 const originalStartStar=startStar;startStar=function(){originalStartStar();let t=timer;if(!t)return;let interval=t;let check=setInterval(()=>{if(timer!==interval){clearInterval(check);if(score>0)awardXP('arcade',Math.min(30,10+score),'star')}},400)};
 const originalNextQ=nextQ;nextQ=function(){let finishing=qi===4&&done;originalNextQ();if(finishing)awardXP('puzzle',25,'quiz')};
 const originalChaos=chaos;chaos=function(){originalChaos();awardXP('arcade',5,'chaos')};
 for(let action of ['feedPet','playPet','restPet']){let old=window[action];window[action]=function(){old();awardXP('pet',8,'pet')}}
-const originalRecordTrophy=recordTrophy;recordTrophy=function(id){let old=trophies.includes(id);originalRecordTrophy(id);if(!old){let world=['memory','word'].includes(id)?'puzzle':'arcade';awardXP(world,25,id==='memory'?'memory':id==='word'?'word':id==='tic'?'tic':id==='rps'?'rps':'reaction')}else if(id==='rps')awardXP('arcade',8,'rps');else if(id==='word')awardXP('puzzle',12,'word');else if(id==='tic')awardXP('arcade',12,'tic');else if(id==='memory')awardXP('puzzle',12,'memory');else if(id==='reaction')awardXP('arcade',10,'reaction')};
+const originalRecordTrophy=recordTrophy;recordTrophy=function(id){let old=trophies.includes(id);originalRecordTrophy(id);if(!old){let world=['memory','word'].includes(id)?'puzzle':'arcade';awardXP(world,25,id==='memory'?'memory':id==='word'?'word':id==='tic'?'tic':id==='rps'?'rps':'reaction')}else if(id==='rps')awardXP('arcade',8,'rps');else if(id==='word')awardXP('puzzle',12,'word');else if(id==='tic')awardXP('arcade',12,'tic');else if(id==='memory')awardXP('puzzle',12,'memory');else if(id==='reaction')awardXP('arcade',10,'reaction');else if(id==='bubble')awardXP('arcade',15,'bubble');else if(id==='mole')awardXP('arcade',15,'mole');else if(id==='number')awardXP('puzzle',20,'number');else if(id==='color')awardXP('arcade',15,'color')};
 
 // Daily challenge completion now also grants visible FunCoins and XP.
 const originalDailyProgressForCoins=dailyProgress;
 dailyProgress=function(kind,amount=1){const wasComplete=dailyData.completed;originalDailyProgressForCoins(kind,amount);if(!wasComplete&&dailyData.completed){const world=kind==='pet'?'pet':kind==='quiz'?'puzzle':'arcade';universe.coins=safeNum(universe.coins)+10;awardXP(world,15,'daily');saveUniverse();showToast('Daily challenge reward: +10 FunCoins! 🌟')}};
-const backupKeys=['funhouse-best','funhouse-pet-v1','funhouse-daily-v1','funhouse-trophies-v1','funhouse-private-diary-v1','funhouse-theme-v1','funhouse-reaction-best','funhouse-universe-v2'];
+
+// v2.1 Collection system. Independent save key; v1-v2 progress remains intact.
+const collectionKey='funhouse-collection-v21';
+const cardCatalog=[
+ {id:'pip',name:'Pip the Chick',art:'🐣',type:'Pet',rarity:'Common'},
+ {id:'moss',name:'Mossy Golem',art:'🪨',type:'Creature',rarity:'Common'},
+ {id:'cloud',name:'Cloud Bunny',art:'🐰',type:'Pet',rarity:'Common'},
+ {id:'sprout',name:'Little Sprout',art:'🌱',type:'Creature',rarity:'Common'},
+ {id:'fox',name:'Moonlit Fox',art:'🦊',type:'Creature',rarity:'Uncommon'},
+ {id:'swan',name:'Pearl Swan',art:'🦢',type:'Pet',rarity:'Uncommon'},
+ {id:'witch',name:'Starry Witch',art:'🧙',type:'Character',rarity:'Rare'},
+ {id:'unicorn',name:'Dream Unicorn',art:'🦄',type:'Creature',rarity:'Rare'},
+ {id:'treasure',name:'Golden Compass',art:'🧭',type:'Treasure',rarity:'Rare'},
+ {id:'mermaid',name:'Coral Mermaid',art:'🧜‍♀️',type:'Character',rarity:'Epic'},
+ {id:'phoenix',name:'Clockwork Phoenix',art:'🐦‍🔥',type:'Creature',rarity:'Epic'},
+ {id:'moon',name:'Moon Palace Key',art:'🗝️',type:'Treasure',rarity:'Epic'},
+ {id:'dragon',name:'Lavender Dragon',art:'🐉',type:'Creature',rarity:'Legendary'},
+ {id:'crown',name:'Crown of Stars',art:'👑',type:'Treasure',rarity:'Legendary'},
+ {id:'aurora',name:'Aurora Guardian',art:'🌌',type:'Character',rarity:'Legendary'}
+];
+const marketItems=[
+ {id:'bow',name:'Strawberry Bow',art:'🎀',kind:'Accessory',price:20},
+ {id:'plant',name:'Tiny Houseplant',art:'🪴',kind:'Bedroom',price:25},
+ {id:'lamp',name:'Cloud Lamp',art:'☁️',kind:'Bedroom',price:35},
+ {id:'books',name:'Pastel Bookshelf',art:'📚',kind:'Bedroom',price:45},
+ {id:'rug',name:'Lavender Rug',art:'🟣',kind:'Bedroom',price:55},
+ {id:'teddy',name:'Cuddle Bear',art:'🧸',kind:'Bedroom',price:65},
+ {id:'window',name:'Starry Window',art:'🌠',kind:'Bedroom',price:75},
+ {id:'throne',name:'Cloud Throne',art:'👑',kind:'Bedroom',price:90}
+];
+let collection={cards:{},items:[],room:[]};
+try{let saved=JSON.parse(localStorage.getItem(collectionKey)||'null');if(saved&&typeof saved==='object'){collection={...collection,...saved,cards:{...(saved.cards||{})},items:Array.isArray(saved.items)?saved.items:[],room:Array.isArray(saved.room)?saved.room:[]}}}catch(e){}
+function saveCollection(message){try{localStorage.setItem(collectionKey,JSON.stringify(collection))}catch(e){showToast('Could not save collection. Browser storage may be full.')}renderCollection();if(message)document.getElementById('collectionMessage').textContent=message;}
+function showCollectionTab(tab){['album','shop','inventory','room'].forEach(x=>{document.getElementById('panel'+x[0].toUpperCase()+x.slice(1)).hidden=x!==tab;document.getElementById('tab'+x[0].toUpperCase()+x.slice(1)).setAttribute('aria-pressed',String(x===tab))})}
+function rarityClass(r){return 'rarity-'+r.toLowerCase()}
+function renderCollection(){
+ document.getElementById('collectionCoins').textContent=safeNum(universe.coins);document.getElementById('collectionGems').textContent=safeNum(universe.gems);
+ let ownedCards=cardCatalog.filter(c=>safeNum(collection.cards[c.id])>0);document.getElementById('cardCount').textContent=ownedCards.length+'/'+cardCatalog.length;document.getElementById('itemCount').textContent=collection.items.length;
+ let album=document.getElementById('cardAlbumGrid');album.replaceChildren();cardCatalog.forEach(c=>{let count=safeNum(collection.cards[c.id]);let el=document.createElement('div');el.className='collect-card '+rarityClass(c.rarity);let art=document.createElement('div');art.className='art';art.textContent=count?c.art:'❔';let name=document.createElement('strong');name.textContent=count?c.name:'Undiscovered';let meta=document.createElement('small');meta.textContent=count?c.rarity+' · '+c.type:'Mystery card';let qty=document.createElement('small');qty.textContent=count?'Owned ×'+count:'Not collected';el.append(art,name,meta,qty);album.append(el)});
+ let shop=document.getElementById('shopGrid');shop.replaceChildren();marketItems.forEach(item=>{let owned=collection.items.includes(item.id),el=document.createElement('div');el.className='collect-card';let art=document.createElement('div');art.className='art';art.textContent=item.art;let name=document.createElement('strong');name.textContent=item.name;let meta=document.createElement('small');meta.textContent=item.kind+' · '+item.price+' FunCoins';let b=document.createElement('button');b.textContent=owned?'Owned ✓':'Buy';b.disabled=owned;b.onclick=()=>buyMarketItem(item.id);el.append(art,name,meta,b);shop.append(el)});
+ let inv=document.getElementById('inventoryGrid');inv.replaceChildren();let invItems=marketItems.filter(i=>collection.items.includes(i.id));if(!ownedCards.length&&!invItems.length){inv.textContent='Your inventory is waiting for its first treasures. Open a card pack or visit the shop!'};ownedCards.forEach(c=>{let el=document.createElement('div');el.className='collect-card '+rarityClass(c.rarity);el.innerHTML='';let a=document.createElement('div');a.className='art';a.textContent=c.art;let n=document.createElement('strong');n.textContent=c.name;let m=document.createElement('small');m.textContent=c.rarity+' card · ×'+collection.cards[c.id];el.append(a,n,m);inv.append(el)});invItems.forEach(i=>{let el=document.createElement('div');el.className='collect-card';let a=document.createElement('div');a.className='art';a.textContent=i.art;let n=document.createElement('strong');n.textContent=i.name;let m=document.createElement('small');m.textContent=i.kind;el.append(a,n,m);inv.append(el)});
+ let room=document.getElementById('roomPreview');room.replaceChildren();let bed=document.createElement('span');bed.className='room-piece';bed.textContent='🛏️';room.append(bed);let win=document.createElement('span');win.className='room-piece';win.textContent='🪟';room.append(win);collection.room.forEach(id=>{let it=marketItems.find(x=>x.id===id);if(it){let piece=document.createElement('span');piece.className='room-piece';piece.textContent=it.art;piece.title=it.name;room.append(piece)}});let choices=document.getElementById('roomChoices');choices.replaceChildren();marketItems.filter(i=>collection.items.includes(i.id)&&i.kind==='Bedroom').forEach(i=>{let el=document.createElement('div');el.className='collect-card';let a=document.createElement('div');a.className='art';a.textContent=i.art;let n=document.createElement('strong');n.textContent=i.name;let b=document.createElement('button');b.textContent=collection.room.includes(i.id)?'Remove from room':'Place in room';b.onclick=()=>toggleRoomItem(i.id);el.append(a,n,b);choices.append(el)});if(!choices.children.length)choices.textContent='Buy bedroom decorations in the shop to start decorating!';
+}
+function weightedCard(premium){let pool=cardCatalog.map(c=>({c,w:premium?({Common:0,Uncommon:1,Rare:5,Epic:5,Legendary:2}[c.rarity]||0):({Common:8,Uncommon:5,Rare:2,Epic:0.7,Legendary:0.2}[c.rarity]||0)}));let total=pool.reduce((a,x)=>a+x.w,0),pick=Math.random()*total;for(let x of pool){pick-=x.w;if(pick<=0)return x.c}return pool[0].c}
+function openCardPack(type){let premium=type==='premium',cost=premium?3:40;if(premium?safeNum(universe.gems)<cost:safeNum(universe.coins)<cost){showToast(premium?'You need 3 Gems for a premium pack.':'You need 40 FunCoins for a standard pack.');return}if(premium)universe.gems-=cost;else universe.coins-=cost;let card=weightedCard(premium),duplicate=safeNum(collection.cards[card.id])>0;collection.cards[card.id]=safeNum(collection.cards[card.id])+1;if(duplicate)universe.coins+=8;saveUniverse();saveCollection('You discovered '+card.art+' '+card.name+' · '+card.rarity+'!'+(duplicate?' Duplicate bonus: +8 FunCoins.':'')+' ✨');showToast('New card: '+card.name+'!');}
+function buyMarketItem(id){funSfx('buy');let item=marketItems.find(x=>x.id===id);if(!item||collection.items.includes(id))return;if(safeNum(universe.coins)<item.price){showToast('Not enough FunCoins for '+item.name+'.');return}universe.coins-=item.price;collection.items.push(id);saveUniverse();saveCollection(item.name+' added to your inventory! 🎁');showToast('Purchased '+item.name+'!')}
+function toggleRoomItem(id){if(!collection.items.includes(id))return;collection.room=collection.room.includes(id)?collection.room.filter(x=>x!==id):[...collection.room,id];saveCollection('Bedroom updated! 🏡')}
+
+
+// The Funhouse v2.3 Avatar Studio: separate local save; does not overwrite legacy avatar or game data.
+const avatarStudioKey='funhouse-avatar-studio-v23';
+const avatarBases=[{id:'classic',emoji:'👩🏻',label:'Classic'},{id:'sunny',emoji:'👩🏼',label:'Sunny'},{id:'peach',emoji:'👩🏽',label:'Peach'},{id:'cocoa',emoji:'👩🏾',label:'Cocoa'},{id:'midnight',emoji:'👩🏿',label:'Midnight'},{id:'soft',emoji:'🧑🏻',label:'Soft'},{id:'boy',emoji:'👦🏻',label:'Explorer'},{id:'cat',emoji:'🐱',label:'Kitty'}];
+const avatarHairs=[{id:'waves',emoji:'💇🏻‍♀️',label:'Waves'},{id:'bun',emoji:'👱🏻‍♀️',label:'Blonde'},{id:'curl',emoji:'🦱',label:'Curls'},{id:'flowerhair',emoji:'🌺',label:'Flower'},{id:'none',emoji:'',label:'None'}];
+const avatarAccessories=[{id:'bow',emoji:'🎀',label:'Bow'},{id:'crown',emoji:'👑',label:'Crown'},{id:'flower',emoji:'🌸',label:'Flower'},{id:'star',emoji:'⭐',label:'Star'},{id:'glasses',emoji:'🤓',label:'Glasses'},{id:'none',emoji:'',label:'None'}];
+const avatarOutfits=[{id:'casual',emoji:'👕',label:'Casual'},{id:'dress',emoji:'👗',label:'Sweet dress'},{id:'hoodie',emoji:'🧥',label:'Cosy hoodie'},{id:'royal',emoji:'👑',label:'Royal look'}];
+const avatarBackgrounds=[{id:'strawberry',emoji:'🍓',label:'Strawberry'},{id:'lavender',emoji:'💜',label:'Lavender'},{id:'mint',emoji:'🌿',label:'Mint'},{id:'sunshine',emoji:'🌼',label:'Sunshine'},{id:'night',emoji:'🌙',label:'Moonlight'}];
+const avatarBoutique=[{id:'rainbow',group:'accessory',emoji:'🌈',name:'Rainbow halo',price:35},{id:'tulips',group:'accessory',emoji:'🌷',name:'Tulip crown',price:45},{id:'sparkle',group:'accessory',emoji:'✨',name:'Sparkle charm',price:55},{id:'starDress',group:'outfit',emoji:'🌟',name:'Star outfit',price:70},{id:'fairy',group:'outfit',emoji:'🧚',name:'Fairy outfit',price:85},{id:'galaxy',group:'background',emoji:'🌌',name:'Galaxy background',price:95}];
+let avatarLook={base:'classic',hair:'waves',accessory:'bow',outfit:'casual',background:'strawberry',owned:[]};
+try{let av=JSON.parse(localStorage.getItem(avatarStudioKey)||'null');if(av&&typeof av==='object')avatarLook={...avatarLook,...av,owned:Array.isArray(av.owned)?av.owned:[]}}catch(e){}
+function avatarFind(list,id){return list.find(x=>x.id===id)||list[0]}
+function avatarSet(group,id){if(group==='base')avatarLook.base=id;if(group==='hair')avatarLook.hair=id;if(group==='accessory')avatarLook.accessory=id;if(group==='outfit')avatarLook.outfit=id;if(group==='background')avatarLook.background=id;renderAvatarStudio()}
+function avatarChoiceButton(item,group){let b=document.createElement('button');b.type='button';b.className='avatar-choice';b.textContent=item.emoji||'—';b.title=item.label;b.setAttribute('aria-pressed',String(avatarLook[group]===item.id));b.onclick=()=>avatarSet(group,item.id);return b}
+function renderAvatarStudio(){
+ const groups=[['avatarBaseOptions',avatarBases,'base'],['avatarHairOptions',avatarHairs,'hair'],['avatarAccessoryOptions',avatarAccessories,'accessory'],['avatarOutfitOptions',avatarOutfits,'outfit'],['avatarBackgroundOptions',avatarBackgrounds,'background']];
+ groups.forEach(([id,list,group])=>{let el=document.getElementById(id);el.replaceChildren();list.forEach(item=>el.append(avatarChoiceButton(item,group))) });
+ const base=avatarFind(avatarBases,avatarLook.base),hair=avatarFind(avatarHairs,avatarLook.hair),acc=avatarBoutique.find(x=>x.id===avatarLook.accessory)?.emoji||avatarFind(avatarAccessories,avatarLook.accessory).emoji;
+ document.getElementById('avatarPreviewBase').textContent=base.emoji;document.getElementById('avatarPreviewHair').textContent=hair.emoji;document.getElementById('avatarPreviewAccessory').textContent=acc;
+ const stage=document.getElementById('avatarStage');const bg=avatarFind(avatarBackgrounds,avatarLook.background);const colors={strawberry:'linear-gradient(145deg,#fff8df,#ffe2f0 55%,#e9e0ff)',lavender:'linear-gradient(145deg,#f5edff,#ded5ff)',mint:'linear-gradient(145deg,#eafff4,#ccefe2)',sunshine:'linear-gradient(145deg,#fff8d9,#ffe7b8)',night:'linear-gradient(145deg,#393052,#77649c)'};stage.style.background=colors[bg.id]||colors.strawberry;document.getElementById('avatarPreviewName').textContent=universe.name||'Little Explorer';
+ const outfit=avatarBoutique.find(x=>x.id===avatarLook.outfit)?.name||avatarFind(avatarOutfits,avatarLook.outfit).label;document.getElementById('avatarPreviewOutfit').textContent=outfit+' · '+bg.label+' background';document.getElementById('avatarCoinBalance').textContent=safeNum(universe.coins);
+ let shop=document.getElementById('avatarBoutiqueGrid');shop.replaceChildren();avatarBoutique.forEach(item=>{let owned=avatarLook.owned.includes(item.id),el=document.createElement('div');el.className='collect-card';let art=document.createElement('div');art.className='art';art.textContent=item.emoji;let name=document.createElement('strong');name.textContent=item.name;let price=document.createElement('small');price.textContent=item.price+' FunCoins';let b=document.createElement('button');b.textContent=owned?'Owned ✓':'Unlock';b.disabled=owned;b.onclick=()=>buyAvatarItem(item.id);el.append(art,name,price,b);shop.append(el)});
+ const profile=document.getElementById('profileAvatar');profile.textContent=base.emoji+(hair.emoji?' '+hair.emoji:'')+(acc?' '+acc:'');profile.title='Your saved Avatar Studio look';
+}
+function saveAvatarLook(){try{localStorage.setItem(avatarStudioKey,JSON.stringify(avatarLook));universe.avatar=avatarFind(avatarBases,avatarLook.base).emoji;saveUniverse();renderAvatarStudio();document.getElementById('avatarSaveStatus').textContent='Your new look is saved! ✓';showToast('Avatar look saved! ✨')}catch(e){showToast('Could not save your avatar.')}}
+function buyAvatarItem(id){funSfx('buy');let item=avatarBoutique.find(x=>x.id===id);if(!item||avatarLook.owned.includes(id))return;if(safeNum(universe.coins)<item.price){showToast('Not enough FunCoins for '+item.name+'.');return}universe.coins-=item.price;avatarLook.owned.push(id);if(item.group==='accessory')avatarLook.accessory=id;else if(item.group==='outfit')avatarLook.outfit=id;else avatarLook.background=id;saveUniverse();try{localStorage.setItem(avatarStudioKey,JSON.stringify(avatarLook))}catch(e){}renderAvatarStudio();showToast(item.name+' unlocked and equipped! 🎀')}
+
+
+// v2.5 Story Quests & Exploration — browser-local, choice-based adventures.
+const storySaveKey='funhouse-story-v25';
+const storyChapters=[
+ {id:'forest',world:'mystery',location:'MYSTERY FOREST',title:'The Lantern in the Ferns',art:'🌲🏮',scenes:[
+  {text:'A little lantern glows between the ferns. A folded note rests beside it: “Find the place where the forest keeps its stories.”',choices:[['Follow the fireflies','🪶 Firefly Feather'],['Read the tiny map','🗺️ Fern Map']]},
+  {text:'The trail reaches a singing stream. Something sparkles beneath a smooth stone, while a wooden bridge leads deeper into the trees.',choices:[['Look beneath the stone','💧 Streamglass'],['Cross the wooden bridge','🌿 Mossy Token']]},
+  {text:'At the old story tree, a small door opens. Inside is a warm golden glow and a note thanking you for being curious.',choices:[['Leave a kind note','💌 Kindness Letter'],['Take a pressed leaf souvenir','🍃 Story Leaf']]}
+ ]},
+ {id:'puzzle',world:'puzzle',location:'PUZZLE ISLAND',title:'The Clockwork Message',art:'🧩⏳',scenes:[
+  {text:'A clockwork bird lands beside you with three tiny symbols on its wing. It seems to be asking for help.',choices:[['Study the symbols carefully','🔣 Symbol Sketch'],['Listen to its little tune','🎵 Clockwork Note']]},
+  {text:'The bird leads you to a garden of numbered stepping stones. A gentle breeze carries a familiar melody.',choices:[['Arrange the stones by number','🔢 Number Charm'],['Follow the melody','🎼 Melody Ribbon']]},
+  {text:'The final lock clicks open. A miniature compass rests inside, pointing toward the next adventure.',choices:[['Keep the compass','🧭 Tiny Compass'],['Keep the polished gear','⚙️ Golden Gear']]}
+ ]},
+ {id:'pet',world:'pet',location:'PET PARADISE',title:'A Friend for the Garden',art:'🐾🌷',scenes:[
+  {text:'Your companions discover a tiny garden gate. A shy little creature has left pawprints leading to a flower patch.',choices:[['Bring a flower as a hello','🌸 Welcome Blossom'],['Leave a little snack','🍓 Berry Treat']]},
+  {text:'The creature peeks out from behind a watering can. It seems curious, but wants to feel safe first.',choices:[['Sit quietly nearby','🧸 Gentle Heart'],['Play a soft guessing game','🎲 Playful Button']]},
+  {text:'The new friend leaves a small ribbon at your feet. The garden feels a little more welcoming now.',choices:[['Tie the ribbon to the gate','🎀 Garden Ribbon'],['Press a flower in your journal','🌼 Pressed Flower']]}
+ ]},
+ {id:'arcade',world:'arcade',location:'ARCADE CITY',title:'The Missing High Score',art:'🎮⭐',scenes:[
+  {text:'The arcade scoreboard has gone blank. A trail of star-shaped tickets leads behind the prize counter.',choices:[['Follow the ticket trail','🎟️ Star Ticket'],['Ask the arcade helper','🪙 Lucky Token']]},
+  {text:'You find a tiny button panel with a friendly blinking light. The panel needs one thoughtful choice.',choices:[['Try the pink button','💗 Pink Button Pin'],['Try the lavender button','💜 Lavender Pin']]},
+  {text:'The scoreboard lights up again, displaying a cheerful message: “Great adventures are made by curious players.”',choices:[['Save the message as a badge','🏅 Arcade Badge'],['Keep a little star sticker','⭐ Star Sticker']]}
+ ]},
+ {id:'treasure',world:'treasure',location:'TREASURE COVE',title:'The Map in the Bottle',art:'🏝️🧴',scenes:[
+  {text:'A glass bottle washes ashore with a map inside. It marks a quiet cove and a curious shell symbol.',choices:[['Walk along the tide pools','🐚 Tidepool Shell'],['Look for the marked palm tree','🌴 Palm Leaf']]},
+  {text:'Near the cove, you spot a small wooden box resting above the sand. The tide is gentle and the day is bright.',choices:[['Open the box carefully','🔑 Coral Key'],['Check the map once more','📜 Saltwater Map']]},
+  {text:'Inside is a tiny keepsake and a note: “The best treasure is the journey you remember.”',choices:[['Keep the pearl','🫧 Moon Pearl'],['Keep the compass charm','🧭 Cove Compass']]}
+ ]}
+];
+let storyData={chapter:0,step:0,completed:[],relics:[],dailyDate:'',dailyClaimed:'',stepsToday:0};
+try{let v=JSON.parse(localStorage.getItem(storySaveKey)||'null');if(v&&typeof v==='object')storyData={...storyData,...v}}catch(e){}
+function saveStory(){try{localStorage.setItem(storySaveKey,JSON.stringify(storyData))}catch(e){showToast('Story progress could not be saved. Export a backup if storage is full.')}renderStory()}
+function renderStory(){let c=Math.min(storyData.chapter,storyChapters.length-1),chapter=storyChapters[c],scene=chapter.scenes[Math.min(storyData.step,2)];document.getElementById('storyChapter').textContent=storyData.completed.length>=5?'5':c+1;document.getElementById('storyStep').textContent=storyData.completed.includes(chapter.id)?'3':Math.min(3,storyData.step+1);document.getElementById('storyRelicCount').textContent=storyData.relics.length;document.getElementById('storyProgressFill').style.width=(storyData.completed.length/5*100)+'%';document.getElementById('storyArt').textContent=chapter.art;document.getElementById('storyLocation').textContent=chapter.location;document.getElementById('storyTitle').textContent=chapter.title;let finished=storyData.completed.includes(chapter.id);document.getElementById('storyText').textContent=finished?'You have completed this chapter. Your keepsake is safely tucked in your pouch.':scene.text;let choices=document.getElementById('storyChoices');choices.replaceChildren();if(!finished){scene.choices.forEach(([label,relic])=>{let b=document.createElement('button');b.className='story-choice';b.textContent=label+' →';b.onclick=()=>chooseStory(relic);choices.append(b)})}else{let b=document.createElement('button');b.textContent=storyData.completed.length===5?'All chapters complete ✨':'Continue to next chapter →';b.disabled=storyData.completed.length===5;b.onclick=()=>{storyData.chapter=Math.min(4,storyData.chapter+1);storyData.step=0;saveStory()};choices.append(b)}
+ let list=document.getElementById('storyChapterList');list.replaceChildren();storyChapters.forEach((ch,i)=>{let b=document.createElement('button');b.className='story-chapter'+(i===c?' current':'');b.disabled=i>storyData.chapter&&!storyData.completed.includes(ch.id);b.innerHTML='<span>'+(storyData.completed.includes(ch.id)?'✅ ':i>storyData.chapter?'🔒 ':'📖 ')+ch.title+'</span><small>'+(storyData.completed.includes(ch.id)?'Done':i===c?'Here':'Soon')+'</small>';b.onclick=()=>{if(i<=storyData.chapter||storyData.completed.includes(ch.id)){storyData.chapter=i;storyData.step=0;saveStory()}};list.append(b)});
+ let relics=document.getElementById('storyRelics');relics.replaceChildren();if(!storyData.relics.length){let x=document.createElement('span');x.className='muted';x.textContent='Your discoveries will appear here.';relics.append(x)}else storyData.relics.forEach(r=>{let x=document.createElement('span');x.className='story-relic';x.textContent=r;relics.append(x)});
+ let today=localDay(),claimed=storyData.dailyClaimed===today;document.getElementById('storyDailyButton').disabled=claimed||storyData.stepsToday<1;document.getElementById('storyDailyButton').textContent=claimed?'Daily discovery claimed ✓':'Claim daily discovery';document.getElementById('storyDailyStatus').textContent=claimed?'Come back tomorrow!':storyData.stepsToday>0?'Your discovery bonus is ready.':'Complete a story step first.';
+ document.getElementById('storyFeedback').textContent=finished?'Chapter complete! Choose the next chapter when you are ready.':`Your choice will add a keepsake to your pouch.`;
+}
+function chooseStory(relic){let ch=storyChapters[storyData.chapter];if(!ch||storyData.completed.includes(ch.id))return;if(!storyData.relics.includes(relic))storyData.relics.push(relic);storyData.stepsToday=(storyData.dailyDate===localDay()?storyData.stepsToday:0)+1;storyData.dailyDate=localDay();if(storyData.step<2){storyData.step++;saveStory();universe.xp=safeNum(universe.xp)+5;universe.worldXP[ch.world]=safeNum(universe.worldXP[ch.world])+5;saveUniverse();showToast('Keepsake found! +5 XP ✨');}else{storyData.completed.push(ch.id);storyData.step=0;universe.xp=safeNum(universe.xp)+25;universe.worldXP[ch.world]=safeNum(universe.worldXP[ch.world])+25;universe.coins=safeNum(universe.coins)+20;saveStory();saveUniverse();showToast('Chapter complete! +25 XP and +20 FunCoins 🎉');}renderStory()}
+function claimStoryDaily(){funSfx('reward');let today=localDay();if(storyData.dailyClaimed===today||storyData.stepsToday<1)return;storyData.dailyClaimed=today;universe.coins=safeNum(universe.coins)+10;universe.xp=safeNum(universe.xp)+8;let w=storyChapters[storyData.chapter]?.world||'mystery';universe.worldXP[w]=safeNum(universe.worldXP[w])+8;saveStory();saveUniverse();showToast('Daily discovery: +10 FunCoins and +8 XP! 🌟')}
+renderStory();
+
+const backupKeys=['funhouse-pet-paradise-v22','funhouse-collection-v21','funhouse-best','funhouse-pet-v1','funhouse-daily-v1','funhouse-trophies-v1','funhouse-private-diary-v1','funhouse-theme-v1','funhouse-reaction-best','funhouse-universe-v2','funhouse-avatar-studio-v23','funhouse-arcade-v24','funhouse-story-v25','funhouse-festivals-v26','funhouse-bubble-campaign-v27'];
 function exportFunhouseSave(){let data={app:'the-funhouse',format:2,exportedAt:new Date().toISOString(),items:{}};for(let k of backupKeys){let v=localStorage.getItem(k);if(v!==null)data.items[k]=v}let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='the-funhouse-backup-'+localDay()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Backup downloaded! Keep it somewhere safe. 💾')}
 async function importFunhouseSave(event){let file=event.target.files?.[0];if(!file)return;if(file.size>200000){showToast('That backup file is too large.');event.target.value='';return}try{let data=JSON.parse(await file.text());if(data.app!=='the-funhouse'||!data.items||typeof data.items!=='object'||Array.isArray(data.items)){throw Error('Not a Funhouse backup')}let entries=Object.entries(data.items).filter(([k,v])=>backupKeys.includes(k)&&typeof v==='string');if(!entries.length)throw Error('No recognised save data');if(!confirm('Restore this backup? It will replace your current Funhouse progress on this browser.'))return;for(let [k,v] of entries)localStorage.setItem(k,v);location.reload()}catch(e){showToast('Could not restore backup: '+e.message)}finally{event.target.value=''}}
-renderUniverse();selectWorld('arcade');
-</script><div id="funhouseToast" class="toast" role="status" aria-live="polite" hidden></div></body></html>
+
+// v2.4 Arcade Expansion: four independent mini-games.
+const arcadeSaveKey='funhouse-arcade-v24';
+let arcadeStats={bubbleBest:0,moleBest:0,numberBest:0,colorBest:0};
+try{arcadeStats={...arcadeStats,...JSON.parse(localStorage.getItem(arcadeSaveKey)||'{}')}}catch(e){}
+function saveArcadeStats(){try{localStorage.setItem(arcadeSaveKey,JSON.stringify(arcadeStats))}catch(e){showToast('Arcade scores could not be saved on this device.')}}
+let bubbleTimer=null,bubbleTick=null,bubbleLeft=20,bubbleScore=0;
+function startBubble(){clearInterval(bubbleTimer);clearInterval(bubbleTick);bubbleLeft=20;bubbleScore=0;document.getElementById('bubbleTime').textContent=bubbleLeft;document.getElementById('bubbleScore').textContent='0';document.getElementById('bubbleStatus').textContent='Pop, pop, pop!';document.getElementById('bubbleStart').disabled=true;const field=document.getElementById('bubbleField');field.replaceChildren();function spawn(){if(bubbleLeft<=0)return;let b=document.createElement('button');b.type='button';b.textContent=['🫧','💗','🩵','💜','🌸'][Math.floor(Math.random()*5)];b.style.cssText='font-size:1.8rem;border:0;border-radius:50%;width:52px;height:52px;background:#f7eaff;box-shadow:0 3px 10px #a58bff33';b.onclick=()=>{if(!b.isConnected)return;b.remove();bubbleScore++;document.getElementById('bubbleScore').textContent=bubbleScore};field.append(b);while(field.children.length>14)field.firstChild.remove()};spawn();bubbleTimer=setInterval(spawn,450);bubbleTick=setInterval(()=>{bubbleLeft--;document.getElementById('bubbleTime').textContent=bubbleLeft;if(bubbleLeft<=0){clearInterval(bubbleTimer);clearInterval(bubbleTick);field.replaceChildren();document.getElementById('bubbleStart').disabled=false;document.getElementById('bubbleStatus').textContent='Time! You popped '+bubbleScore+' bubbles. Best: '+Math.max(bubbleScore,arcadeStats.bubbleBest)+'.';if(bubbleScore>arcadeStats.bubbleBest){arcadeStats.bubbleBest=bubbleScore;saveArcadeStats()}if(bubbleScore>=5){awardXP('arcade',18,'bubble');dailyProgress('arcade',1);if(bubbleScore>=15)recordTrophy('bubble')} }} ,1000)}
+let moleTimer=null,moleTick=null,moleLeft=20,moleScore=0,moleActive=-1;
+function startMole(){clearInterval(moleTimer);clearInterval(moleTick);moleLeft=20;moleScore=0;document.getElementById('moleTime').textContent='20';document.getElementById('moleScore').textContent='0';document.getElementById('moleStatus').textContent='Find the mole!';document.getElementById('moleStart').disabled=true;let board=document.getElementById('moleBoard');board.replaceChildren();for(let i=0;i<9;i++){let b=document.createElement('button');b.className='mole-hole';b.textContent='🕳️';b.onclick=()=>{if(i===moleActive){moleScore++;document.getElementById('moleScore').textContent=moleScore;b.textContent='✨';b.classList.add('hit');moleActive=-1}};board.append(b)}function pop(){let cells=[...board.children];cells.forEach(b=>{b.textContent='🕳️';b.classList.remove('hit')});moleActive=Math.floor(Math.random()*9);cells[moleActive].textContent='🐹'};pop();moleTimer=setInterval(pop,700);moleTick=setInterval(()=>{moleLeft--;document.getElementById('moleTime').textContent=moleLeft;if(moleLeft<=0){clearInterval(moleTimer);clearInterval(moleTick);moleActive=-1;[...board.children].forEach(b=>b.textContent='🕳️');document.getElementById('moleStart').disabled=false;document.getElementById('moleStatus').textContent='Round over! You caught '+moleScore+' moles. Best: '+Math.max(moleScore,arcadeStats.moleBest)+'.';if(moleScore>arcadeStats.moleBest){arcadeStats.moleBest=moleScore;saveArcadeStats()}if(moleScore>=5){awardXP('arcade',18,'mole');dailyProgress('arcade',1);if(moleScore>=12)recordTrophy('mole')}}},1000)}
+let numberRound=0,numberScore=0,numberAnswer=0;
+function startNumberDash(){numberRound=0;numberScore=0;document.getElementById('numberScore').textContent='0';nextNumberQuestion()}
+function nextNumberQuestion(){const q=document.getElementById('numberQuestion'),answers=document.getElementById('numberAnswers'),status=document.getElementById('numberStatus');if(numberRound>=5){q.textContent='🏁 Finished!';answers.replaceChildren();status.textContent='You scored '+numberScore+'/5. Best: '+Math.max(numberScore,arcadeStats.numberBest)+'/5.';if(numberScore>arcadeStats.numberBest){arcadeStats.numberBest=numberScore;saveArcadeStats()}if(numberScore>=3){awardXP('puzzle',20,'number');dailyProgress('quiz',1);if(numberScore===5)recordTrophy('number')}return}numberRound++;document.getElementById('numberRound').textContent=numberRound;q.textContent='Solve: '+(function(){let a=1+Math.floor(Math.random()*12),b=1+Math.floor(Math.random()*12),op=Math.random()<.5?'+':'−';numberAnswer=op==='+'?a+b:a-b;return a+' '+op+' '+b})();answers.replaceChildren();let opts=new Set([numberAnswer]);while(opts.size<4)opts.add(numberAnswer+Math.floor(Math.random()*9)-4);[...opts].sort(()=>Math.random()-.5).forEach(n=>{let b=document.createElement('button');b.textContent=n;b.onclick=()=>{[...answers.children].forEach(x=>x.disabled=true);if(n===numberAnswer){numberScore++;status.textContent='Correct! ✨'}else status.textContent='Not quite — the answer was '+numberAnswer+'.';document.getElementById('numberScore').textContent=numberScore;let next=document.createElement('button');next.textContent=numberRound===5?'See results':'Next question →';next.onclick=nextNumberQuestion;answers.append(next)};answers.append(b)});status.textContent='Choose the correct answer.'}
+const colorChoices=[{name:'Pink',hex:'#ff91bd'},{name:'Lavender',hex:'#a58bff'},{name:'Mint',hex:'#69cfae'},{name:'Sunshine',hex:'#f4c84f'},{name:'Sky',hex:'#77c9ef'},{name:'Peach',hex:'#ffad91'}];let colorRound=0,colorScore=0,colorAnswer='';
+function startColorMatch(){colorRound=0;colorScore=0;document.getElementById('colorScore').textContent='0';nextColorQuestion()}
+function nextColorQuestion(){let prompt=document.getElementById('colorPrompt'),grid=document.getElementById('colorSwatches'),status=document.getElementById('colorStatus');if(colorRound>=5){prompt.textContent='🌈 Finished!';grid.replaceChildren();status.textContent='You matched '+colorScore+'/5 colours. Best: '+Math.max(colorScore,arcadeStats.colorBest)+'/5.';if(colorScore>arcadeStats.colorBest){arcadeStats.colorBest=colorScore;saveArcadeStats()}if(colorScore>=3){awardXP('arcade',18,'color');dailyProgress('arcade',1);if(colorScore===5)recordTrophy('color')}return}colorRound++;document.getElementById('colorRound').textContent=colorRound;let pool=[...colorChoices].sort(()=>Math.random()-.5).slice(0,4);colorAnswer=pool[Math.floor(Math.random()*pool.length)].name;prompt.textContent='Find '+colorAnswer+'!';grid.replaceChildren();pool.sort(()=>Math.random()-.5).forEach(c=>{let b=document.createElement('button');b.className='color-swatch';b.style.background=c.hex;b.setAttribute('aria-label',c.name+' colour');b.textContent='';b.onclick=()=>{[...grid.children].forEach(x=>x.disabled=true);if(c.name===colorAnswer){colorScore++;status.textContent='Perfect match! 💗'}else status.textContent='That was '+c.name+'. Look for '+colorAnswer+' next time.';document.getElementById('colorScore').textContent=colorScore;let next=document.createElement('button');next.textContent=colorRound===5?'See results':'Next colour →';next.onclick=nextColorQuestion;grid.append(next)};grid.append(b)});status.textContent='Tap the matching colour.'}
+// Stop timed arcade rounds when the player leaves a game.
+const originalCloseGamesV24=closeGames;closeGames=function(){clearInterval(bubbleTimer);clearInterval(bubbleTick);clearInterval(moleTimer);clearInterval(moleTick);bubbleTimer=bubbleTick=moleTimer=moleTick=null;originalCloseGamesV24();document.getElementById('bubbleStart').disabled=false;document.getElementById('moleStart').disabled=false};
+
+// v2.6 Events & Festivals — seasonal calendar, daily quests and token boutique.
+const festivalSaveKey='funhouse-festivals-v26';
+const festivalCatalog=[
+ {id:'spring',name:'Bloom Festival',icon:'🌸',months:[2,3,4],description:'Celebrate fresh blossoms, gentle breezes and new beginnings.',tasks:['Find a story keepsake','Play any arcade game','Visit your little companion'],rewards:['Petal Pin','Blossom Frame','Spring Picnic Basket']},
+ {id:'summer',name:'Sunshine Festival',icon:'☀️',months:[5,6,7],description:'Enjoy sunny days, seaside discoveries and colourful celebrations.',tasks:['Play two arcade rounds','Explore a story chapter','Visit Pet Paradise'],rewards:['Sunshine Shades','Beach Badge','Seashell Garland']},
+ {id:'harvest',name:'Cozy Harvest Festival',icon:'🍂',months:[8,9,10],description:'Gather little moments, warm colours and autumn keepsakes.',tasks:['Find a story keepsake','Play any arcade game','Visit your little companion'],rewards:['Acorn Accessory','Autumn Frame','Harvest Lantern']},
+ {id:'winter',name:'Winter Wonderland',icon:'❄️',months:[11,0,1],description:'Celebrate twinkling lights, warm wishes and winter magic.',tasks:['Play any arcade game','Explore a story chapter','Visit Pet Paradise'],rewards:['Snowflake Pin','Frosty Frame','Starlight Ornament']}
+];
+let festivalData={tokens:0,owned:[],claimed:{},taskState:{}};
+try{let fs=JSON.parse(localStorage.getItem(festivalSaveKey)||'null');if(fs&&typeof fs==='object')festivalData={...festivalData,...fs,owned:Array.isArray(fs.owned)?fs.owned:[],claimed:fs.claimed||{},taskState:fs.taskState||{}}}catch(e){}
+function festivalToday(){return localDay()}
+function activeFestival(){let m=new Date().getMonth();return festivalCatalog.find(f=>f.months.includes(m))||festivalCatalog[2]}
+function saveFestival(){try{localStorage.setItem(festivalSaveKey,JSON.stringify(festivalData))}catch(e){showToast('Festival progress could not be saved.')}renderFestival()}
+function festivalTaskKey(){return activeFestival().id+'-'+festivalToday()}
+function renderFestival(){let f=activeFestival();document.getElementById('festivalHeroIcon').textContent=f.icon;document.getElementById('festivalHeroTitle').textContent=f.name;document.getElementById('festivalHeroText').textContent=f.description;document.getElementById('festivalTokenCount').textContent='🍬 '+festivalData.tokens+' Festival Tokens';
+ let cal=document.getElementById('festivalCalendar');cal.replaceChildren();festivalCatalog.forEach(x=>{let d=document.createElement('div');d.className='festival-tile';let season=x.months.map(m=>new Date(2026,m,1).toLocaleString(undefined,{month:'short'})).join(' · ');d.innerHTML='<span style="font-size:1.8rem">'+x.icon+'</span><strong>'+x.name+'</strong><small>'+season+'</small>'+(x.id===f.id?'<p><b>● Current festival</b></p>':'');cal.append(d)});
+ let tasks=document.getElementById('festivalTasks'),key=festivalTaskKey(),state=festivalData.taskState[key]||[];tasks.replaceChildren();f.tasks.forEach((t,i)=>{let row=document.createElement('div');row.className='festival-task'+(state.includes(i)?' done':'');let copy=document.createElement('div');copy.innerHTML='<strong>'+(state.includes(i)?'✓ ':'')+t+'</strong><p>Complete this little activity for 2 Festival Tokens.</p>';let b=document.createElement('button');b.className='mint';b.textContent=state.includes(i)?'Completed ✓':'Mark complete';b.disabled=state.includes(i);b.onclick=()=>completeFestivalTask(i);row.append(copy,b);tasks.append(row)});
+ let claimed=festivalData.claimed[key]===true,all=state.length>=3;let status=document.getElementById('festivalTaskStatus');status.textContent=claimed?'Daily festival reward claimed. Come back tomorrow!':all?'All quests complete! Your daily reward is ready.':'Complete all three quests to unlock the daily festival reward.';if(all&&!claimed){let b=document.createElement('button');b.textContent='Claim daily festival reward · 8 tokens';b.onclick=claimFestivalReward;status.append(' ',b)}
+ let shop=document.getElementById('festivalShop');shop.replaceChildren();f.rewards.forEach((name,i)=>{let id=f.id+'-'+i,price=[8,14,22][i],owned=festivalData.owned.includes(id);let item=document.createElement('div');item.className='festival-item';item.innerHTML='<span style="font-size:1.7rem">'+['🎀','🖼️','✨'][i]+'</span><strong>'+name+'</strong><small>'+price+' Festival Tokens</small>';let b=document.createElement('button');b.className='purple';b.textContent=owned?'Owned ✓':'Buy';b.disabled=owned||festivalData.tokens<price;b.onclick=()=>buyFestivalItem(id,name,price);item.append(b);shop.append(item)});
+ let own=document.getElementById('festivalOwned');own.replaceChildren();if(!festivalData.owned.length){own.textContent='Your festival keepsakes will appear here.'}else festivalData.owned.forEach(x=>{let b=document.createElement('span');b.className='badge-chip';b.textContent='🎁 '+x.split('|')[1];own.append(b)});
+}
+function completeFestivalTask(i){let key=festivalTaskKey(),state=festivalData.taskState[key]||[];if(state.includes(i))return;state.push(i);festivalData.taskState[key]=state;saveFestival();showToast('Festival quest completed! ✨')}
+function claimFestivalReward(){let key=festivalTaskKey(),state=festivalData.taskState[key]||[];if(state.length<3||festivalData.claimed[key])return;festivalData.claimed[key]=true;festivalData.tokens+=8;festivalData.taskState[key]=state;saveFestival();showToast('Daily festival reward: +8 tokens! 🎉')}
+function buyFestivalItem(id,name,price){if(festivalData.owned.some(x=>x.startsWith(id+'|'))||festivalData.tokens<price)return;festivalData.tokens-=price;festivalData.owned.push(id+'|'+name);saveFestival();showToast(name+' added to your keepsakes! 🎀')}
+renderFestival();
+
+renderUniverse();renderCollection();renderPetParadise();renderPetAdoptions();renderAvatarStudio();selectWorld('arcade');
+
+// v2.7A · Bubble Shooter: original level-based campaign.
+const bubbleCampaignKey='funhouse-bubble-campaign-v27';
+let bubbleCampaign={level:1,unlocked:1,best:0,completed:[],totalPopped:0};
+try{const saved=JSON.parse(localStorage.getItem(bubbleCampaignKey)||'null');if(saved&&typeof saved==='object')bubbleCampaign={...bubbleCampaign,...saved,completed:Array.isArray(saved.completed)?saved.completed:[]}}catch(e){}
+let bsCanvas=null,bsCtx=null,bsBubbles=[],bsProjectile=null,bsAim={x:160,y:120},bsCurrent='pink',bsNext='lavender',bsScore=0,bsShots=0,bsState='ready',bsFrame=0,bsParticles=[],bsSoundOn=true,bsAudio=null,bsLevelColors=['pink','lavender','blue','mint','peach','yellow'];
+const bsPalette={pink:'#ff91bd',lavender:'#aa91ed',blue:'#83c9ed',mint:'#83d9bd',peach:'#ffb28f',yellow:'#f3d36f'};
+function bsToggleSound(){bsSoundOn=!bsSoundOn;let b=document.getElementById('bsSoundToggle');if(b){b.textContent=bsSoundOn?'🔊 Sound on':'🔇 Sound off';b.setAttribute('aria-pressed',String(bsSoundOn))}if(bsSoundOn)bsPlayTone(660,.08,'sine')}
+function bsPlayTone(freq,duration=.1,wave='sine'){if(!bsSoundOn)return;try{let AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!bsAudio)bsAudio=new AC();if(bsAudio.state==='suspended')bsAudio.resume();let o=bsAudio.createOscillator(),g=bsAudio.createGain();o.type=wave;o.frequency.setValueAtTime(freq,bsAudio.currentTime);g.gain.setValueAtTime(.055,bsAudio.currentTime);g.gain.exponentialRampToValueAtTime(.001,bsAudio.currentTime+duration);o.connect(g);g.connect(bsAudio.destination);o.start();o.stop(bsAudio.currentTime+duration)}catch(e){}}
+function bsBurst(x,y,color,count=12){for(let i=0;i<count;i++){let a=Math.PI*2*i/count+Math.random()*.2,v=1.2+Math.random()*2.8;bsParticles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-0.7,life:24+Math.random()*12,color})}bsAnimateParticles()}
+function bsAnimateParticles(){if(!bsParticles.length||!bsCtx)return;bsParticles=bsParticles.filter(p=>p.life>0);for(let p of bsParticles){p.x+=p.vx;p.y+=p.vy;p.vy+=.07;p.life--}bsDraw();if(bsParticles.length)requestAnimationFrame(bsAnimateParticles)}
+function bsSave(){try{localStorage.setItem(bubbleCampaignKey,JSON.stringify(bubbleCampaign))}catch(e){showToast('Bubble Shooter progress could not be saved on this device.')}}
+function bsCenter(b){return {x:24+b.c*32+(b.r%2)*16,y:23+b.r*28}}
+function bsLevelColorCount(level){return Math.min(3+Math.floor((level-1)/2),6)}
+function bsRandomColor(level){let n=bsLevelColorCount(level);return bsLevelColors[Math.floor(Math.random()*n)]}
+function bsMakeBoard(level){let rows=Math.min(4+Math.floor((level-1)/2),9),cols=9;let arr=[];for(let r=0;r<rows;r++){for(let c=0;c<cols;c++){if(level>=5&&r>1&&((r+c+level)%7===0))continue;let color=bsRandomColor(level);if(c>1&&arr.some(b=>b.r===r&&b.c===c-1&&b.color===color)&&Math.random()<.45)color=arr.find(b=>b.r===r&&b.c===c-1).color;arr.push({r,c,color})}}return arr}
+function bsUpdateHUD(){let level=bubbleCampaign.level;document.getElementById('bsLevel').textContent=level;document.getElementById('bsScore').textContent=bsScore;document.getElementById('bsBest').textContent=bubbleCampaign.best;document.getElementById('bsLevelFill').style.width=(100*level/12)+'%';document.getElementById('bsNext').style.color=bsPalette[bsNext];document.getElementById('bsNext').textContent='●';document.getElementById('bsNext').style.textShadow='0 1px 7px '+bsPalette[bsNext]}
+function bsDraw(){if(!bsCtx)return;let c=bsCtx;c.clearRect(0,0,320,430);let bg=c.createLinearGradient(0,0,0,430);bg.addColorStop(0,'#fffafd');bg.addColorStop(1,'#f3edff');c.fillStyle=bg;c.fillRect(0,0,320,430);for(let i=0;i<12;i++){c.fillStyle='rgba(255,255,255,.75)';c.beginPath();c.arc((i*71+23)%320,(i*47+18)%370,1.5,0,Math.PI*2);c.fill()}
+ // subtle danger line
+ c.setLineDash([5,5]);c.strokeStyle='rgba(221,151,190,.5)';c.lineWidth=1;c.beginPath();c.moveTo(5,340);c.lineTo(315,340);c.stroke();c.setLineDash([]);
+ for(const b of bsBubbles)bsDrawBubble(b.r,b.c,b.color);
+ if(bsProjectile){bsDrawCircle(bsProjectile.x,bsProjectile.y,bsProjectile.color,14)}
+ // sparkling pop particles
+ for(const p of bsParticles){c.globalAlpha=Math.max(0,p.life/36);c.fillStyle=p.color;c.beginPath();c.arc(p.x,p.y,Math.max(1.2,p.life/12),0,Math.PI*2);c.fill()}c.globalAlpha=1;
+ // shooter
+ c.fillStyle='#e8dff5';c.beginPath();c.arc(160,393,24,Math.PI,0);c.fill();c.fillStyle='#a58bff';c.beginPath();c.arc(160,393,13,Math.PI,0);c.fill();
+ if(bsState==='playing'&&!bsProjectile){let dx=bsAim.x-160,dy=bsAim.y-393;let len=Math.hypot(dx,dy)||1;dx/=len;dy/=len;if(dy>-.15)dy=-.15; c.strokeStyle='rgba(133,108,173,.6)';c.setLineDash([5,6]);c.beginPath();c.moveTo(160,385);c.lineTo(160+dx*100,385+dy*100);c.stroke();c.setLineDash([]);bsDrawCircle(160,370,bsCurrent,14)}
+ c.fillStyle='#806f8a';c.font='11px system-ui';c.textAlign='center';c.fillText('AIM  •  TAP TO SHOOT',160,421);
+}
+function bsDrawCircle(x,y,color,r){let c=bsCtx;c.save();c.shadowColor=bsPalette[color];c.shadowBlur=8;c.fillStyle=bsPalette[color]||'#ff91bd';c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();c.shadowBlur=0;c.strokeStyle='rgba(255,255,255,.9)';c.lineWidth=2;c.stroke();c.fillStyle='rgba(255,255,255,.55)';c.beginPath();c.arc(x-r*.35,y-r*.38,r*.27,0,Math.PI*2);c.fill();c.restore()}
+function bsDrawBubble(r,col,color){let p=bsCenter({r,c:col});bsDrawCircle(p.x,p.y,color,14)}
+function bsSetStatus(msg){let el=document.getElementById('bsStatus');if(el)el.textContent=msg}
+function bsPickNext(){bsCurrent=bsNext;bsNext=bsRandomColor(bubbleCampaign.level);bsUpdateHUD()}
+function startBubbleShooterLevel(level){if(!bsCanvas){bsCanvas=document.getElementById('bubbleShooterCanvas');if(!bsCanvas)return;bsCtx=bsCanvas.getContext('2d');bsCanvas.addEventListener('pointermove',bsPointerMove);bsCanvas.addEventListener('pointerdown',bsPointerDown)}bubbleCampaign.level=Math.max(1,Math.min(12,Number(level)||1));bsBubbles=bsMakeBoard(bubbleCampaign.level);bsParticles=[];bsProjectile=null;bsScore=0;bsShots=0;bsState='playing';bsCurrent=bsRandomColor(bubbleCampaign.level);bsNext=bsRandomColor(bubbleCampaign.level);document.getElementById('bsNextLevel').hidden=true;document.getElementById('bsShootButton').disabled=false;bsSetStatus('Aim carefully and match three or more bubbles. 💗');bsUpdateHUD();bsDraw()}
+function bsPointerCoords(e){let rect=bsCanvas.getBoundingClientRect();return {x:(e.clientX-rect.left)*320/rect.width,y:(e.clientY-rect.top)*430/rect.height}}
+function bsPointerMove(e){if(!bsCanvas||bsState!=='playing')return;let p=bsPointerCoords(e);if(p.y<380){bsAim=p;bsDraw()}}
+function bsPointerDown(e){if(bsState!=='playing'||bsProjectile)return;let p=bsPointerCoords(e);if(p.y>380)return;bsAim=p;bsFire()}
+function bubbleShootFromButton(){if(bsState!=='playing'||bsProjectile)return;bsFire()}
+function bsFire(){let dx=bsAim.x-160,dy=bsAim.y-385;let len=Math.hypot(dx,dy)||1;dx/=len;dy/=len;if(dy>-.18){dy=-.18;let n=Math.hypot(dx,dy);dx/=n;dy/=n}bsProjectile={x:160,y:370,vx:dx*7,vy:dy*7,color:bsCurrent};bsShots++;funSfx('shoot');bsPlayTone(360,.07,'triangle');document.getElementById('bsShootButton').disabled=true;bsPickNext();bsAnimateProjectile()}
+function bsAnimateProjectile(){if(!bsProjectile||bsState!=='playing')return;let p=bsProjectile;p.x+=p.vx;p.y+=p.vy;if(p.x<14||p.x>306){p.vx*=-1;p.x=Math.max(14,Math.min(306,p.x))}let hit=p.y<15||bsBubbles.some(b=>{let q=bsCenter(b);return Math.hypot(q.x-p.x,q.y-p.y)<27});if(hit){bsAttachProjectile();return}bsDraw();bsFrame=requestAnimationFrame(bsAnimateProjectile)}
+function bsAttachProjectile(){let p=bsProjectile;let best=null,bestD=Infinity;for(let r=0;r<13;r++)for(let c=0;c<9;c++){if(bsBubbles.some(b=>b.r===r&&b.c===c))continue;let q=bsCenter({r,c});let d=Math.hypot(q.x-p.x,q.y-p.y);if(d<bestD){bestD=d;best={r,c}}}if(best){bsBubbles.push({r:best.r,c:best.c,color:p.color});let group=bsFindGroup({r:best.r,c:best.c,color:p.color});if(group.length>=3){group.forEach(b=>{let q=bsCenter(b);bsBurst(q.x,q.y,bsPalette[b.color],5)});funSfx('pop');bsPlayTone(740,.16,'sine');setTimeout(()=>bsPlayTone(980,.18,'sine'),70);let set=new Set(group.map(b=>b.r+','+b.c));bsBubbles=bsBubbles.filter(b=>!set.has(b.r+','+b.c));bsScore+=group.length*10;let floating=bsFindFloating();if(floating.length){let fset=new Set(floating.map(b=>b.r+','+b.c));bsScore+=floating.length*15;bsBubbles=bsBubbles.filter(b=>!fset.has(b.r+','+b.c))}bsSetStatus('Lovely match! '+group.length+' bubbles popped. ✨')}else bsSetStatus('Nice shot! Try to make a group of three.')}bsProjectile=null;document.getElementById('bsShootButton').disabled=false;bsUpdateHUD();if(bsBubbles.length===0){bsWinLevel();return}if(bsBubbles.some(b=>bsCenter(b).y>=326)){bsLoseLevel();return}bsDraw()}
+function bsFindGroup(start){let queue=[start],seen=new Set([start.r+','+start.c]),out=[];while(queue.length){let b=queue.shift();out.push(b);let p=bsCenter(b);for(let n of bsBubbles){let k=n.r+','+n.c;if(seen.has(k)||n.color!==start.color)continue;let q=bsCenter(n);if(Math.hypot(p.x-q.x,p.y-q.y)<36){seen.add(k);queue.push(n)}}}return out}
+function bsFindFloating(){let connected=new Set(),queue=bsBubbles.filter(b=>b.r===0);queue.forEach(b=>connected.add(b.r+','+b.c));while(queue.length){let b=queue.shift(),p=bsCenter(b);for(let n of bsBubbles){let k=n.r+','+n.c;if(connected.has(k))continue;let q=bsCenter(n);if(Math.hypot(p.x-q.x,p.y-q.y)<36){connected.add(k);queue.push(n)}}}return bsBubbles.filter(b=>!connected.has(b.r+','+b.c))}
+function bsWinLevel(){funSfx('win');funSpeak('Level complete! You did it!');bsPlayTone(880,.22,'sine');setTimeout(()=>bsPlayTone(1175,.3,'sine'),130);bsState='won';let level=bubbleCampaign.level;let fresh=!bubbleCampaign.completed.includes(level);if(fresh)bubbleCampaign.completed.push(level);bubbleCampaign.unlocked=Math.max(bubbleCampaign.unlocked,Math.min(12,level+1));bubbleCampaign.best=Math.max(bubbleCampaign.best,bsScore);bubbleCampaign.totalPopped=safeNum(bubbleCampaign.totalPopped)+Math.max(0,bsScore/10);bsSave();bsSetStatus('Level cleared! You earned '+bsScore+' points. Wonderful popping! 🎉');document.getElementById('bsNextLevel').hidden=level>=12;document.getElementById('bsShootButton').disabled=true;if(fresh){awardXP('arcade',20,'bubbleCampaign');showToast('Campaign level complete: +20 XP and FunCoins! 🫧')}else showToast('Level replay complete! Best score updated.');if(level===12)recordTrophy('bubbleCampaign');bsDrawOverlay('LEVEL CLEAR!','Tap Next level to continue ✨')}
+function bsLoseLevel(){funSfx('lose');funSpeak('Try again! You can do it!');bsPlayTone(180,.25,'triangle');bsState='lost';document.getElementById('bsShootButton').disabled=true;bsSetStatus('The bubbles reached the bottom! Try the level again. You can do it. 💗');bsDrawOverlay('TRY AGAIN','Restart the level when ready')}
+function bsDrawOverlay(title,subtitle){bsDraw();let c=bsCtx;c.fillStyle='rgba(255,248,253,.78)';c.fillRect(15,155,290,100);c.fillStyle='#765582';c.textAlign='center';c.font='bold 23px system-ui';c.fillText(title,160,195);c.font='13px system-ui';c.fillText(subtitle,160,220)}
+function nextBubbleShooterLevel(){let next=Math.min(12,bubbleCampaign.level+1);if(next>bubbleCampaign.unlocked)return;startBubbleShooterLevel(next)}
+
+
+// v2.7B — one accessible audio layer for the whole Funhouse.
+// Audio starts only after a player interacts (mobile browser autoplay policy).
+const funAudioPrefs={sound:localStorage.getItem('funhouse-audio-enabled')!=='false',voice:localStorage.getItem('funhouse-voice-enabled')!=='false'};
+let funAudioContext=null,funLastVoice=0;
+function funAudioCtx(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;if(!funAudioContext)funAudioContext=new A();if(funAudioContext.state==='suspended')funAudioContext.resume();return funAudioContext}catch(e){return null}}
+function funTone(freq=520,duration=.09,wave='sine',volume=.045,delay=0){if(!funAudioPrefs.sound)return;const c=funAudioCtx();if(!c)return;try{const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+delay;o.type=wave;o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(volume,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+duration+.02)}catch(e){}}
+function funSfx(kind='tap'){
+ const patterns={
+  tap:[[620,.045,'sine',.025]], open:[[440,.08,'sine',.035],[660,.1,'sine',.03,.07]],
+  correct:[[660,.1,'sine',.04],[880,.13,'sine',.04,.09]], wrong:[[260,.12,'triangle',.035],[210,.13,'triangle',.025,.1]],
+  reward:[[523,.12,'sine',.04],[659,.12,'sine',.04,.1],[784,.2,'sine',.04,.2]],
+  pet:[[587,.1,'sine',.035],[740,.15,'sine',.035,.12]],
+  buy:[[440,.08,'triangle',.03],[587,.12,'sine',.035,.08]],
+  pop:[[740,.06,'sine',.035],[980,.1,'sine',.03,.045]],
+  shoot:[[350,.055,'triangle',.03]], win:[[523,.14,'sine',.04],[659,.14,'sine',.04,.12],[784,.22,'sine',.04,.24]],
+  lose:[[240,.2,'triangle',.03],[180,.22,'triangle',.025,.16]]
+ };
+ (patterns[kind]||patterns.tap).forEach(([f,d,w,v,delay=0])=>funTone(f,d,w,v,delay));
+}
+function funSpeak(text,rate=1.02,pitch=1.18){
+ if(!funAudioPrefs.voice||!('speechSynthesis'in window)||!text)return;
+ const now=Date.now();if(now-funLastVoice<1800)return;funLastVoice=now;
+ try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text).slice(0,140));u.rate=rate;u.pitch=pitch;u.volume=.82;speechSynthesis.speak(u)}catch(e){}
+}
+function funSetAudioButtons(){
+ const a=document.getElementById('funAudioToggle'),v=document.getElementById('funVoiceToggle');
+ if(a){a.textContent=funAudioPrefs.sound?'🔊 Sound on':'🔇 Sound off';a.setAttribute('aria-pressed',String(funAudioPrefs.sound))}
+ if(v){v.textContent=funAudioPrefs.voice?'🗣️ Voice on':'🤫 Voice off';v.setAttribute('aria-pressed',String(funAudioPrefs.voice))}
+}
+document.getElementById('funAudioToggle')?.addEventListener('click',()=>{funAudioPrefs.sound=!funAudioPrefs.sound;localStorage.setItem('funhouse-audio-enabled',String(funAudioPrefs.sound));funSetAudioButtons();if(funAudioPrefs.sound)funSfx('reward')});
+document.getElementById('funVoiceToggle')?.addEventListener('click',()=>{funAudioPrefs.voice=!funAudioPrefs.voice;localStorage.setItem('funhouse-voice-enabled',String(funAudioPrefs.voice));if(!funAudioPrefs.voice&&'speechSynthesis'in window)speechSynthesis.cancel();funSetAudioButtons();if(funAudioPrefs.voice)funSpeak('Hello! Welcome to the Funhouse!')});
+funSetAudioButtons();
+// Universal UI response: button clicks get a soft sound and a tiny motion cue.
+// Specific game events below override the generic cue with their own sound.
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b||b.disabled||b.id==='funAudioToggle'||b.id==='funVoiceToggle')return;
+ if(!b.dataset.funSilent){funSfx('tap');b.classList.remove('fun-bounce');void b.offsetWidth;b.classList.add('fun-bounce')}
+},{capture:true});
+function funGameOpened(id){
+ funSfx('open');
+ const names={petGame:'Pet Paradise',starGame:'Catch the Star',quizGame:'Emoji Detective',chaosGame:'Button of Chaos',memoryGame:'Memory Match',ticGame:'Tic Tac Toe',rpsGame:'Rock Paper Scissors',wordGame:'Word Game',reactionGame:'Reaction Test',bubbleGame:'Bubble Pop',bubbleShooterGame:'Bubble Shooter',gemMatchGame:'Gem Match',littleCafeGame:'Little Café',dreamFishingGame:'Dream Fishing',forestAdventureGame:'Forest Adventure',moleGame:'Whack a Mole',numberGame:'Number Game',colorGame:'Color Game'};
+ if(names[id])funSpeak('Welcome to '+names[id]+'!');
+}
+
+</script><div id="funhouseToast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+// Stable v2.8 rebuild: rank selection is deliberately non-invasive.
+// It never replaces the original game handlers or daily reward logic.
+(function(){
+ const names=['Beginner','Easy','Medium','Hard','Expert'];
+ document.querySelectorAll('.fun-level-panel').forEach(panel=>{
+  const key=panel.dataset.levelGame,store='funhouse-safe-rank-'+key;
+  let unlocked=Math.max(1,Math.min(5,Number(localStorage.getItem(store)||1)));
+  let chosen=1;
+  const note=panel.querySelector('.fun-level-note');
+  function paint(){panel.querySelectorAll('button[data-level]').forEach(b=>{
+   const n=Number(b.dataset.level);b.disabled=n>unlocked;b.setAttribute('aria-pressed',String(n===chosen));
+   b.style.opacity=n>unlocked?'.42':'1';
+  });if(note)note.textContent=names[chosen-1]+' selected · Higher ranks unlock as you complete challenges.'}
+  panel.addEventListener('click',e=>{const b=e.target.closest('button[data-level]');if(!b)return;const n=Number(b.dataset.level);if(n>unlocked)return;chosen=n;paint();if(typeof funSfx==='function')funSfx('open')});
+  panel.dataset.unlockNext=function(){if(unlocked<5){unlocked++;localStorage.setItem(store,String(unlocked));paint()}};
+  paint();
+ });
+})();
+</script>
+
+<script>
+(()=>{
+ const canvas=document.getElementById('dreamRunnerCanvas');if(!canvas)return;const ctx=canvas.getContext('2d');
+ const key='funhouse-dream-runner-v27c';let saved={stage:1,best:0,stars:0};try{saved={...saved,...JSON.parse(localStorage.getItem(key)||'{}')}}catch(e){}
+ let running=false,raf=0,last=0,elapsed=0,score=0,stars=0,obstacles=[],items=[],spawn=0,stage=1;
+ let player={x:55,y:158,vy:0,onGround:true};const floor=190,gravity=1250,$=id=>document.getElementById(id);
+ function save(){localStorage.setItem(key,JSON.stringify(saved));$('drBest').textContent=saved.best;$('drStars').textContent=saved.stars;$('drStage').textContent=saved.stage;$('drTrackFill').style.width=((saved.stage-1)/9*100)+'%'}
+ function draw(){let g=ctx.createLinearGradient(0,0,0,230);g.addColorStop(0,'#dff1ff');g.addColorStop(1,'#fff0f7');ctx.fillStyle=g;ctx.fillRect(0,0,340,230);
+ ctx.fillStyle='#fff';for(let i=0;i<5;i++){let x=((i*91-(elapsed*22)%430)+430)%430-40;ctx.beginPath();ctx.arc(x,48+(i%3)*24,17,0,7);ctx.arc(x+18,52+(i%3)*24,13,0,7);ctx.fill()}
+ ctx.fillStyle='#c8f0df';ctx.fillRect(0,floor,340,40);ctx.fillStyle='#8dd9bf';ctx.fillRect(0,floor,340,5);
+ obstacles.forEach(o=>{ctx.fillStyle='#9a83c8';ctx.beginPath();ctx.moveTo(o.x,floor);ctx.lineTo(o.x+8,floor-23);ctx.lineTo(o.x+17,floor-30);ctx.lineTo(o.x+28,floor);ctx.fill()});
+ items.forEach(c=>{ctx.font='19px serif';ctx.fillText('⭐',c.x,c.y)});ctx.font='31px serif';ctx.fillText('🐰',player.x,player.y+25);
+ ctx.fillStyle='#765582';ctx.font='bold 13px system-ui';ctx.fillText('STAGE '+stage,12,18);ctx.fillText('Score: '+score,260,20)}
+ function reset(){elapsed=0;score=0;stars=0;spawn=0;obstacles=[];items=[];player={x:55,y:floor-32,vy:0,onGround:true}}
+ function finish(won){running=false;cancelAnimationFrame(raf);$('drJump').disabled=true;$('drStart').disabled=false;if(score>saved.best)saved.best=score;saved.stars+=stars;if(won&&stage>=saved.stage&&saved.stage<10)saved.stage=stage+1;save();$('drMessage').textContent=won?'Stage cleared! You collected '+stars+' stars!':'A storm cloud caught you. Try again!';if(typeof funSfx==='function')funSfx(won?'win':'lose');if(typeof funSpeak==='function')funSpeak(won?'Stage cleared! Wonderful running!':'Try again, little runner!');$('drNextStage').disabled=!(saved.stage>stage)}
+ function update(dt){elapsed+=dt;let speed=155+stage*18;score=Math.floor(elapsed*10);player.vy+=gravity*dt;player.y+=player.vy*dt;if(player.y>=floor-32){player.y=floor-32;player.vy=0;player.onGround=true}
+ spawn+=dt;if(spawn>Math.max(.72,1.35-stage*.055)){spawn=0;obstacles.push({x:350});if(Math.random()<.72)items.push({x:365,y:floor-55-Math.random()*65})}
+ obstacles.forEach(o=>o.x-=speed*dt);items.forEach(c=>c.x-=speed*dt);obstacles=obstacles.filter(o=>o.x>-40);items=items.filter(c=>c.x>-25);
+ let px=player.x+9,py=player.y+7;if(obstacles.some(o=>px<o.x+25&&px+20>o.x&&py+25>floor-30)){finish(false);return}
+ items=items.filter(c=>{if(Math.abs(c.x-px)<22&&Math.abs(c.y-(py+10))<28){stars++;score+=50;if(typeof funSfx==='function')funSfx('pop');return false}return true});
+ if(elapsed>=18+stage*1.5){finish(true);return}draw();raf=requestAnimationFrame(loop)}
+ function loop(t){if(!running)return;let dt=Math.min(.04,(t-last)/1000||.016);last=t;update(dt)}
+ window.drJump=()=>{if(running&&player.onGround){player.vy=-480;player.onGround=false;if(typeof funSfx==='function')funSfx('tap')}};
+ window.drStart=()=>{if(running)return;stage=Math.max(1,Math.min(10,saved.stage));reset();running=true;$('drStart').disabled=true;$('drJump').disabled=false;$('drMessage').textContent='Run, jump and gather stars!';last=performance.now();draw();raf=requestAnimationFrame(loop);if(typeof funSfx==='function')funSfx('open')};
+ window.drNextStage=()=>{if(saved.stage<=stage){$('drMessage').textContent='Clear the current stage to unlock the next one!';return}stage=saved.stage;save();$('drMessage').textContent='Stage '+stage+' unlocked. Press Start run!'};
+ canvas.addEventListener('pointerdown',()=>window.drJump());window.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='ArrowUp')&&$('dreamRunnerGame').classList.contains('active')){e.preventDefault();window.drJump()}});
+ save();draw();$('drNextStage').disabled=true;
+})();
+</script>
+
+<script>
+// Gem Match v2.7D — deterministic-safe board construction and cascades.
+(()=>{
+ const $=id=>document.getElementById(id),el=$('gemBoard');if(!el)return;
+ const KEY='funhouse-gem-match-v27d';const N=8,icons=['💎','💗','🌸','⭐','🍀','🔮'];
+ let saved={unlocked:1,best:0};try{saved={...saved,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ let board=[],selected=-1,moves=25,score=0,level=1,locked=false,won=false,opened=false;
+ const colors=()=>Math.min(6,4+Math.floor((level-1)/5));
+ const goal=()=>350+level*150;
+ const moveLimit=()=>Math.max(12,27-Math.floor((level-1)/2));
+ const index=(r,c)=>r*N+c;
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+ function matchSet(){
+  const out=new Set();
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+   const v=board[r][c];if(v<0)continue;
+   let run=[index(r,c)];
+   for(let x=c+1;x<N&&board[r][x]===v;x++)run.push(index(r,x));
+   if(run.length>=3)run.forEach(i=>out.add(i));
+   run=[index(r,c)];
+   for(let y=r+1;y<N&&board[y][c]===v;y++)run.push(index(y,c));
+   if(run.length>=3)run.forEach(i=>out.add(i));
+  }
+  return [...out];
+ }
+ function hasMove(){
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+   for(const [dr,dc] of [[0,1],[1,0]]){
+    const y=r+dr,x=c+dc;if(y>=N||x>=N)continue;
+    [board[r][c],board[y][x]]=[board[y][x],board[r][c]];
+    const ok=matchSet().length>0;
+    [board[r][c],board[y][x]]=[board[y][x],board[r][c]];
+    if(ok)return true;
+   }
+  }
+  return false;
+ }
+ function createBoard(){
+  // Build rows first; never reference the board while its assignment is incomplete.
+  for(let attempt=0;attempt<100;attempt++){
+   board=Array.from({length:N},()=>Array(N).fill(0));
+   for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+    let v,tries=0;
+    do{v=Math.floor(Math.random()*colors());tries++}
+    while(tries<40&&((c>=2&&board[r][c-1]===v&&board[r][c-2]===v)||(r>=2&&board[r-1][c]===v&&board[r-2][c]===v)));
+    board[r][c]=v;
+   }
+   if(matchSet().length===0&&hasMove())return;
+  }
+  // Guaranteed playable fallback pattern.
+  board=Array.from({length:N},(_,r)=>Array.from({length:N},(_,c)=>(r*2+c)%colors()));
+  board[0][0]=0;board[1][0]=1;board[2][0]=0;board[2][1]=0;
+ }
+ function paint(){
+  el.innerHTML='';
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+   const i=index(r,c),b=document.createElement('button');b.type='button';b.className='gem-cell'+(selected===i?' selected':'');b.textContent=icons[board[r][c]];
+   b.setAttribute('aria-label','Row '+(r+1)+', column '+(c+1)+', '+icons[board[r][c]]);
+   b.disabled=locked||won;b.addEventListener('click',()=>choose(i));el.appendChild(b);
+  }
+  $('gmLevel').textContent=level;$('gmMoves').textContent=moves;$('gmScore').textContent=score;$('gmGoal').textContent=goal();
+  $('gmProgress').style.width=Math.min(100,score/goal()*100)+'%';$('gmNext').disabled=!(won&&saved.unlocked>level);
+ }
+ function say(t){$('gmMessage').textContent=t}
+ const adjacent=(a,b)=>Math.abs(Math.floor(a/N)-Math.floor(b/N))+Math.abs(a%N-b%N)===1;
+ function choose(i){
+  if(locked||won)return;
+  if(selected<0){selected=i;paint();return}
+  if(selected===i){selected=-1;paint();return}
+  if(!adjacent(selected,i)){selected=i;paint();return}
+  swap(selected,i);
+ }
+ async function swap(a,b){
+  const ar=Math.floor(a/N),ac=a%N,br=Math.floor(b/N),bc=b%N;
+  [board[ar][ac],board[br][bc]]=[board[br][bc],board[ar][ac]];
+  if(!matchSet().length){[board[ar][ac],board[br][bc]]=[board[br][bc],board[ar][ac]];selected=-1;paint();say('That swap did not make a match. Try another pair!');if(typeof funSfx==='function')funSfx('wrong');return}
+  selected=-1;locked=true;moves--;let chain=0;
+  while(chain++<20){
+   const hits=matchSet();if(!hits.length)break;
+   score+=hits.length*50+(hits.length>=4?100:0)+(chain>1?chain*50:0);
+   hits.forEach(i=>board[Math.floor(i/N)][i%N]=-1);paint();
+   await new Promise(resolve=>setTimeout(resolve,130));
+   for(let c=0;c<N;c++){
+    const keep=[];for(let r=N-1;r>=0;r--)if(board[r][c]>=0)keep.push(board[r][c]);
+    for(let r=N-1;r>=0;r--)board[r][c]=keep[N-1-r]??Math.floor(Math.random()*colors());
+   }
+  }
+  locked=false;
+  if(score>=goal()){
+   won=true;if(level>=saved.unlocked&&saved.unlocked<20)saved.unlocked=level+1;
+   saved.best=Math.max(saved.best,score);save();say('Level cleared! ✨ Next puzzle unlocked.');if(typeof funSfx==='function')funSfx('win');
+  }else if(moves<=0){say('Out of moves! Restart and try a new strategy.');if(typeof funSfx==='function')funSfx('lose')}
+  else say('Great match! Keep building combos.');
+  paint();
+ }
+ window.gmRestart=()=>{
+  level=Math.min(20,Math.max(1,Math.min(saved.unlocked,level)));
+  moves=moveLimit();score=0;won=false;locked=false;selected=-1;createBoard();say('Reach '+goal()+' points in '+moves+' moves.');paint();
+ };
+ window.gmNextLevel=()=>{if(won&&saved.unlocked>level){level=Math.min(20,saved.unlocked);window.gmRestart()}};
+ window.gmHint=()=>{
+  if(locked||won)return;
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++)for(const [dr,dc] of [[0,1],[1,0]]){
+   const y=r+dr,x=c+dc;if(y>=N||x>=N)continue;
+   [board[r][c],board[y][x]]=[board[y][x],board[r][c]];
+   const ok=matchSet().length>0;
+   [board[r][c],board[y][x]]=[board[y][x],board[r][c]];
+   if(ok){selected=index(r,c);paint();say('Try swapping the highlighted gem with its neighbour!');if(typeof funSfx==='function')funSfx('correct');return}
+  }
+  say('No move found. Restart for a fresh board.');
+ };
+ window.gmOpen=()=>{if(!opened){opened=true;level=Math.min(20,saved.unlocked);window.gmRestart()}};
+ // Construct a board at startup so the preview is ready, but no gameplay timer runs.
+ level=Math.min(20,saved.unlocked);moves=moveLimit();createBoard();paint();say('Tap two neighbouring gems to swap and match three!');
+})();
+</script>
+
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);if(!$('cafeIngredients'))return;
+ const recipes=[
+  {name:'Strawberry Shake',icon:'🍓',face:'🐻',customer:'Benny the Bear',line:'A strawberry shake, please!',items:['🥛','🍓','🍦'],labels:['Milk','Strawberry','Ice cream']},
+  {name:'Honey Lemon Tea',icon:'🍵',face:'🐰',customer:'Poppy the Bunny',line:'A warm honey lemon tea would be lovely.',items:['🍵','🍯','🍋'],labels:['Tea','Honey','Lemon']},
+  {name:'Berry Waffle',icon:'🧇',face:'🦊',customer:'Felix the Fox',line:'Could I get a berry waffle with cream?',items:['🧇','🫐','🍦'],labels:['Waffle','Blueberries','Cream']},
+  {name:'Pink Cupcake',icon:'🧁',face:'🐱',customer:'Mimi the Cat',line:'One pink cupcake, please!',items:['🌾','🥚','🍓'],labels:['Flour','Egg','Strawberry']},
+  {name:'Choco Cookie',icon:'🍪',face:'🐼',customer:'Mochi the Panda',line:'A chocolate cookie sounds perfect.',items:['🌾','🍫','🧈'],labels:['Flour','Chocolate','Butter']},
+  {name:'Peach Parfait',icon:'🍨',face:'🐥',customer:'Sunny the Chick',line:'A peach parfait with cream, please!',items:['🍑','🥣','🍦'],labels:['Peach','Yogurt','Cream']},
+  {name:'Rainbow Donut',icon:'🍩',face:'🦄',customer:'Luna the Unicorn',line:'A rainbow donut for me!',items:['🍩','🌈','✨'],labels:['Donut','Rainbow icing','Sprinkles']}
+ ];
+ const ingredients=[['🥛','Milk'],['🍓','Strawberry'],['🍦','Ice cream'],['🍵','Tea'],['🍯','Honey'],['🍋','Lemon'],['🧇','Waffle'],['🫐','Blueberries'],['🌾','Flour'],['🥚','Egg'],['🍫','Chocolate'],['🧈','Butter'],['🍑','Peach'],['🥣','Yogurt'],['🍩','Donut'],['🌈','Rainbow icing'],['✨','Sprinkles']];
+ const KEY='funhouse-little-cafe-v27e';let saved={shift:1,bestTips:0,completed:0};try{saved={...saved,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ let shift=saved.shift,order=0,tips=0,hearts=3,active=false,current=null,tray=[],orderDeck=[];const ing=$('cafeIngredients');
+ function persist(){saved.shift=Math.max(saved.shift,shift);saved.bestTips=Math.max(saved.bestTips,tips);try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+ function status(t){$('cafeStatus').textContent=t}
+ function update(){$('cafeShift').textContent=shift;$('cafeOrders').textContent=order+'/5';$('cafeTips').textContent=tips;$('cafeHearts').textContent='♥'.repeat(hearts)+'♡'.repeat(3-hearts);$('cafeProgress').style.width=(order/5*100)+'%';$('cafeServe').disabled=!active||tray.length!==3;$('cafeStart').textContent=active?'Shift in progress':'Start a shift';}
+ function renderIngredients(){ing.innerHTML='';ingredients.forEach(([emoji,name])=>{const b=document.createElement('button');b.className='cafe-ingredient';b.type='button';b.innerHTML='<span>'+emoji+'</span><span>'+name+'</span>';b.disabled=!active||tray.length>=3;b.addEventListener('click',()=>pick(emoji,name));ing.appendChild(b)})}
+ function showOrder(){current=orderDeck[order];tray=[];renderIngredients();$('cafeFace').textContent=current.face;$('cafeCustomerName').textContent=current.customer;$('cafeOrderText').textContent=current.line;$('cafeStep').textContent='Recipe: '+current.labels.join(' → ');$('cafeMix').textContent='Your tray is empty. Tap the ingredients in recipe order.';update()}
+ function pick(emoji,name){if(!active||tray.length>=3)return;const expected=current.items[tray.length];if(emoji!==expected){hearts--;if(typeof funSfx==='function')funSfx('wrong');$('cafeMix').textContent='Oops! '+name+' is not next in this recipe. Try again.';if(hearts<=0){endShift(false);return}update();return}tray.push({emoji,name});$('cafeMix').textContent=tray.map(x=>x.emoji+' '+x.name).join('  ·  ');$('cafeStep').textContent='Ingredient '+tray.length+' of 3';if(typeof funSfx==='function')funSfx('click');renderIngredients();update()}
+ window.cafeResetTray=()=>{if(!active)return;tray=[];$('cafeMix').textContent='Tray cleared. Start the recipe again.';$('cafeStep').textContent='Recipe: '+current.labels.join(' → ');renderIngredients();update()};
+ window.cafeServe=()=>{if(!active||tray.length!==3)return;tips+=50+hearts*5;order++;saved.completed=(saved.completed||0)+1;if(typeof funSfx==='function')funSfx('win');if(typeof funSpeak==='function')funSpeak('One lovely order, coming right up!');if(order>=5){endShift(true);return}$('cafeMix').textContent='Perfect! Order served '+current.icon;status('Lovely work! The next customer is waiting…');showOrder()};
+ function endShift(success){active=false;renderIngredients();update();if(success){tips+=shift*25;status('Shift complete! You earned '+tips+' tips. Your next shift is unlocked!');if(typeof funSpeak==='function')funSpeak('Great work. The cafe is thriving!');shift++;saved.shift=Math.max(saved.shift,shift);persist()}else{status('The café got too busy this time. Restart the shift and try again.')} $('cafeStart').disabled=false;$('cafeOrderText').textContent=success?'All five customers went home happy!':'Your customers have left for now. Take a breath and try again.';$('cafeFace').textContent=success?'🎉':'☕';$('cafeStep').textContent=success?'Shift finished':'Shift paused';$('cafeMix').textContent='Tips earned this shift: '+tips}
+ window.cafeStartShift=()=>{if(active)return;order=0;tips=0;hearts=3;active=true;const pool=recipes.slice(0,Math.min(recipes.length,4+Math.floor((shift-1)/2)));orderDeck=[];while(orderDeck.length<5)orderDeck.push(pool[Math.floor(Math.random()*pool.length)]);$('cafeStart').disabled=true;status('Five customers are ready. Let’s make their day!');showOrder();if(typeof funSpeak==='function')funSpeak('Welcome to the Little Cafe. Your shift starts now!')};
+ window.cafeOpen=()=>{update();if(!active){$('cafeStart').disabled=false;status('Best tips: '+saved.bestTips+'. Start a shift whenever you are ready!')}};
+ renderIngredients();update();$('cafeStart').disabled=false;
+})();
+</script>
+
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);if(!$('fishCast'))return;
+ const fishTypes=[
+  {name:'Silver Minnow',emoji:'🐟',rarity:'Common',value:10,weight:42},
+  {name:'Bubble Guppy',emoji:'🐠',rarity:'Common',value:12,weight:30},
+  {name:'Moon Jelly',emoji:'🪼',rarity:'Rare',value:25,weight:15},
+  {name:'Golden Koi',emoji:'🐡',rarity:'Epic',value:45,weight:9},
+  {name:'Star Ray',emoji:'🦈',rarity:'Legendary',value:80,weight:4}
+ ];
+ const KEY='funhouse-dream-fishing-v27f';let saved={trip:1,coins:0,collection:{},bestTrip:0};
+ try{saved={...saved,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ let trip=saved.trip||1,coins=saved.coins||0,caught=0,misses=0,state='idle',biteTimer=null,windowTimer=null,currentFish=null,collection=saved.collection||{};
+ function save(){saved.trip=trip;saved.coins=coins;saved.collection=collection;saved.bestTrip=Math.max(saved.bestTrip||0,trip);try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+ function msg(t){$('fishMessage').textContent=t}
+ function stats(){$('fishTrip').textContent=trip;$('fishCatch').textContent=caught+'/5';$('fishCoins').textContent=coins;$('fishMisses').textContent=misses+'/3';$('fishProgress').style.width=(caught/5*100)+'%';$('fishCast').disabled=state!=='idle'||caught>=5||misses>=3;$('fishReel').disabled=state!=='bite';$('fishNext').disabled=!(caught>=5||misses>=3)}
+ function renderCollection(){
+  const box=$('fishCollection');box.innerHTML='';
+  fishTypes.forEach(f=>{const n=collection[f.name]||0;const d=document.createElement('div');d.className='fish-card';d.innerHTML='<b>'+(n?f.emoji:'❔')+'</b>'+f.name+'<small> '+(n?'×'+n:'Not found')+'</small>';box.appendChild(d)});
+ }
+ function weightedFish(){
+  const bonus=Math.min(12,(trip-1)*1.5);let total=fishTypes.reduce((a,f)=>a+f.weight,0),roll=Math.random()*total;
+  for(const f of fishTypes){roll-=f.weight;if(roll<=0)return f}return fishTypes[0];
+ }
+ function clearTimers(){if(biteTimer)clearTimeout(biteTimer);if(windowTimer)clearTimeout(windowTimer);biteTimer=null;windowTimer=null}
+ function finishMiss(reason){
+  clearTimers();state='idle';misses++;$('fishSplash').classList.remove('visible');$('fishResult').innerHTML='<span>💦</span><b>'+reason+'</b>';
+  if(misses>=3){msg('That’s three misses. Your trip is over — you can try another trip!')}else msg(reason+' Try another cast.');stats();
+  if(typeof funSfx==='function')funSfx('wrong');
+ }
+ window.fishCast=()=>{
+  if(state!=='idle'||caught>=5||misses>=3)return;
+  state='waiting';currentFish=weightedFish();$('fishResult').innerHTML='<span>🪝</span><b>Your line is in the water…</b>';
+  msg('The water is calm… wait for a bite!');stats();
+  const wait=1200+Math.random()*2600;
+  biteTimer=setTimeout(()=>{
+   if(state!=='waiting')return;
+   state='bite';$('fishSplash').textContent=currentFish.emoji;$('fishSplash').classList.add('visible');
+   msg('A BITE! Tap REEL IN now!');if(typeof funSfx==='function')funSfx('correct');
+   if(typeof funSpeak==='function')funSpeak('You have a bite!');
+   stats();windowTimer=setTimeout(()=>{if(state==='bite')finishMiss('The fish got away!')},1800);
+  },wait);
+ };
+ window.fishReel=()=>{
+  if(state!=='bite')return;
+  clearTimers();state='idle';$('fishSplash').classList.remove('visible');
+  caught++;coins+=currentFish.value;collection[currentFish.name]=(collection[currentFish.name]||0)+1;save();
+  $('fishResult').innerHTML='<span>'+currentFish.emoji+'</span><b>'+currentFish.name+' · '+currentFish.rarity+' · +'+currentFish.value+' coins</b>';
+  if(typeof funSfx==='function')funSfx('win');
+  if(typeof funSpeak==='function')funSpeak('You caught a '+currentFish.name+'!');
+  if(caught>=5)msg('Wonderful! You completed this fishing trip. Your next trip awaits.');
+  else msg('Nice catch! Cast again when you are ready.');
+  renderCollection();stats();
+ };
+ window.fishNextTrip=()=>{
+  if(!(caught>=5||misses>=3))return;
+  clearTimers();trip++;caught=0;misses=0;state='idle';currentFish=null;
+  $('fishSplash').classList.remove('visible');$('fishResult').innerHTML='<span>🧺</span><b>New trip, fresh possibilities!</b>';
+  msg('Trip '+trip+' begins. Can you find a rare fish?');save();stats();
+ };
+ window.fishOpen=()=>{renderCollection();stats();if(state==='waiting')msg('Your line is still in the water…');};
+ renderCollection();stats();
+})();
+</script>
+
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);if(!$('forestStart'))return;
+ const KEY='funhouse-forest-adventure-v27g';let saved={bestTrail:1,totalAcorns:0,completed:0};
+ try{saved={...saved,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ let trail=1,step=0,acorns=0,energy=3,active=false,done=false,journal=[];
+ const encounters=[
+  {type:'acorn',emoji:'🌰',text:'You found a cluster of shiny acorns!',gain:2},
+  {type:'friend',emoji:'🦊',text:'A woodland friend shows you a safe shortcut.',gain:1},
+  {type:'flower',emoji:'🌼',text:'A glowing flower gives you a little energy.',gain:1},
+  {type:'berries',emoji:'🫐',text:'You discover a patch of magical berries.',gain:1},
+  {type:'vine',emoji:'🌿',text:'A thorny vine catches your sleeve. You lose one energy.',gain:-1},
+  {type:'mud',emoji:'🪵',text:'The muddy path slows you down and costs one energy.',gain:-1},
+  {type:'quiet',emoji:'🦋',text:'A butterfly guides you along a peaceful path.',gain:0}
+ ];
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}}
+ function message(t){$('forestMessage').textContent=t}
+ function update(){
+  $('forestTrail').textContent=trail;$('forestStep').textContent=step;$('forestAcorns').textContent=acorns;$('forestEnergy').textContent='♥'.repeat(energy)+'♡'.repeat(3-energy);
+  $('forestProgress').style.width=(step/10*100)+'%';
+  document.querySelectorAll('.forest-choice').forEach(b=>b.disabled=!active||done);
+  $('forestStart').disabled=active&&!done;$('forestStart').textContent=active?'Adventure underway':done?'Trail complete!':'Start adventure ✨';
+ }
+ function log(t){journal.unshift(t);journal=journal.slice(0,5);$('forestJournal').textContent=journal.join('  •  ')}
+ function finish(won){
+  active=false;done=true;
+  if(won){saved.completed=(saved.completed||0)+1;saved.bestTrail=Math.max(saved.bestTrail||1,trail);saved.totalAcorns=(saved.totalAcorns||0)+acorns;message('You made it through the enchanted forest! The woodland friends cheer for you.');$('forestEncounter').textContent='🏡';$('forestPlayer').textContent='🧚‍♀️';if(typeof funSfx==='function')funSfx('win');if(typeof funSpeak==='function')funSpeak('You completed the forest trail!')}
+  else{message('Your energy ran out. The forest rests for now. Restart the trail and try a different route.');$('forestEncounter').textContent='🌙';if(typeof funSfx==='function')funSfx('lose')}
+  save();update();
+ }
+ window.forestStart=()=>{
+  if(active&&!done)return;
+  step=0;acorns=0;energy=3;active=true;done=false;journal=[];$('forestJournal').textContent='A new adventure begins…';$('forestEncounter').textContent='🦊';$('forestPlayer').textContent='🧚';
+  message('Choose your first path. Every choice leads to a new discovery.');update();
+ };
+ window.forestRestart=()=>{window.forestStart();message('Fresh trail, fresh possibilities. Choose your first path!')};
+ window.forestMove=(direction)=>{
+  if(!active||done)return;
+  let options=encounters.slice();
+  // Each path has a slightly different risk/reward profile.
+  if(direction==='left')options=options.filter(x=>!['mud'].includes(x.type));
+  if(direction==='middle')options=options.filter(x=>!['quiet'].includes(x.type));
+  if(direction==='right')options=options.filter(x=>!['vine'].includes(x.type));
+  const event=options[Math.floor(Math.random()*options.length)];
+  step++;$('forestEncounter').textContent=event.emoji;
+  if(event.type==='acorn'){acorns+=event.gain;message(event.text+' +'+event.gain+' acorns.')}
+  else if(event.type==='friend'){energy=Math.min(3,energy+event.gain);message(event.text+' +1 energy.')}
+  else if(event.type==='flower'){energy=Math.min(3,energy+event.gain);message(event.text+' +1 energy.')}
+  else if(event.type==='berries'){acorns+=event.gain;message(event.text+' +1 acorn.')}
+  else if(event.type==='vine'||event.type==='mud'){energy=Math.max(0,energy-1);message(event.text)}
+  else message(event.text);
+  log('Step '+step+': '+event.text);
+  if(typeof funSfx==='function')funSfx((event.type==='vine'||event.type==='mud')?'wrong':'click');
+  if(energy<=0){finish(false);return}
+  if(step>=10){finish(true);return}
+  update();
+ };
+ window.forestOpen=()=>{update();if(!active&&!done)message('Your enchanted trail is waiting. Start whenever you are ready!')};
+ $('forestStart').disabled=false;update();
+})();
+</script>
+
+<script>
+// v2.8 Connected Arcade: additive stats/achievement layer. Existing save keys and handlers remain intact.
+(()=>{
+ const $=id=>document.getElementById(id);if(!$('arcadeProgress'))return;
+ const KEY='funhouse-arcade-connect-v28';
+ const games=[
+  ['bubbleShooterGame','🫧','Bubble Shooter','bubbleShooter'],
+  ['dreamRunnerGame','🏃','Dream Runner','dreamRunner'],
+  ['gemMatchGame','💎','Gem Match','gemMatch'],
+  ['littleCafeGame','☕','Little Café','cafe'],
+  ['dreamFishingGame','🎣','Dream Fishing','fishing'],
+  ['forestAdventureGame','🌲','Forest Adventure','forest']
+ ];
+ const badges=[
+  {id:'first',icon:'🌱',name:'First Steps',desc:'Play your first arcade game',test:d=>d.sessions>=1},
+  {id:'explorer',icon:'🧭',name:'Curious Explorer',desc:'Try three different games',test:d=>d.visited.length>=3},
+  {id:'collector',icon:'🌈',name:'Game Collector',desc:'Try all six new games',test:d=>d.visited.length>=6},
+  {id:'regular',icon:'🎮',name:'Arcade Regular',desc:'Play 10 game sessions',test:d=>d.sessions>=10},
+  {id:'busy',icon:'⚡',name:'Busy Buttons',desc:'Make 50 play actions',test:d=>d.actions>=50},
+  {id:'cafe',icon:'🥐',name:'Café Favourite',desc:'Serve five café orders',test:d=>d.cafeOrders>=5},
+  {id:'angler',icon:'🐠',name:'Pond Pal',desc:'Catch five fish',test:d=>d.fishCaught>=5},
+  {id:'woodland',icon:'🍄',name:'Woodland Wanderer',desc:'Take 10 forest steps',test:d=>d.forestSteps>=10}
+ ];
+ let data={sessions:0,actions:0,visited:[],counts:{},cafeOrders:0,fishCaught:0,forestSteps:0,badges:[],lastLaunchDay:''};
+ try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){}
+ data.visited=Array.isArray(data.visited)?data.visited:[];data.badges=Array.isArray(data.badges)?data.badges:[];data.counts=data.counts||{};
+ let activeId=null,launchToken=0;
+ function persist(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+ function award(source,amount=12){
+  if(typeof awardXP==='function')awardXP('arcade',amount,source);
+ }
+ function unlock(){
+  let changed=false;
+  badges.forEach(b=>{if(!data.badges.includes(b.id)&&b.test(data)){data.badges.push(b.id);changed=true;
+   if(typeof awardXP==='function')awardXP('arcade',18,'arcadeBadge');
+   if(typeof showToast==='function')showToast('Achievement unlocked: '+b.name+' '+b.icon);
+   if(typeof funSfx==='function')funSfx('reward');
+  }});
+  if(changed)persist();
+ }
+ function render(){
+  $('arcadeGamesPlayed').textContent=data.sessions;
+  $('arcadeUniqueGames').textContent=data.visited.length+'/6';
+  $('arcadeActions').textContent=data.actions;
+  $('arcadeBadges').textContent=data.badges.length+'/'+badges.length;
+  $('arcadeAchievementGrid').innerHTML=badges.map(b=>'<div class="arcade-achievement '+(data.badges.includes(b.id)?'':'locked')+'"><span>'+b.icon+'</span><div><b>'+b.name+'</b><small>'+(data.badges.includes(b.id)?'Unlocked':b.desc)+'</small></div></div>').join('');
+  $('arcadeGameRecords').innerHTML=games.map(([id,icon,name])=>'<div class="arcade-record"><span>'+icon+' '+name+'</span><b>'+(data.counts[id]||0)+' sessions</b></div>').join('');
+ }
+ function gameLaunched(id){
+  if(!games.some(g=>g[0]===id))return;
+  activeId=id;launchToken++;data.sessions++;data.counts[id]=(data.counts[id]||0)+1;
+  if(!data.visited.includes(id))data.visited.push(id);
+  award('arcadeSession',15);unlock();persist();render();
+ }
+ // openGame is wrapped rather than replaced; all original game-opening behaviour still runs.
+ if(typeof window.openGame==='function'){
+  const original=window.openGame;
+  window.openGame=function(id){const result=original.apply(this,arguments);gameLaunched(id);return result};
+ }
+ // Count meaningful play controls only; ignore close/restart/utility buttons.
+ function countAction(panel){
+  // Actions are tracked for achievements, but XP is reserved for completed
+  // sessions and game milestones so utility taps cannot farm rewards.
+  data.actions++;
+  unlock();persist();render();
+ }
+ document.addEventListener('click',ev=>{
+  const panel=ev.target.closest('.game.active');if(!panel||!games.some(g=>g[0]===panel.id))return;
+  const button=ev.target.closest('button');if(!button||button.disabled)return;
+  if(button.closest('.gamehead'))return;
+  const label=(button.innerText||button.textContent||'').trim().toLowerCase();
+  if(/^(close|restart|replay|hint|sound|mute|pause|resume|back|settings|clear tray|start over)\b/.test(label))return;
+  countAction(panel);
+ },true);
+ // Canvas-based games use taps rather than buttons, so count actual board taps too.
+ document.addEventListener('pointerdown',ev=>{
+  if(ev.target.closest('button'))return;
+  const panel=ev.target.closest('.game.active');if(!panel||!['bubbleShooterGame','dreamRunnerGame'].includes(panel.id))return;
+  if(ev.target.tagName==='CANVAS')countAction(panel);
+ },true);
+ function wrap(name,after){
+  if(typeof window[name]!=='function')return;
+  const original=window[name];
+  window[name]=function(){const before=after.before?after.before():null;const result=original.apply(this,arguments);try{after.after(before,arguments)}catch(e){}return result};
+ }
+ wrap('cafeServe',{before:()=>Number($('cafeOrders')?.textContent?.split('/')[0]||0),after:(before)=>{const after=Number($('cafeOrders')?.textContent?.split('/')[0]||0);if(after>before){data.cafeOrders++;award('cafe',12);unlock();persist();render()}}});
+ wrap('fishReel',{before:()=>Number($('fishCatch')?.textContent?.split('/')[0]||0),after:(before)=>{const after=Number($('fishCatch')?.textContent?.split('/')[0]||0);if(after>before){data.fishCaught++;award('fishing',12);unlock();persist();render()}}});
+ wrap('forestMove',{before:()=>Number($('forestStep')?.textContent||0),after:(before)=>{const after=Number($('forestStep')?.textContent||0);if(after>before){data.forestSteps++;award('forest',10);unlock();persist();render()}}});
+ wrap('gmNextLevel',{before:()=>Number($('gmLevel')?.textContent||1),after:(before)=>{const after=Number($('gmLevel')?.textContent||1);if(after>before)award('gemMatch',15)}});
+ // XP is awarded by completed gameplay milestones, not by opening or closing controls.
+ window.funhouseArcadeStats={get data(){return JSON.parse(JSON.stringify(data))},refresh:render};
+ render();unlock();render();
+})();
+</script>
+</body></html>
