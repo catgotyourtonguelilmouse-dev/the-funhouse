@@ -928,15 +928,41 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
 </section>
 
 <section id="playerFeedback" class="card fh-feedback-card">
- <h2>💌 Your Funhouse Feedback</h2>
- <p>Tell us what you enjoyed, what felt confusing, or what you'd love to see next.</p>
- <label for="fhFeedbackType">What would you like to share?</label>
- <select id="fhFeedbackType"><option value="Review">A review</option><option value="Experience">My experience</option><option value="Suggestion">A suggestion</option><option value="Bug report">A bug report</option></select>
- <label for="fhFeedbackText">Your message</label>
- <textarea id="fhFeedbackText" maxlength="500" rows="4" placeholder="Write your thoughts here (up to 500 characters)…"></textarea>
- <div class="fh-feedback-actions"><small id="fhFeedbackCount">0 / 500</small><button type="button" onclick="fhSubmitFeedback()">Save feedback</button></div>
- <div id="fhFeedbackList" class="fh-feedback-list" aria-live="polite"></div>
- <p class="fh-note">For now, entries are saved privately on this device and are not visible to other players. Don't include your full name, contact details, address or other personal information. Shared community reviews will need a secure moderated service.</p>
+ <h2>💌 The Funhouse Community Reviews</h2>
+ <p>Read what other players think, or sign in to share your own experience.</p>
+ <div class="fh-community-auth" id="fhCommunityAuth">
+  <div id="fhSignedOut">
+   <label for="fhDisplayName">Display name (for new accounts)</label>
+   <input id="fhDisplayName" class="small-input" maxlength="30" autocomplete="nickname" placeholder="Your Funhouse name">
+   <label for="fhAuthEmail">Email address</label>
+   <input id="fhAuthEmail" class="small-input" type="email" autocomplete="email" placeholder="you@example.com">
+   <label for="fhAuthPassword">Password</label>
+   <input id="fhAuthPassword" class="small-input" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters">
+   <div class="hub-actions">
+    <button type="button" id="fhSignInBtn">Sign in</button>
+    <button type="button" class="purple" id="fhSignUpBtn">Create account</button>
+    <button type="button" class="mint" id="fhGoogleBtn">Continue with Google</button>
+   </div>
+   <button type="button" class="yellow" id="fhResetPasswordBtn">Forgot password?</button>
+  </div>
+  <div id="fhSignedIn" hidden>
+   <p>Signed in as <strong id="fhCurrentDisplayName"></strong></p>
+   <p id="fhVerificationNotice" class="fh-review-status" hidden>Please verify your email before posting. Check your inbox for the verification link.</p>
+   <div class="hub-actions"><button type="button" class="purple" id="fhResendVerifyBtn" hidden>Resend verification email</button><button type="button" id="fhSignOutBtn">Sign out</button></div>
+  </div>
+  <p id="fhAuthStatus" class="fh-review-status" role="status" aria-live="polite">Connecting to the community…</p>
+ </div>
+ <div class="fh-community-composer" id="fhReviewComposer" hidden>
+  <h3>✍️ Leave a review</h3>
+  <label for="fhCommunityRating">Your rating</label>
+  <select id="fhCommunityRating" class="small-input"><option value="5">★★★★★ — 5 stars</option><option value="4">★★★★☆ — 4 stars</option><option value="3">★★★☆☆ — 3 stars</option><option value="2">★★☆☆☆ — 2 stars</option><option value="1">★☆☆☆☆ — 1 star</option></select>
+  <label for="fhCommunityComment">Your review</label>
+  <textarea id="fhCommunityComment" maxlength="1000" rows="4" placeholder="Share your thoughts (up to 1,000 characters)…"></textarea>
+  <button type="button" id="fhPostReviewBtn">Post review</button>
+ </div>
+ <div class="fh-community-heading"><h3>🌟 Player reviews</h3><span id="fhReviewSummary" class="fh-review-status">Loading reviews…</span></div>
+ <div id="fhCommunityReviews" aria-live="polite"><p class="fh-note">Loading community reviews…</p></div>
+ <p class="fh-note">Use a nickname rather than personal information. Your email address is never displayed with your review. Be respectful and don't post private contact details.</p>
 </section>
 <section id="saveSettings" class="card save-panel"><h2>💾 Your save & backup</h2><p class="fh-autosave-indicator" id="fhAutoSaveStatus">Saving automatically on this device…</p><p>Your progress saves automatically on this device as you play. You do not need to press Save. You can still download a backup or restore one if you change browsers or devices.</p><div class="hub-actions"><button onclick="exportFunhouseSave()">Download backup</button><label class="soft-pill" for="importSaveFile">Restore a backup</label><input id="importSaveFile" type="file" accept="application/json,.json" onchange="importFunhouseSave(event)"></div><p class="petnote">Restoring replaces saved Funhouse progress in this browser. Keep your backup file private: it may include your diary. Never share it publicly.</p></section>
 <section id="about" class="card" style="margin-top:22px"><h2>🌷 The Funhouse v3.8 · Automatic Save & Progression</h2><p style="line-height:1.6;color:#807286">The grand universe release brings the Funhouse worlds, mini-games, adventures, pets, collections and connected arcade progress together in one little playground. No account or sign-in needed. Your progress stays in this browser; export a backup to keep it safe. Thank you for exploring the Funhouse!</p><p class="petnote">Release 3.0 · Local-save edition · Made with ♡</p></section></div>
@@ -2433,4 +2459,117 @@ nextColorQuestion=function(){
  });
 })();
 </script>
+
+<style id="fh-community-styles">
+.fh-community-auth,.fh-community-composer{padding:15px;margin:14px 0;background:linear-gradient(145deg,#fff4fa,#f1edff);border:1px solid #ead8ed;border-radius:18px}
+.fh-community-auth label,.fh-community-composer label{display:block;font-weight:800;margin:10px 0 5px}
+.fh-community-auth input,.fh-community-composer textarea,.fh-community-composer select{display:block;width:100%;max-width:520px;margin:5px 0 10px;padding:11px 12px;border:1px solid #e4cddd;border-radius:12px;background:#fff;color:#493b55;font:inherit}
+.fh-community-composer textarea{max-width:100%;resize:vertical}.fh-community-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.fh-community-review{padding:14px;margin:10px 0;border:1px solid #ead8ed;border-radius:17px;background:#fff}.fh-community-review .fh-stars{color:#d99a24;letter-spacing:2px}.fh-community-review p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}.fh-review-meta{font-size:.8rem;color:#88788e}.fh-review-actions{display:flex;gap:8px;flex-wrap:wrap}.fh-review-actions button{font-size:.82rem;padding:7px 10px}.fh-review-status{font-size:.84rem;color:#806f8a}.fh-community-review[hidden],[hidden]{display:none!important}
+body.theme-night .fh-community-auth,body.theme-night .fh-community-composer,body.theme-night .fh-community-review{background:#33283f;color:#f6eefa;border-color:#665574}
+</style>
+<script type="module" id="fh-firebase-community">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, doc, deleteDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyCm_EuV8wow7_KjRpMHx7uYaZ61QK3Gn94",
+ authDomain: "the-funhouse-f4d2e.firebaseapp.com",
+ projectId: "the-funhouse-f4d2e",
+ storageBucket: "the-funhouse-f4d2e.firebasestorage.app",
+ messagingSenderId: "131021267822",
+ appId: "1:131021267822:web:88ac0d98217cc15663177f"
+};
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const $=id=>document.getElementById(id);
+const status=$('fhAuthStatus');
+const say=(message)=>{if(status)status.textContent=message};
+const safe=(value)=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let currentUser=null,stopReviews=null,posting=false;
+const reviewsBox=$('fhCommunityReviews');
+function friendlyError(error){
+ const code=error?.code||'';
+ const messages={
+  'auth/email-already-in-use':'That email already has an account. Try signing in.',
+  'auth/invalid-email':'Please enter a valid email address.',
+  'auth/weak-password':'Choose a stronger password (at least 8 characters).',
+  'auth/invalid-credential':'Email or password is incorrect.',
+  'auth/popup-closed-by-user':'Google sign-in was closed before finishing.',
+  'auth/unauthorized-domain':'This website domain is not authorised in Firebase Authentication.',
+  'permission-denied':'Firebase denied this action. Check the published Firestore rules.',
+  'unavailable':'Firebase is temporarily unavailable. Please try again.'
+ };
+ return messages[code]||'Something went wrong. Please try again.';
+}
+function renderReviews(snapshot){
+ const rows=snapshot.docs.map(d=>({id:d.id,...d.data()}));
+ $('fhReviewSummary').textContent=rows.length?`${rows.length} recent review${rows.length===1?'':'s'}`:'Be the first to review The Funhouse!';
+ if(!rows.length){reviewsBox.innerHTML='<p class="fh-note">No community reviews yet. You could be the first! ✨</p>';return;}
+ reviewsBox.innerHTML=rows.map(r=>{
+  const date=r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString(): 'Just now';
+  const own=currentUser&&r.uid===currentUser.uid;
+  return `<article class="fh-community-review"><div class="fh-stars" aria-label="${Number(r.rating)||0} out of 5 stars">${'★'.repeat(Math.max(0,Math.min(5,Number(r.rating)||0)))}${'☆'.repeat(5-Math.max(0,Math.min(5,Number(r.rating)||0)))}</div><strong>${safe(r.displayName||'Player')}</strong><span class="fh-review-meta"> · ${safe(date)}</span><p>${safe(r.comment||'')}</p><div class="fh-review-actions">${own?`<button type="button" class="purple" data-delete-review="${safe(r.id)}">Delete my review</button>`:`<button type="button" class="yellow" data-report-review="${safe(r.id)}">Report</button>`}</div></article>`;
+ }).join('');
+}
+function watchReviews(){
+ if(stopReviews)stopReviews();
+ reviewsBox.innerHTML='<p class="fh-note">Loading community reviews…</p>';
+ const q=query(collection(db,'reviews'),where('status','==','published'),orderBy('createdAt','desc'),limit(50));
+ stopReviews=onSnapshot(q,renderReviews,error=>{reviewsBox.innerHTML='<p class="fh-note">Reviews could not load. Please refresh later.</p>';console.error('Funhouse reviews:',error);});
+}
+function setAuthUI(user){
+ currentUser=user;
+ $('fhSignedOut').hidden=!!user;
+ $('fhSignedIn').hidden=!user;
+ $('fhReviewComposer').hidden=!user;
+ if(user){
+  const name=user.displayName||user.email?.split('@')[0]||'Player';
+  $('fhCurrentDisplayName').textContent=name;
+  const unverified=user.providerData.some(p=>p.providerId==='password')&&!user.emailVerified;
+  $('fhVerificationNotice').hidden=!unverified;
+  $('fhResendVerifyBtn').hidden=!unverified;
+ }else{$('fhCurrentDisplayName').textContent='';}
+}
+onAuthStateChanged(auth,async user=>{
+ setAuthUI(user);
+ if(user){
+  try{const displayName=(user.displayName||user.email?.split('@')[0]||'Player').slice(0,30);await setDoc(doc(db,'users',user.uid),{displayName,updatedAt:serverTimestamp()},{merge:true});say(user.emailVerified||user.providerData.some(p=>p.providerId==='google.com')?'Signed in. You can post a review.':'Signed in. Verify your email before posting.');}
+  catch(e){say('Signed in, but profile setup failed. '+friendlyError(e));}
+ }else say('Read reviews freely. Sign in to post your own.');
+});
+$('fhSignUpBtn').addEventListener('click',async()=>{
+ const name=$('fhDisplayName').value.trim(),email=$('fhAuthEmail').value.trim(),password=$('fhAuthPassword').value;
+ if(name.length<2||name.length>30){say('Choose a display name between 2 and 30 characters.');return;}
+ if(password.length<8){say('Use a password with at least 8 characters.');return;}
+ try{say('Creating your account…');const cred=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(cred.user,{displayName:name});await sendEmailVerification(cred.user);await setDoc(doc(db,'users',cred.user.uid),{displayName:name,createdAt:serverTimestamp(),updatedAt:serverTimestamp()},{merge:true});setAuthUI(cred.user);say('Account created. Please verify your email before posting reviews.');}
+ catch(e){say(friendlyError(e));}
+});
+$('fhSignInBtn').addEventListener('click',async()=>{try{say('Signing in…');await signInWithEmailAndPassword(auth,$('fhAuthEmail').value.trim(),$('fhAuthPassword').value);say('Signed in successfully.');}catch(e){say(friendlyError(e));}});
+$('fhGoogleBtn').addEventListener('click',async()=>{try{say('Opening Google sign-in…');const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await signInWithPopup(auth,provider);say('Signed in with Google.');}catch(e){say(friendlyError(e));}});
+$('fhSignOutBtn').addEventListener('click',async()=>{try{await signOut(auth);say('You have signed out.');}catch(e){say(friendlyError(e));}});
+$('fhResetPasswordBtn').addEventListener('click',async()=>{const email=$('fhAuthEmail').value.trim();if(!email){say('Enter your email address first.');return;}try{await sendPasswordResetEmail(auth,email);say('Password reset email sent. Check your inbox.');}catch(e){say(friendlyError(e));}});
+$('fhResendVerifyBtn').addEventListener('click',async()=>{try{await sendEmailVerification(auth.currentUser);say('Verification email sent again.');}catch(e){say(friendlyError(e));}});
+$('fhPostReviewBtn').addEventListener('click',async()=>{
+ if(posting)return;
+ const user=auth.currentUser,comment=$('fhCommunityComment').value.trim(),rating=Number($('fhCommunityRating').value);
+ if(!user){say('Please sign in first.');return;}
+ if(user.providerData.some(p=>p.providerId==='password')&&!user.emailVerified){say('Please verify your email before posting.');return;}
+ if(comment.length<4||comment.length>1000){say('Your review must be between 4 and 1,000 characters.');return;}
+ posting=true;$('fhPostReviewBtn').disabled=true;
+ try{await addDoc(collection(db,'reviews'),{uid:user.uid,displayName:(user.displayName||'Player').slice(0,30),rating,comment,status:'published',createdAt:serverTimestamp(),updatedAt:serverTimestamp()});$('fhCommunityComment').value='';say('Your review is now published. Thank you! 💜');}
+ catch(e){say(friendlyError(e));console.error('Funhouse post review:',e);}
+ finally{posting=false;$('fhPostReviewBtn').disabled=false;}
+});
+reviewsBox.addEventListener('click',async event=>{
+ const del=event.target.closest('[data-delete-review]');
+ const report=event.target.closest('[data-report-review]');
+ if(del){if(!auth.currentUser||!confirm('Delete your review? This cannot be undone.'))return;try{await deleteDoc(doc(db,'reviews',del.dataset.deleteReview));say('Your review was deleted.');}catch(e){say(friendlyError(e));}return;}
+ if(report){if(!auth.currentUser){say('Sign in to report a review.');return;}const reason=prompt('Why are you reporting this review?');if(!reason)return;try{await addDoc(collection(db,'reports'),{reporterUid:auth.currentUser.uid,reviewId:report.dataset.reportReview,reason:reason.trim().slice(0,500),createdAt:serverTimestamp()});say('Thank you. Your report has been submitted.');}catch(e){say(friendlyError(e));}}
+});
+watchReviews();
+</script>
+
 </body></html>
