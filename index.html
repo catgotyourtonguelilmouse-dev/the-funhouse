@@ -947,6 +947,9 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
   </div>
   <div id="fhSignedIn" hidden>
    <p>Signed in as <strong id="fhCurrentDisplayName"></strong></p>
+   <label for="fhEditDisplayName">Change your public nickname</label>
+   <input id="fhEditDisplayName" class="small-input" maxlength="30" autocomplete="nickname" placeholder="Choose a nickname">
+   <div class="hub-actions"><button type="button" class="purple" id="fhSaveNicknameBtn">Save nickname</button></div>
    <p id="fhVerificationNotice" class="fh-review-status" hidden>Please verify your email before posting. Check your inbox for the verification link.</p>
    <div class="hub-actions"><button type="button" class="purple" id="fhResendVerifyBtn" hidden>Resend verification email</button><button type="button" id="fhSignOutBtn">Sign out</button></div>
   </div>
@@ -2471,7 +2474,7 @@ body.theme-night .fh-community-auth,body.theme-night .fh-community-composer,body
 <script type="module" id="fh-firebase-community">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, doc, deleteDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, where, limit, onSnapshot, doc, deleteDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
  apiKey: "AIzaSyCm_EuV8wow7_KjRpMHx7uYaZ61QK3Gn94",
@@ -2505,7 +2508,7 @@ function friendlyError(error){
  return messages[code]||'Something went wrong. Please try again.';
 }
 function renderReviews(snapshot){
- const rows=snapshot.docs.map(d=>({id:d.id,...d.data()}));
+ const rows=snapshot.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0));
  $('fhReviewSummary').textContent=rows.length?`${rows.length} recent review${rows.length===1?'':'s'}`:'Be the first to review The Funhouse!';
  if(!rows.length){reviewsBox.innerHTML='<p class="fh-note">No community reviews yet. You could be the first! ✨</p>';return;}
  reviewsBox.innerHTML=rows.map(r=>{
@@ -2517,8 +2520,8 @@ function renderReviews(snapshot){
 function watchReviews(){
  if(stopReviews)stopReviews();
  reviewsBox.innerHTML='<p class="fh-note">Loading community reviews…</p>';
- const q=query(collection(db,'reviews'),where('status','==','published'),orderBy('createdAt','desc'),limit(50));
- stopReviews=onSnapshot(q,renderReviews,error=>{reviewsBox.innerHTML='<p class="fh-note">Reviews could not load. Please refresh later.</p>';console.error('Funhouse reviews:',error);});
+ const q=query(collection(db,'reviews'),where('status','==','published'),limit(50));
+ stopReviews=onSnapshot(q,renderReviews,error=>{reviewsBox.innerHTML='<p class="fh-note">Reviews could not load.<br><strong>Error:</strong> '+safe(error?.code||'unknown')+'<br>'+safe(error?.message||'No additional details were provided.')+'</p>'; $('fhReviewSummary').textContent='Could not connect'; console.error('Funhouse reviews:',error);});
 }
 function setAuthUI(user){
  currentUser=user;
@@ -2528,10 +2531,11 @@ function setAuthUI(user){
  if(user){
   const name=user.displayName||user.email?.split('@')[0]||'Player';
   $('fhCurrentDisplayName').textContent=name;
+  $('fhEditDisplayName').value=name;
   const unverified=user.providerData.some(p=>p.providerId==='password')&&!user.emailVerified;
   $('fhVerificationNotice').hidden=!unverified;
   $('fhResendVerifyBtn').hidden=!unverified;
- }else{$('fhCurrentDisplayName').textContent='';}
+ }else{$('fhCurrentDisplayName').textContent='';$('fhEditDisplayName').value='';}
 }
 onAuthStateChanged(auth,async user=>{
  setAuthUI(user);
@@ -2549,6 +2553,19 @@ $('fhSignUpBtn').addEventListener('click',async()=>{
 });
 $('fhSignInBtn').addEventListener('click',async()=>{try{say('Signing in…');await signInWithEmailAndPassword(auth,$('fhAuthEmail').value.trim(),$('fhAuthPassword').value);say('Signed in successfully.');}catch(e){say(friendlyError(e));}});
 $('fhGoogleBtn').addEventListener('click',async()=>{try{say('Opening Google sign-in…');const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await signInWithPopup(auth,provider);say('Signed in with Google.');}catch(e){say(friendlyError(e));}});
+$('fhSaveNicknameBtn').addEventListener('click',async()=>{
+ const user=auth.currentUser,name=$('fhEditDisplayName').value.trim();
+ if(!user){say('Please sign in first.');return;}
+ if(name.length<2||name.length>30){say('Your nickname must be between 2 and 30 characters.');return;}
+ const btn=$('fhSaveNicknameBtn');btn.disabled=true;
+ try{
+  await updateProfile(user,{displayName:name});
+  await setDoc(doc(db,'users',user.uid),{displayName:name,updatedAt:serverTimestamp()},{merge:true});
+  $('fhCurrentDisplayName').textContent=name;
+  say('Your nickname has been updated. New reviews will use this name. Existing reviews will keep their original name. 💜');
+ }catch(e){say('Nickname could not be saved: '+(e?.code||'unknown')+' — '+(e?.message||friendlyError(e)));console.error('Funhouse nickname update:',e);}
+ finally{btn.disabled=false;}
+});
 $('fhSignOutBtn').addEventListener('click',async()=>{try{await signOut(auth);say('You have signed out.');}catch(e){say(friendlyError(e));}});
 $('fhResetPasswordBtn').addEventListener('click',async()=>{const email=$('fhAuthEmail').value.trim();if(!email){say('Enter your email address first.');return;}try{await sendPasswordResetEmail(auth,email);say('Password reset email sent. Check your inbox.');}catch(e){say(friendlyError(e));}});
 $('fhResendVerifyBtn').addEventListener('click',async()=>{try{await sendEmailVerification(auth.currentUser);say('Verification email sent again.');}catch(e){say(friendlyError(e));}});
