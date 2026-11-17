@@ -538,6 +538,7 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
     <a href="#page-adventures" data-page="adventures" data-target="dailyChallenge" class="sidebar-link">🌟 <span>Daily quests</span></a>
   </div>
   <div class="sidebar-group"><small class="sidebar-label">COMMUNITY</small>
+    <a href="#page-settings" data-page="settings" data-target="playerProfile" class="sidebar-link">🎮 <span>My player profile</span></a>
     <a href="#page-settings" data-page="settings" data-target="playerFeedback" class="sidebar-link">💌 <span>Player reviews</span></a>
   </div>
   <div class="sidebar-group"><small class="sidebar-label">COLLECTIONS</small>
@@ -928,6 +929,33 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
   <h3>🎁 Festival boutique</h3><p class="petnote">Spend tokens on keepsakes. Purchased items stay in your festival collection.</p>
   <div id="festivalShop" class="festival-shop"></div>
   <h3>🎀 Your festival keepsakes</h3><div id="festivalOwned" class="badges"></div>
+</section>
+
+
+<section id="playerProfile" class="card fh-feedback-card">
+ <h2>🎮 My Player Profile</h2>
+ <p>Your Funhouse identity. Choose an avatar and add a little introduction.</p>
+ <div class="fh-community-auth">
+  <div id="fhProfileSignedOut">
+   <p>Sign in to view and edit your player profile.</p>
+  </div>
+  <div id="fhProfileSignedIn" hidden>
+   <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px">
+    <div id="fhProfileAvatarPreview" aria-label="Selected player avatar" style="font-size:3.2rem;width:82px;height:82px;display:grid;place-items:center;background:#fff0f7;border:2px solid #f2cfe1;border-radius:22px">🐰</div>
+    <div><strong id="fhProfileNamePreview">Player</strong><p class="fh-review-status">Your public player identity</p></div>
+   </div>
+   <label for="fhProfileAvatar">Choose your avatar</label>
+   <select id="fhProfileAvatar" class="small-input">
+    <option>🐰</option><option>🐱</option><option>🐻</option><option>🐼</option><option>🦊</option><option>🐸</option><option>🐨</option><option>🐯</option><option>🦄</option><option>🐧</option><option>🐹</option><option>🐶</option><option>🐙</option><option>🐝</option><option>🦋</option><option>🌸</option>
+   </select>
+   <label for="fhProfileNickname">Player nickname</label>
+   <input id="fhProfileNickname" class="small-input" maxlength="30" autocomplete="nickname" placeholder="Your Funhouse name">
+   <label for="fhProfileBio">About me <span class="fh-review-status">(optional, max 120 characters)</span></label>
+   <textarea id="fhProfileBio" class="small-input" maxlength="120" rows="3" placeholder="A little about your gaming world…"></textarea>
+   <div class="hub-actions"><button type="button" class="purple" id="fhSaveProfileBtn">Save profile</button></div>
+   <p id="fhProfileStatus" class="fh-review-status" role="status" aria-live="polite"></p>
+  </div>
+ </div>
 </section>
 
 <section id="playerFeedback" class="card fh-feedback-card">
@@ -2477,7 +2505,7 @@ body.theme-night .fh-community-auth,body.theme-night .fh-community-composer,body
 <script type="module" id="fh-firebase-community">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, where, limit, onSnapshot, doc, deleteDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, where, limit, onSnapshot, doc, deleteDoc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
  apiKey: "AIzaSyCm_EuV8wow7_KjRpMHx7uYaZ61QK3Gn94",
@@ -2548,11 +2576,30 @@ function setAuthUI(user){
   $('fhVerificationNotice').hidden=!unverified;
   $('fhResendVerifyBtn').hidden=!unverified;
  }else{$('fhCurrentDisplayName').textContent='';$('fhEditDisplayName').value='';}
+
+ const profileIn=$('fhProfileSignedIn'),profileOut=$('fhProfileSignedOut');
+ if(profileIn&&profileOut){profileIn.hidden=!user;profileOut.hidden=!!user;}
+ if(user){
+  const avatar=$('fhProfileAvatar');if(avatar)$('fhProfileAvatarPreview').textContent=avatar.value;
+  $('fhProfileNickname').value=user.displayName||user.email?.split('@')[0]||'Player';
+  $('fhProfileNamePreview').textContent=$('fhProfileNickname').value;
+ }
 }
 onAuthStateChanged(auth,async user=>{
  setAuthUI(user);
  if(user){
-  try{const displayName=(user.displayName||user.email?.split('@')[0]||'Player').slice(0,30);await setDoc(doc(db,'users',user.uid),{displayName,updatedAt:serverTimestamp()},{merge:true});say(user.emailVerified||user.providerData.some(p=>p.providerId==='google.com')?'Signed in. You can post a review.':'Signed in. Verify your email before posting.');}
+  try{const displayName=(user.displayName||user.email?.split('@')[0]||'Player').slice(0,30);await setDoc(doc(db,'users',user.uid),{displayName,updatedAt:serverTimestamp()},{merge:true});
+  try{
+   const profileSnap=await getDoc(doc(db,'users',user.uid));
+   if(profileSnap.exists()){
+    const profile=profileSnap.data();
+    if(profile.avatar){$('fhProfileAvatar').value=profile.avatar;$('fhProfileAvatarPreview').textContent=profile.avatar;}
+    if(typeof profile.bio==='string')$('fhProfileBio').value=profile.bio;
+    const savedName=profile.displayName||displayName;
+    $('fhProfileNickname').value=savedName;$('fhProfileNamePreview').textContent=savedName;
+   }
+  }catch(profileError){console.warn('Funhouse profile load:',profileError);}
+say(user.emailVerified||user.providerData.some(p=>p.providerId==='google.com')?'Signed in. You can post a review.':'Signed in. Verify your email before posting.');}
   catch(e){say('Signed in, but profile setup failed. '+friendlyError(e));}
  }else say('Read reviews freely. Sign in to post your own.');
 });
@@ -2578,6 +2625,39 @@ $('fhSaveNicknameBtn').addEventListener('click',async()=>{
  }catch(e){say('Nickname could not be saved: '+(e?.code||'unknown')+' — '+(e?.message||friendlyError(e)));console.error('Funhouse nickname update:',e);}
  finally{btn.disabled=false;}
 });
+
+$('fhProfileAvatar').addEventListener('change',()=>{
+ $('fhProfileAvatarPreview').textContent=$('fhProfileAvatar').value;
+});
+$('fhProfileNickname').addEventListener('input',()=>{
+ $('fhProfileNamePreview').textContent=$('fhProfileNickname').value.trim()||'Player';
+});
+$('fhSaveProfileBtn').addEventListener('click',async()=>{
+ const user=auth.currentUser;
+ if(!user){$('fhProfileStatus').textContent='Please sign in first.';return;}
+ const name=$('fhProfileNickname').value.trim();
+ const bio=$('fhProfileBio').value.trim();
+ const avatar=$('fhProfileAvatar').value;
+ const btn=$('fhSaveProfileBtn');
+ if(name.length<2||name.length>30){$('fhProfileStatus').textContent='Nickname must be between 2 and 30 characters.';return;}
+ if(bio.length>120){$('fhProfileStatus').textContent='Your introduction must be 120 characters or fewer.';return;}
+ btn.disabled=true;$('fhProfileStatus').textContent='Saving your profile…';
+ try{
+  await updateProfile(user,{displayName:name});
+  await setDoc(doc(db,'users',user.uid),{
+   displayName:name,avatar,bio,updatedAt:serverTimestamp()
+  },{merge:true});
+  $('fhCurrentDisplayName').textContent=name;
+  $('fhEditDisplayName').value=name;
+  $('fhProfileNamePreview').textContent=name;
+  $('fhProfileStatus').textContent='Your player profile has been saved! 💜';
+  say('Player profile updated. New reviews will use your nickname.');
+ }catch(e){
+  $('fhProfileStatus').textContent='Could not save profile: '+(e?.code||'unknown')+' — '+(e?.message||'Please try again.');
+  console.error('Funhouse profile save:',e);
+ }finally{btn.disabled=false;}
+});
+
 $('fhSignOutBtn').addEventListener('click',async()=>{try{await signOut(auth);say('You have signed out.');}catch(e){say(friendlyError(e));}});
 $('fhResetPasswordBtn').addEventListener('click',async()=>{const email=$('fhAuthEmail').value.trim();if(!email){say('Enter your email address first.');return;}try{await sendPasswordResetEmail(auth,email);say('Password reset email sent. Check your inbox.');}catch(e){say(friendlyError(e));}});
 $('fhResendVerifyBtn').addEventListener('click',async()=>{try{await sendEmailVerification(auth.currentUser);say('Verification email sent again.');}catch(e){say(friendlyError(e));}});
