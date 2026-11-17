@@ -2491,7 +2491,7 @@ const $=id=>document.getElementById(id);
 const status=$('fhAuthStatus');
 const say=(message)=>{if(status)status.textContent=message};
 const safe=(value)=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let currentUser=null,stopReviews=null,posting=false;
+let currentUser=null,stopReviews=null,posting=false,showAllReviews=false;
 const reviewsBox=$('fhCommunityReviews');
 function friendlyError(error){
  const code=error?.code||'';
@@ -2509,13 +2509,22 @@ function friendlyError(error){
 }
 function renderReviews(snapshot){
  const rows=snapshot.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0));
- $('fhReviewSummary').textContent=rows.length?`${rows.length} recent review${rows.length===1?'':'s'}`:'Be the first to review The Funhouse!';
+ $('fhReviewSummary').textContent=rows.length?`${rows.length} review${rows.length===1?'':'s'}`:'Be the first to review The Funhouse!';
  if(!rows.length){reviewsBox.innerHTML='<p class="fh-note">No community reviews yet. You could be the first! ✨</p>';return;}
- reviewsBox.innerHTML=rows.map(r=>{
+ const visibleRows=showAllReviews?rows:rows.slice(0,3);
+ reviewsBox.innerHTML=visibleRows.map(r=>{
   const date=r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString(): 'Just now';
   const own=currentUser&&r.uid===currentUser.uid;
   return `<article class="fh-community-review"><div class="fh-stars" aria-label="${Number(r.rating)||0} out of 5 stars">${'★'.repeat(Math.max(0,Math.min(5,Number(r.rating)||0)))}${'☆'.repeat(5-Math.max(0,Math.min(5,Number(r.rating)||0)))}</div><strong>${safe(r.displayName||'Player')}</strong><span class="fh-review-meta"> · ${safe(date)}</span><p>${safe(r.comment||'')}</p><div class="fh-review-actions">${own?`<button type="button" class="purple" data-delete-review="${safe(r.id)}">Delete my review</button>`:`<button type="button" class="yellow" data-report-review="${safe(r.id)}">Report</button>`}</div></article>`;
  }).join('');
+ if(rows.length>3){
+  const toggle=document.createElement('button');
+  toggle.type='button';toggle.className='purple fh-review-more';
+  toggle.textContent=showAllReviews?'Show fewer reviews':`Show all ${rows.length} reviews`;
+  toggle.setAttribute('aria-expanded',String(showAllReviews));
+  toggle.addEventListener('click',()=>{showAllReviews=!showAllReviews;renderReviews(snapshot);});
+  reviewsBox.appendChild(toggle);
+ }
 }
 function watchReviews(){
  if(stopReviews)stopReviews();
