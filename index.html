@@ -513,6 +513,18 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
 #fhBackToTop:focus-visible{outline:3px solid #fff!important;outline-offset:4px!important}
 @media(max-width:600px){#fhBackToTop{right:14px!important;bottom:108px!important;width:46px!important;height:46px!important}}
 </style>
+
+<style>
+.fh-room-card{overflow:hidden}.fh-room-tabs,.fh-room-tools{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+.fh-room-tab.active{outline:3px solid #e9b7d2}
+.fh-room-stage{position:relative;width:100%;height:clamp(300px,55vw,520px);border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#f9e7f1,#e8e7ff)}
+#fhRoom3D{width:100%;height:100%;touch-action:pan-y}
+#fhRoom3D canvas{display:block;width:100%;height:100%}
+.fh-room-loading{position:absolute;inset:0;display:grid;place-items:center;color:#75516b;font-weight:700;pointer-events:none}
+.fh-room-tools button{border:1px solid #e8c9dc;border-radius:13px;padding:10px 13px;background:#fff7fc;color:#684b62;font-weight:650}
+.fh-room-tools button:active{transform:scale(.97)}
+</style>
+
 </head>
 <body>
 <header><div class="topbar"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open navigation" aria-expanded="false" onclick="toggleFunhouseSidebar()">☰</button><div class="brand">the <span>fun</span>house ✿</div><span class="topbar-note">your pocket-sized universe ✨</span></div>
@@ -533,6 +545,7 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
     <a href="#page-pet" data-page="pet" data-target="petParadise" class="sidebar-link">🌷 <span>Pet Paradise</span></a>
   </div>
   <div class="sidebar-group"><small class="sidebar-label">MY SPACE</small>
+    <a href="#page-rooms" data-page="rooms" class="sidebar-link">🏡 <span>My 3D rooms</span></a>
     <a href="#page-diary" data-page="diary" class="sidebar-link">📖 <span>Diary</span></a>
     <a href="#page-adventures" data-page="adventures" class="sidebar-link">📜 <span>Adventures</span></a>
     <a href="#page-adventures" data-page="adventures" data-target="dailyChallenge" class="sidebar-link">🌟 <span>Daily quests</span></a>
@@ -890,6 +903,34 @@ body.theme-obsidian .theme-current,body.theme-cyber .theme-current,body.theme-ac
 <div class="daily-mission"><h3>Today's tiny story</h3><p id="diaryStory"></p><button class="purple" onclick="newDiaryStory()">Another story</button></div>
 <h3>Write a private note</h3><textarea id="privateDiary" rows="5" maxlength="1500" placeholder="Write a thought, a story idea or a little note..." style="width:100%;padding:12px;border:1px solid var(--line);border-radius:14px;font:inherit;resize:vertical"></textarea><p class="petnote">Saved only in this browser on this device. Don't write passwords, addresses or other sensitive information.</p><button onclick="saveDiary()">Save my note</button> <span id="diarySaved" class="petnote"></span>
 </section></div>
+
+
+<div class="app-page" data-page="rooms">
+ <div class="page-heading"><span>🏡</span><div><h1>My 3D Rooms</h1><p>Build a little world for yourself and your pet.</p></div></div>
+ <section class="card fh-room-card" style="margin-top:22px">
+  <div class="fh-room-tabs" role="tablist" aria-label="Choose a room">
+   <button type="button" class="purple fh-room-tab active" data-room="player">🛋️ My room</button>
+   <button type="button" class="fh-room-tab" data-room="pet">🐾 Pet's room</button>
+  </div>
+  <p class="petnote" id="fhRoomCaption">Your own cozy space. Add furniture and arrange it however you like.</p>
+  <div class="fh-room-stage"><div id="fhRoom3D" aria-label="Interactive 3D room"></div><div class="fh-room-loading" id="fhRoomLoading">Preparing your 3D room…</div></div>
+  <div class="fh-room-tools">
+   <button type="button" class="purple" data-furniture="bed">🛏️ Bed</button>
+   <button type="button" class="purple" data-furniture="sofa">🛋️ Sofa</button>
+   <button type="button" class="purple" data-furniture="desk">🪑 Desk</button>
+   <button type="button" class="purple" data-furniture="plant">🪴 Plant</button>
+   <button type="button" class="purple" data-furniture="lamp">💡 Lamp</button>
+   <button type="button" class="purple" data-furniture="rug">🧸 Rug</button>
+  </div>
+  <div class="fh-room-tools">
+   <button type="button" id="fhRoomRotate">↻ Rotate selected</button>
+   <button type="button" id="fhRoomDelete">🗑️ Remove selected</button>
+   <button type="button" id="fhRoomReset">↺ Reset this room</button>
+   <button type="button" id="fhRoomSave" class="purple">💾 Save room</button>
+  </div>
+  <p id="fhRoomStatus" class="petnote" role="status" aria-live="polite">Drag to look around. Tap furniture to select it. Your rooms are saved on this device for now.</p>
+ </section>
+</div>
 
 <div class="app-page" data-page="settings"><div class="page-heading"><span>🎨</span><div><h1>Settings & More</h1><p>Make The Funhouse feel like yours.</p></div></div><section class="card" id="themeSettings" style="margin-top:22px">
 <h2>🎨 Theme Studio</h2><p class="petnote">Pick a colour universe for your Funhouse. Your choice is saved on this device.</p>
@@ -1997,7 +2038,7 @@ function closeFunhouseSidebar(){
 <script>
 /* v3.4 page router: sidebar navigation swaps content views instead of scrolling. */
 (function(){
-  const pageNames=['home','games','pet','adventures','diary','collections','settings'];
+  const pageNames=['home','games','pet','adventures','diary','collections','settings','rooms'];
   function showPage(name,targetId){
     if(!pageNames.includes(name))name='home';
     document.querySelectorAll('.app-page').forEach(p=>p.classList.toggle('active',p.dataset.page===name));
@@ -2679,6 +2720,69 @@ reviewsBox.addEventListener('click',async event=>{
  if(report){if(!auth.currentUser){say('Sign in to report a review.');return;}const reason=prompt('Why are you reporting this review?');if(!reason)return;try{await addDoc(collection(db,'reports'),{reporterUid:auth.currentUser.uid,reviewId:report.dataset.reportReview,reason:reason.trim().slice(0,500),createdAt:serverTimestamp()});say('Thank you. Your report has been submitted.');}catch(e){say(friendlyError(e));}}
 });
 watchReviews();
+</script>
+
+
+<script type="module">
+import * as THREE from 'https://esm.sh/three@0.160.0';
+import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+(()=>{
+ const mount=document.getElementById('fhRoom3D'); if(!mount)return;
+ const loading=document.getElementById('fhRoomLoading'),status=document.getElementById('fhRoomStatus');
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#f7eaf3');
+ const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(6,6,8);
+ const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;mount.appendChild(renderer.domElement);
+ const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,1,0);controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.48;controls.minDistance=5;controls.maxDistance=15;
+ scene.add(new THREE.HemisphereLight(0xffffff,0xb7a1bd,2));
+ const sun=new THREE.DirectionalLight(0xffffff,2.2);sun.position.set(-4,9,6);sun.castShadow=true;scene.add(sun);
+ const floorMat=new THREE.MeshStandardMaterial({color:'#f3dce9',roughness:.85});
+ const floor=new THREE.Mesh(new THREE.BoxGeometry(8,.22,8),floorMat);floor.position.y=-.11;floor.receiveShadow=true;scene.add(floor);
+ const wallMat=new THREE.MeshStandardMaterial({color:'#fff4fa',roughness:.95});
+ const back=new THREE.Mesh(new THREE.BoxGeometry(8,4,.18),wallMat);back.position.set(0,2,-4);back.receiveShadow=true;scene.add(back);
+ const side=new THREE.Mesh(new THREE.BoxGeometry(.18,4,8),new THREE.MeshStandardMaterial({color:'#e8e3fb'}));side.position.set(-4,2,0);side.receiveShadow=true;scene.add(side);
+ const trimMat=new THREE.MeshStandardMaterial({color:'#d6a9c5'});
+ for(let x=-3.5;x<=3.5;x+=1){const line=new THREE.Mesh(new THREE.BoxGeometry(.025,.012,7.8),trimMat);line.position.set(x,.008,0);scene.add(line);}
+ const rooms={player:[],pet:[]};let current='player',selected=null,counter=0;
+ const mats={pink:'#e9a9c9',lav:'#b9b1e8',cream:'#f5dfbd',mint:'#a8d9c8',wood:'#b88770',white:'#fff5f8',green:'#83b99a'};
+ function box(w,h,d,color,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color,roughness:.78}));m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;return m;}
+ function groupFurniture(type){
+  const g=new THREE.Group();g.userData.furnitureType=type;
+  if(type==='bed'){
+   g.add(box(2,.28,1.35,mats.wood,0,.25,0),box(1.9,.2,1.25,mats.pink,0,.49,.03),box(.65,.16,.42,mats.white,-.48,.65,-.28),box(.65,.16,.42,mats.white,.48,.65,-.28),box(1.9,.12,.42,mats.lav,0,.62,.42));
+  }else if(type==='sofa'){
+   g.add(box(1.7,.35,.72,mats.pink,0,.35,0),box(1.7,.65,.22,mats.pink,0,.68,-.27),box(.22,.5,.72,mats.lav,-.74,.57,0),box(.22,.5,.72,mats.lav,.74,.57,0));
+  }else if(type==='desk'){
+   g.add(box(1.6,.12,.75,mats.wood,0,.85,0),box(.12,.85,.12,mats.wood,-.65,.42,0),box(.12,.85,.12,mats.wood,.65,.42,0),box(.7,.08,.48,mats.lav,0,.97,-.05));
+  }else if(type==='plant'){
+   g.add(box(.48,.42,.48,mats.cream,0,.21,0));
+   const stem=new THREE.Mesh(new THREE.CylinderGeometry(.045,.06,.85,8),new THREE.MeshStandardMaterial({color:mats.green}));stem.position.y=.82;g.add(stem);
+   for(let i=0;i<5;i++){const leaf=new THREE.Mesh(new THREE.SphereGeometry(.22,10,8),new THREE.MeshStandardMaterial({color:i%2?mats.mint:mats.green}));leaf.scale.set(1,.45,.7);leaf.position.set(Math.cos(i*1.25)*.22,1.05+Math.sin(i)*.12,Math.sin(i*1.25)*.22);g.add(leaf);}
+  }else if(type==='lamp'){
+   g.add(box(.48,.1,.48,mats.lav,0,.05,0));const pole=new THREE.Mesh(new THREE.CylinderGeometry(.035,.05,.95,10),new THREE.MeshStandardMaterial({color:mats.wood}));pole.position.y=.55;g.add(pole);
+   const shade=new THREE.Mesh(new THREE.ConeGeometry(.32,.42,16,1,true),new THREE.MeshStandardMaterial({color:mats.cream,side:THREE.DoubleSide}));shade.position.y=1.15;g.add(shade);
+  }else{
+   const rug=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.2,.05,48),new THREE.MeshStandardMaterial({color:mats.lav,roughness:1}));rug.position.y=.04;g.add(rug);
+   const inner=new THREE.Mesh(new THREE.CylinderGeometry(.82,.82,.06,48),new THREE.MeshStandardMaterial({color:mats.pink}));inner.position.y=.075;g.add(inner);
+  }
+  g.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});return g;
+ }
+ function clearItems(){for(const g of rooms[current])scene.remove(g);rooms[current]=[];selected=null;}
+ function add(type,at){const g=groupFurniture(type);g.position.set(at?.x??((counter%3)-1)*1.1,.0,at?.z??((Math.floor(counter/3)%3)-1)*1.1);g.userData.id=++counter;rooms[current].push(g);scene.add(g);select(g);status.textContent=type[0].toUpperCase()+type.slice(1)+' added. Drag to look around; tap an item to select it.';}
+ function select(g){if(selected)selected.traverse(o=>{if(o.isMesh&&o.material?.emissive)o.material.emissive.setHex(0);});selected=g;if(g)g.traverse(o=>{if(o.isMesh&&o.material?.emissive)o.material.emissive.setHex(0x392039);});}
+ const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+ renderer.domElement.addEventListener('pointerdown',e=>{const r=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(rooms[current],true);if(hits.length){let o=hits[0].object;while(o.parent&&!o.userData.furnitureType)o=o.parent;select(o.userData.furnitureType?o:null);}});
+ function serialize(){return rooms[current].map(g=>({type:g.userData.furnitureType,x:g.position.x,z:g.position.z,rotation:g.rotation.y}));}
+ function loadRoom(which){current=which;clearItems();const saved=JSON.parse(localStorage.getItem('fh-room-'+current)||'[]');saved.forEach(item=>{add(item.type,{x:item.x,z:item.z});const g=rooms[current][rooms[current].length-1];g.rotation.y=item.rotation||0;});select(null);document.querySelectorAll('[data-room]').forEach(b=>b.classList.toggle('active',b.dataset.room===current));document.getElementById('fhRoomCaption').textContent=current==='player'?'Your own cozy space. Add furniture and arrange it however you like.':'A cozy little space just for your pet. Add a bed, toys and decorations.';}
+  document.querySelectorAll('[data-room]').forEach(b=>b.addEventListener('click',()=>loadRoom(b.dataset.room)));
+  document.querySelectorAll('[data-furniture]').forEach(b=>b.addEventListener('click',()=>add(b.dataset.furniture)));
+  document.getElementById('fhRoomRotate').addEventListener('click',()=>{if(selected){selected.rotation.y+=Math.PI/4;status.textContent='Selected furniture rotated.';}else status.textContent='Tap a piece of furniture first.';});
+  document.getElementById('fhRoomDelete').addEventListener('click',()=>{if(!selected)return;scene.remove(selected);rooms[current]=rooms[current].filter(g=>g!==selected);selected=null;status.textContent='Furniture removed. Save your room to keep the change.';});
+  document.getElementById('fhRoomReset').addEventListener('click',()=>{if(confirm('Reset this room? This only clears its saved furniture on this device.')){clearItems();localStorage.removeItem('fh-room-'+current);status.textContent='Room reset.';}});
+  document.getElementById('fhRoomSave').addEventListener('click',()=>{localStorage.setItem('fh-room-'+current,JSON.stringify(serialize()));status.textContent='Room saved on this device! 💜';});
+  function resize(){const w=mount.clientWidth,h=mount.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false);}
+  new ResizeObserver(resize).observe(mount);resize();loadRoom('player');loading.style.display='none';
+  function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}animate();
+})();
 </script>
 
 </body></html>
