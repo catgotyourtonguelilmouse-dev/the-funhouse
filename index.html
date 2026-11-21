@@ -1946,7 +1946,7 @@ body.theme-night .fh-room-themes-panel,body.theme-night .fh-room-theme{backgroun
  <textarea id="fhFeedbackText" maxlength="500" rows="4" placeholder="Write your thoughts here (up to 500 characters)…"></textarea>
  <div class="fh-feedback-actions"><small id="fhFeedbackCount">0 / 500</small><button type="button" onclick="fhSubmitFeedback()">Save feedback</button></div>
  <div id="fhFeedbackList" class="fh-feedback-list" aria-live="polite"></div>
- <p class="fh-note">For now, entries are saved privately on this device and are not visible to other players. Don't include your full name, contact details, address or other personal information. Shared community reviews will need a secure moderated service.</p>
+ <p class="fh-note">Community reviews are visible to everyone. Sign in to post or manage your own review. Please do not include contact details or other private information.</p>
 </section>
 <section id="saveSettings" class="card save-panel"><h2>💾 Your save & backup</h2><p class="fh-autosave-indicator" id="fhAutoSaveStatus">Saving automatically on this device…</p><p>Your progress saves automatically on this device as you play. You do not need to press Save. You can download a complete backup, restore it on another browser or device, or recover the latest automatic snapshot on this device.</p><div class="hub-actions"><button onclick="exportFunhouseSave()">Download backup</button><label class="soft-pill" for="importSaveFile">Restore a backup</label><input id="importSaveFile" type="file" accept="application/json,.json" onchange="importFunhouseSave(event)"><button type="button" class="soft-pill" onclick="restoreAutomaticFunhouseSnapshot()">Recover automatic snapshot</button></div><p class="petnote">Restoring replaces saved Funhouse progress in this browser. Backups include your diary and other private saved data. Keep the file private and never share it publicly. Automatic snapshots stay on this device.</p></section>
 <section id="about" class="card" style="margin-top:22px"><h2>🌷 The Funhouse v5.166 · Bug Fixes & Save Reliability</h2><p style="line-height:1.6;color:#807286">The grand universe release brings the Funhouse worlds, mini-games, adventures, pets, collections and connected arcade progress together in one little playground. No account or sign-in needed. Your progress stays in this browser; export a backup to keep it safe. Thank you for exploring the Funhouse!</p><p class="petnote">Release 5.166 · World navigation, daily quests, Gem Match audio and life fixes · Made with ♡</p></section></div>
@@ -4838,6 +4838,328 @@ function setRoomGridMode(mode){
    else playFallback('match');
   }catch(e){playFallback('match')}
  };
+})();
+</script>
+
+
+<!-- Firebase community reviews: browser SDK (compat) for this standalone HTML build. -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  'use strict';
+  const firebaseConfig = {
+    apiKey: "AIzaSyCm_EuV8wow7_KjRpMHx7uYaZ61QK3Gn94",
+    authDomain: "the-funhouse-f4d2e.firebaseapp.com",
+    projectId: "the-funhouse-f4d2e",
+    storageBucket: "the-funhouse-f4d2e.firebasestorage.app",
+    messagingSenderId: "131021267822",
+    appId: "1:131021267822:web:88ac0d98217cc15663177f",
+    measurementId: "G-LXJXTQR6FD"
+  };
+
+  const byId = id => document.getElementById(id);
+  const escapeHTML = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const feedbackCard = byId('playerFeedback');
+  const feedbackField = byId('fhFeedbackText');
+  const feedbackList = byId('fhFeedbackList');
+  if (!feedbackCard || !feedbackField || !feedbackList) return;
+
+  // Add a small, self-contained sign-in panel without changing the rest of the site.
+  const authPanel = document.createElement('div');
+  authPanel.id = 'fhCommunityAuth';
+  authPanel.className = 'fh-community-auth';
+  authPanel.innerHTML = `
+    <div id="fhAuthSignedOut">
+      <p><strong>Sign in to join the community</strong></p>
+      <label for="fhAuthEmail">Email</label>
+      <input id="fhAuthEmail" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com">
+      <label for="fhAuthPassword">Password</label>
+      <input id="fhAuthPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters">
+      <div class="fh-feedback-actions">
+        <button type="button" id="fhEmailSignIn">Sign in</button>
+        <button type="button" id="fhEmailRegister" class="soft-pill">Create account</button>
+        <button type="button" id="fhGoogleSignIn" class="soft-pill">Continue with Google</button>
+      </div>
+    </div>
+    <div id="fhAuthSignedIn" hidden>
+      <p id="fhAuthIdentity"></p>
+      <button type="button" id="fhSignOut" class="soft-pill">Sign out</button>
+    </div>
+    <p id="fhAuthStatus" class="fh-review-status" role="status" aria-live="polite">Connecting to the Funhouse community…</p>
+  `;
+  feedbackField.closest('label')?.insertAdjacentElement('beforebegin', authPanel);
+  if (!authPanel.isConnected) feedbackCard.insertBefore(authPanel, feedbackField);
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .fh-community-auth{margin:14px 0;padding:14px;border:1px solid rgba(180,150,205,.35);border-radius:14px;background:rgba(248,241,255,.55)}
+    .fh-community-auth label{display:block;margin:8px 0 4px}
+    .fh-community-auth input{box-sizing:border-box;width:100%;max-width:100%;padding:11px;border:1px solid #d9cbe5;border-radius:10px;background:#fff;color:#42364c}
+    .fh-community-auth [hidden]{display:none!important}
+    .fh-community-auth .fh-feedback-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .fh-review-entry{margin:10px 0;padding:12px;border:1px solid rgba(180,150,205,.3);border-radius:12px;background:rgba(255,255,255,.72)}
+    .fh-review-entry .stars{color:#d69b24;letter-spacing:2px}
+    .fh-review-entry p{white-space:pre-wrap;overflow-wrap:anywhere}
+    .fh-review-entry small{opacity:.72}
+    .fh-review-entry button{margin:6px 6px 0 0}
+    .fh-review-status{font-size:.9em;opacity:.82}
+  `;
+  document.head.appendChild(style);
+
+  // Reuse the existing message field and category selector; ratings are stored separately.
+  let selectedRating = 5;
+  const ratingRow = document.createElement('div');
+  ratingRow.className = 'fh-review-stars';
+  ratingRow.setAttribute('role','group');
+  ratingRow.setAttribute('aria-label','Choose a star rating');
+  ratingRow.style.cssText = 'display:flex;gap:7px;margin:8px 0 12px';
+  for (let n=1; n<=5; n++) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = n <= selectedRating ? '★' : '☆';
+    button.setAttribute('aria-label', n + ' out of 5 stars');
+    button.setAttribute('aria-pressed', n === selectedRating ? 'true' : 'false');
+    button.style.cssText = 'font-size:1.35rem;padding:3px 7px;color:#d69b24;background:transparent;border:0;cursor:pointer';
+    button.addEventListener('click', () => {
+      selectedRating = n;
+      [...ratingRow.children].forEach((b,i) => {
+        b.textContent = i < n ? '★' : '☆';
+        b.setAttribute('aria-pressed', i + 1 === n ? 'true' : 'false');
+      });
+    });
+    ratingRow.appendChild(button);
+  }
+  feedbackField.insertAdjacentElement('beforebegin', ratingRow);
+  feedbackField.maxLength = 1000;
+  feedbackField.setAttribute('maxlength','1000');
+  feedbackField.placeholder = 'Share your experience (up to 1000 characters)…';
+
+  const authStatus = byId('fhAuthStatus');
+  const signedOut = byId('fhAuthSignedOut');
+  const signedIn = byId('fhAuthSignedIn');
+  const identity = byId('fhAuthIdentity');
+  let auth = null, db = null, currentUser = null, unsubscribeReviews = null;
+  let firebaseReady = false;
+
+  function setStatus(message, isError) {
+    if (!authStatus) return;
+    authStatus.textContent = message;
+    authStatus.style.color = isError ? '#a33b55' : '';
+  }
+  function toast(message) {
+    if (typeof window.showToast === 'function') window.showToast(message);
+    else setStatus(message, false);
+  }
+  function updateAuthUI(user) {
+    currentUser = user || null;
+    signedOut.hidden = !!user;
+    signedIn.hidden = !user;
+    identity.textContent = user ? 'Signed in as ' + (user.displayName || (user.email ? user.email.split('@')[0] : 'Funhouse player')) : '';
+    feedbackField.disabled = !user;
+    const submit = feedbackCard.querySelector('button[onclick*="fhSubmitFeedback"]');
+    if (submit) submit.disabled = !user;
+    if (user) setStatus('You are signed in. You can now publish a review.', false);
+    else setStatus('Sign in with email/password or Google to submit a community review.', false);
+  }
+
+  function formatDate(timestamp) {
+    try {
+      const date = timestamp && timestamp.toDate ? timestamp.toDate() : new Date(timestamp || Date.now());
+      return date.toLocaleDateString();
+    } catch (_) { return ''; }
+  }
+
+  function renderReviewDocs(snapshot) {
+    const docs = snapshot.docs || [];
+    if (!docs.length) {
+      feedbackList.innerHTML = '<small class="fh-note">No community reviews yet. Be the first to share your experience!</small>';
+      return;
+    }
+    feedbackList.innerHTML = docs.map(doc => {
+      const data = doc.data() || {};
+      const stars = Math.max(1, Math.min(5, Number(data.rating) || 5));
+      const owner = !!(currentUser && currentUser.uid === data.uid);
+      return `<article class="fh-review-entry" data-review-id="${escapeHTML(doc.id)}">
+        <div class="stars" aria-label="${stars} out of 5 stars">${'★'.repeat(stars)}${'☆'.repeat(5-stars)}</div>
+        <strong>${escapeHTML(data.displayName || 'Funhouse player')}</strong>
+        <small> · ${escapeHTML(formatDate(data.createdAt))}</small>
+        <p>${escapeHTML(data.comment || '')}</p>
+        ${owner ? '<button type="button" class="soft-pill" data-action="delete">Delete my review</button>' : '<button type="button" class="soft-pill" data-action="report">Report review</button>'}
+      </article>`;
+    }).join('');
+  }
+
+  async function loadReviews() {
+    if (!db) return;
+    if (unsubscribeReviews) unsubscribeReviews();
+    // The status filter is required by the supplied Firestore security rules.
+    unsubscribeReviews = db.collection('reviews')
+      .where('status','==','published')
+      .orderBy('createdAt','desc')
+      .limit(40)
+      .onSnapshot(renderReviewDocs, error => {
+        console.error('Funhouse review loading error:', error);
+        setStatus('Could not load community reviews. Check Firestore access and your Firebase setup.', true);
+        feedbackList.innerHTML = '<small class="fh-note">Community reviews could not be loaded right now. Please try again later.</small>';
+      });
+  }
+
+  async function submitReview() {
+    if (!firebaseReady || !currentUser) {
+      setStatus('Please sign in before submitting a review.', true);
+      return;
+    }
+    const comment = feedbackField.value.trim();
+    if (comment.length < 4) {
+      setStatus('Please write at least 4 characters before submitting.', true);
+      return;
+    }
+    if (comment.length > 1000) {
+      setStatus('Reviews must be 1000 characters or fewer.', true);
+      return;
+    }
+    const category = byId('fhFeedbackType');
+    const displayName = String(currentUser.displayName || (currentUser.email ? currentUser.email.split('@')[0] : 'Funhouse player')).trim().slice(0,30) || 'Funhouse player';
+    const payload = {
+      uid: currentUser.uid,
+      displayName,
+      rating: selectedRating,
+      comment: comment.slice(0,1000),
+      status: 'published',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    const submit = feedbackCard.querySelector('button[onclick*="fhSubmitFeedback"]');
+    if (submit) submit.disabled = true;
+    try {
+      await db.collection('reviews').add(payload);
+      feedbackField.value = '';
+      selectedRating = 5;
+      [...ratingRow.children].forEach((b,i) => {
+        b.textContent = i < 5 ? '★' : '☆';
+        b.setAttribute('aria-pressed', i === 4 ? 'true' : 'false');
+      });
+      const count = byId('fhFeedbackCount');
+      if (count) count.textContent = '0 / 1000';
+      toast('Your review is now published. Thank you! ✨');
+    } catch (error) {
+      console.error('Funhouse review submission error:', error);
+      const message = error && error.code === 'permission-denied'
+        ? 'Firestore denied this review. Check that these rules are published and the user is signed in.'
+        : 'Your review could not be submitted. Please try again.';
+      setStatus(message, true);
+    } finally {
+      if (submit) submit.disabled = !currentUser;
+    }
+  }
+
+  feedbackList.addEventListener('click', async event => {
+    const button = event.target.closest('button[data-action]');
+    if (!button) return;
+    const card = button.closest('[data-review-id]');
+    const reviewId = card && card.getAttribute('data-review-id');
+    if (!reviewId || !db) return;
+    button.disabled = true;
+    try {
+      if (button.dataset.action === 'delete') {
+        if (!currentUser) throw new Error('Sign in again to manage your review.');
+        await db.collection('reviews').doc(reviewId).delete();
+        toast('Your review was deleted.');
+      } else if (button.dataset.action === 'report') {
+        if (!currentUser) throw new Error('Sign in to report a review.');
+        const reason = window.prompt('Why are you reporting this review? (Up to 500 characters)');
+        if (reason === null) return;
+        const cleanReason = reason.trim().slice(0,500);
+        if (!cleanReason) throw new Error('Please enter a reason for the report.');
+        await db.collection('reports').add({
+          reporterUid: currentUser.uid,
+          reviewId,
+          reason: cleanReason,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        toast('Thank you. Your report has been sent for review.');
+      }
+    } catch (error) {
+      console.error('Funhouse review action error:', error);
+      setStatus(error.message || 'That action could not be completed.', true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  async function emailAuth(createAccount) {
+    const email = byId('fhAuthEmail').value.trim();
+    const password = byId('fhAuthPassword').value;
+    if (!email || !password) { setStatus('Enter your email and password first.', true); return; }
+    if (password.length < 6) { setStatus('Your password must be at least 6 characters.', true); return; }
+    try {
+      setStatus(createAccount ? 'Creating your account…' : 'Signing in…', false);
+      if (createAccount) await auth.createUserWithEmailAndPassword(email,password);
+      else await auth.signInWithEmailAndPassword(email,password);
+    } catch (error) {
+      console.error('Funhouse email authentication error:', error);
+      const messages = {
+        'auth/email-already-in-use':'An account already exists with this email. Try signing in.',
+        'auth/invalid-email':'That email address does not look valid.',
+        'auth/weak-password':'Choose a stronger password with at least 6 characters.',
+        'auth/user-not-found':'No account was found. You can create one instead.',
+        'auth/wrong-password':'That password was not accepted. Check it and try again.',
+        'auth/invalid-credential':'The email or password was not accepted.',
+        'auth/operation-not-allowed':'Email/password sign-in is not enabled in Firebase Authentication.'
+      };
+      setStatus(messages[error.code] || 'Sign-in failed: ' + (error.message || 'Please try again.'), true);
+    }
+  }
+
+  byId('fhEmailSignIn').addEventListener('click', () => emailAuth(false));
+  byId('fhEmailRegister').addEventListener('click', () => emailAuth(true));
+  byId('fhGoogleSignIn').addEventListener('click', async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+    } catch (error) {
+      console.error('Funhouse Google authentication error:', error);
+      const messages = {
+        'auth/operation-not-allowed':'Google sign-in is not enabled in Firebase Authentication.',
+        'auth/unauthorized-domain':'Add this website domain to Firebase Authentication → Settings → Authorized domains.',
+        'auth/popup-blocked':'Your browser blocked the sign-in popup. Allow popups and try again.',
+        'auth/popup-closed-by-user':'The sign-in window was closed before completion.'
+      };
+      setStatus(messages[error.code] || 'Google sign-in failed: ' + (error.message || 'Please try again.'), true);
+    }
+  });
+  byId('fhSignOut').addEventListener('click', () => auth.signOut().catch(error => {
+    console.error(error); setStatus('Could not sign out. Please try again.', true);
+  }));
+
+  // Replace both older local-only handlers so reviews are never falsely reported as shared.
+  window.fhSubmitFeedback = submitReview;
+  const count = byId('fhFeedbackCount');
+  function updateCount() { if (count) count.textContent = feedbackField.value.length + ' / 1000'; }
+  feedbackField.addEventListener('input', updateCount);
+  updateAuthUI(null);
+  feedbackField.disabled = true;
+  const oldNote = feedbackCard.querySelector('.fh-note');
+  if (oldNote) oldNote.textContent = 'Community reviews are stored in Firestore. Sign in to publish; published reviews are visible to everyone.';
+
+  try {
+    if (!window.firebase) throw new Error('Firebase SDK did not load. Check your internet connection or content-blocking settings.');
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    auth = firebase.auth();
+    db = firebase.firestore();
+    firebaseReady = true;
+    auth.onAuthStateChanged(user => {
+      updateAuthUI(user);
+      loadReviews();
+    });
+  } catch (error) {
+    console.error('Funhouse Firebase initialization error:', error);
+    setStatus('Firebase could not start. Check your connection and reload the page.', true);
+    feedbackList.innerHTML = '<small class="fh-note">Community reviews are temporarily unavailable.</small>';
+  }
 })();
 </script>
 
