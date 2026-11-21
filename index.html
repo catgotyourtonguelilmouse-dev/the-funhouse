@@ -3558,44 +3558,7 @@ body.theme-forestnight button:focus-visible{outline:3px solid #f4d486;outline-of
  setTimeout(()=>window.renderLevelTrack(),500);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)window.renderLevelTrack()});
 
- // REVIEWS: private/local by default; optional shared REST endpoint can be configured by the site owner.
- const REVIEWS_KEY='funhouse-community-reviews-v1';
- window.FUNHOUSE_REVIEWS_ENDPOINT=window.FUNHOUSE_REVIEWS_ENDPOINT||'';
- function getReviews(){try{const x=JSON.parse(localStorage.getItem(REVIEWS_KEY)||'[]');return Array.isArray(x)?x.slice(0,40):[]}catch(e){return []}}
- function renderReviews(){
-   const list=$('fhFeedbackList');if(!list)return;
-   const items=getReviews();
-   list.innerHTML=items.length?items.map(x=>'<article class="fh-review-entry"><div class="stars">'+('★'.repeat(Math.max(1,Math.min(5,Number(x.rating)||5))))+('☆'.repeat(5-Math.max(1,Math.min(5,Number(x.rating)||5))))+'</div><strong>'+safeText(x.type||'Review')+' · '+safeText(new Date(x.date).toLocaleDateString())+'</strong><p>'+safeText(x.text)+'</p><small>Saved on this device</small></article>').join(''):'<small class="fh-note">No reviews saved on this device yet.</small>';
- }
- let rating=5;
- const reviewForm=$('fhFeedbackText');
- if(reviewForm){
-   const row=document.createElement('div');row.className='fh-review-stars';row.setAttribute('aria-label','Choose a star rating');
-   for(let n=1;n<=5;n++){const b=document.createElement('button');b.type='button';b.textContent=n<=rating?'★':'☆';b.setAttribute('aria-label',n+' stars');b.addEventListener('click',()=>{rating=n;[...row.children].forEach((x,i)=>x.textContent=i<rating?'★':'☆')});row.append(b)}
-   reviewForm.insertAdjacentElement('beforebegin',row);
-   const status=document.createElement('p');status.id='fhReviewMode';status.className='fh-review-status';
-   status.textContent=window.FUNHOUSE_REVIEWS_ENDPOINT?'Community connection configured. Reviews will be sent to the configured service.':'Local preview: reviews are saved only on this device. Shared posting is not connected yet.';
-   $('fhFeedbackList')?.insertAdjacentElement('beforebegin',status);
- }
- const oldSubmit=window.fhSubmitFeedback;
- window.fhSubmitFeedback=async function(){
-   const type=$('fhFeedbackType'),field=$('fhFeedbackText');if(!type||!field)return;
-   const text=field.value.trim();if(text.length<4){if(typeof showToast==='function')showToast('Write a little more before saving.');return}
-   const entry={type:type.value,text:text.slice(0,500),rating,date:new Date().toISOString(),source:'funhouse'};
-   const endpoint=String(window.FUNHOUSE_REVIEWS_ENDPOINT||'').trim();
-   if(endpoint){
-     try{
-       const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(entry)});
-       if(!response.ok)throw new Error('Review service returned '+response.status);
-       field.value='';if(typeof showToast==='function')showToast('Your review was submitted. Thank you!');renderReviews();return;
-     }catch(err){if(typeof showToast==='function')showToast('Could not reach the review service. Saving a private copy instead.')}
-   }
-   const items=getReviews();items.unshift(entry);
-   try{localStorage.setItem(REVIEWS_KEY,JSON.stringify(items.slice(0,40)));field.value='';renderReviews();if(typeof showToast==='function')showToast('Saved privately on this device. 💌')}
-   catch(e){if(typeof showToast==='function')showToast('Could not save review. Browser storage may be full.')}
- };
- // Keep the original autosave feedback panel but display the new review records.
- setTimeout(renderReviews,550);
+ // Legacy local-only review system removed; Firebase review system is initialized at the end of this document.
 
  // TRUE 3D room scenes: Three.js procedural geometry, with a graceful illustrated fallback.
  function loadThree(done){
@@ -3730,7 +3693,7 @@ body.theme-forestnight button:focus-visible{outline:3px solid #f4d486;outline-of
 
  // Review form safeguards: trim whitespace, cap length, and prevent duplicate submissions.
  const field=$('fhFeedbackText');
- if(field){field.maxLength=500;field.setAttribute('maxlength','500');}
+ if(field){field.maxLength=1000;field.setAttribute('maxlength','1000');}
  const original=window.fhSubmitFeedback;
  if(typeof original==='function'){
   let busy=false;
@@ -4998,11 +4961,17 @@ function setRoomGridMode(mode){
     // The status filter is required by the supplied Firestore security rules.
     unsubscribeReviews = db.collection('reviews')
       .where('status','==','published')
-      .orderBy('createdAt','desc')
-      .limit(40)
-      .onSnapshot(renderReviewDocs, error => {
+      .limit(100)
+      .onSnapshot(snapshot => {
+        const docs = [...snapshot.docs].sort((a,b) => {
+          const at = a.data().createdAt && a.data().createdAt.toMillis ? a.data().createdAt.toMillis() : 0;
+          const bt = b.data().createdAt && b.data().createdAt.toMillis ? b.data().createdAt.toMillis() : 0;
+          return bt - at;
+        }).slice(0,40);
+        renderReviewDocs({docs});
+      }, error => {
         console.error('Funhouse review loading error:', error);
-        setStatus('Could not load community reviews. Check Firestore access and your Firebase setup.', true);
+        setStatus('Could not load reviews (' + (error.code || 'unknown-error') + '). ' + (error.message || 'Check Firestore access and Firebase setup.'), true);
         feedbackList.innerHTML = '<small class="fh-note">Community reviews could not be loaded right now. Please try again later.</small>';
       });
   }
@@ -5142,8 +5111,14 @@ function setRoomGridMode(mode){
   feedbackField.addEventListener('input', updateCount);
   updateAuthUI(null);
   feedbackField.disabled = true;
-  const oldNote = feedbackCard.querySelector('.fh-note');
-  if (oldNote) oldNote.textContent = 'Community reviews are stored in Firestore. Sign in to publish; published reviews are visible to everyone.';
+  // Remove stale local-preview UI left by the former localStorage implementation.
+  feedbackCard.querySelectorAll('#fhReviewMode').forEach(node => node.remove());
+  feedbackCard.querySelectorAll('.fh-review-status').forEach(node => { if (node !== authStatus) node.remove(); });
+  feedbackCard.querySelectorAll('.fh-note').forEach(node => node.remove());
+  if (count) count.textContent = '0 / 1000';
+  const updateCounter = () => { if (count) count.textContent = feedbackField.value.length + ' / 1000'; };
+  feedbackField.addEventListener('input', updateCounter);
+  updateCounter();
 
   try {
     if (!window.firebase) throw new Error('Firebase SDK did not load. Check your internet connection or content-blocking settings.');
